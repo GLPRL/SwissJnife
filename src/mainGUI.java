@@ -9,30 +9,24 @@ public class mainGUI {
         JFrame frame = new JFrame("SwissJnife");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(650, 400);
-        frame.setBackground(Color.WHITE);
 
-        JPanel panel = new JPanel(new GridBagLayout());
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setBackground(Color.WHITE);
         frame.add(panel);
 
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.fill = GridBagConstraints.NORTH;
-        constraints.insets = new Insets(20, 20, 20, 20);
-
-        //Create title
+        // Create title
         JLabel title = new JLabel("SwissJnife");
-        constraints.gridx = 0;
-        constraints.gridy = 0;
         title.setFont(title.getFont().deriveFont(20.0f));
-        constraints.anchor = GridBagConstraints.NORTH;
-        panel.add(title, constraints);
+        panel.add(title);
 
-        JButton button = new JButton("Encrypt File");
-        constraints.gridwidth = 2;
-        constraints.gridx = 0;
-        constraints.gridy = 2;
-        constraints.anchor = GridBagConstraints.CENTER;
-        panel.add(button, constraints);
+        JButton encryptButton = new JButton("Encrypt File");
+        panel.add(encryptButton);
 
+        JButton decryptButton = new JButton("Decrypt File");
+        panel.add(decryptButton);
+
+        // Set frame visibility at the end
         frame.setVisible(true);
     }
 }
