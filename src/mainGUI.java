@@ -4,7 +4,16 @@ import java.awt.*;
 public class mainGUI {
     public mainGUI() {
     }
-
+    private void clearScreen(JPanel panel) {
+        panel.removeAll();
+        panel.revalidate();
+        panel.repaint();
+    }
+    private void createButton(JPanel panel, String desc) {
+        JButton btn = new JButton(desc);
+        panel.add(btn);
+        btn.addActionListener(e -> clearScreen(panel));
+    }
     public void presentGUI() {
         JFrame frame = new JFrame("SwissJnife");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -20,13 +29,10 @@ public class mainGUI {
         title.setFont(title.getFont().deriveFont(20.0f));
         panel.add(title);
 
-        JButton encryptButton = new JButton("Encrypt File");
-        panel.add(encryptButton);
+        createButton(panel, "Encrypt File");
+        createButton(panel, "decrypt File");
 
-        JButton decryptButton = new JButton("Decrypt File");
-        panel.add(decryptButton);
-
-        // Set frame visibility at the end
+        // Show
         frame.setVisible(true);
     }
 }
