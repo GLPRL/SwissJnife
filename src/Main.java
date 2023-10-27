@@ -1,5 +1,7 @@
+import GUIs.mainGUI;
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        mainGUI mg = new mainGUI();
+        mg.presentGUI();
     }
 }
