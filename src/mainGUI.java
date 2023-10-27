@@ -1,5 +1,3 @@
-package GUIs;
-
 import javax.swing.*;
 
 public class mainGUI {
