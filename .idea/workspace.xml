@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="encryptGUI new class for encrypting process.&#10;mainGUI: frame is a member in class, creation of buttons is with conditions for applying the correct behavior.">
-      <change afterPath="$PROJECT_DIR$/src/encryptGUI.java" afterDir="false" />
+    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="GUI modifications">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/encryptGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/encryptGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainGUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="gal_preps" />
+        <entry key="$PROJECT_DIR$" value="gal_reload-screen" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -44,7 +44,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "gal__reload-screen",
+    "git-widget-placeholder": "gal__encrypt",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/galpe/IdeaProjects/SwissJnife/src",
     "node.js.detected.package.eslint": "true",
@@ -195,7 +195,8 @@
       <option name="presentableId" value="Default" />
       <updated>1698402627143</updated>
       <workItem from="1698402629240" duration="4028000" />
-      <workItem from="1698500962516" duration="4461000" />
+      <workItem from="1698500962516" duration="4535000" />
+      <workItem from="1698564021330" duration="6785000" />
     </task>
     <task id="LOCAL‎-00001" summary="code re-organization">
       <option name="closed" value="true" />
@@ -213,7 +214,23 @@
       <option name="project" value="LOCAL‎" />
       <updated>1698413635729</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL‎-00003" summary="encryptGUI new class for encrypting process.&#10;mainGUI: frame is a member in class, creation of buttons is with conditions for applying the correct behavior.">
+      <option name="closed" value="true" />
+      <created>1698505470487</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL‎-00003" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1698505470487</updated>
+    </task>
+    <task id="LOCAL‎-00004" summary="GUI modifications">
+      <option name="closed" value="true" />
+      <created>1698569083219</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL‎-00004" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1698569083219</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -236,17 +253,7 @@
     <MESSAGE value="button generator function" />
     <MESSAGE value="encryptGUI new class for encrypting process.&#10;mainGUI: frame is a member in class, creation of buttons is with conditions for applying the correct behavior.&#10;gotta try to add a image button." />
     <MESSAGE value="encryptGUI new class for encrypting process.&#10;mainGUI: frame is a member in class, creation of buttons is with conditions for applying the correct behavior." />
-    <option name="LAST_COMMIT_MESSAGE" value="encryptGUI new class for encrypting process.&#10;mainGUI: frame is a member in class, creation of buttons is with conditions for applying the correct behavior." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mainGUI.java</url>
-          <line>72</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="GUI modifications" />
+    <option name="LAST_COMMIT_MESSAGE" value="GUI modifications" />
   </component>
 </project>
