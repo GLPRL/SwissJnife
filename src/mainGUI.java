@@ -13,55 +13,79 @@ public class mainGUI {
      * Build the window and the panel/layout.
      */
     public mainGUI() {
-        frame = new JFrame("SwissJnife");
+        frame = new JFrame("SwissJnife");              //Window settings
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(650, 400);
 
-        panel = new JPanel();
-        BoxLayout box = new BoxLayout(panel, BoxLayout.Y_AXIS);
+
+        panel = new JPanel();                               //Main panel settings
+        BoxLayout box = new BoxLayout(panel, BoxLayout.X_AXIS);
         panel.setLayout(box);
         panel.setBackground(Color.WHITE);
         frame.add(panel);
     }
 
     /**
-     * Clear the screen.
-     * @param panel main panel of the screen
-     */
-    private void clearScreen(JPanel panel) {
-        panel.removeAll();
-        panel.revalidate();
-        panel.repaint();
-    }
-
-    /**
-     * General method for creating buttons
-     * @param panel panel to add the button to
-     * @param desc the text shown in the button
-     */
-    private void createButton(JPanel panel, String desc) {
-        JButton btn = new JButton(desc);
-        Component rigidArea = Box.createRigidArea(new Dimension(5, 10));
-        panel.add(rigidArea);
-        panel.add(btn);
-        //Assign listener for each button.
-        btn.addActionListener(e -> {
-            clearScreen(panel);
-            if (desc.equals("Encrypt File")) {
-                encryptGUI gui = new encryptGUI();
-                gui.presentGui(frame, mainGUI.this);
-            } else if (desc.equals("Decrypt File")) {
-                btn.setLocation(10, 40);
-            }
-        });
-    }
-
-    /**
      * General method, creating the content of the main GUI
      */
     public void createContent() {
-        createButton(panel, "Encrypt File");
-        createButton(panel, "Decrypt File");
+        JPanel panel1 = new JPanel();                               //First column setup
+        BoxLayout box1 = new BoxLayout(panel1, BoxLayout.Y_AXIS);
+
+        //Create first column
+        panel1.setLayout(box1);
+        panel1.setAlignmentY(Component.TOP_ALIGNMENT);
+        panel1.removeAll();
+
+        Component rigidArea = Box.createRigidArea(new Dimension(10, 5));
+        rigidArea.setBackground(Color.WHITE);
+        this.panel.add(rigidArea);
+
+        //Create encrypt file button
+        JButton encBtn = new JButton("Encrypt File");
+        encBtn.setBackground(new Color(150, 245, 222));
+        encBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        panel1.add(encBtn);
+        panel1.add(rigidArea);
+
+        //Create decrypt file button
+        JButton decBtn = new JButton("Decrypt File");
+        decBtn.setBackground(new Color(150, 245, 222));
+        decBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        panel1.add(decBtn);
+
+        //Create second column
+        JPanel panel2 = new JPanel();
+        BoxLayout box2 = new BoxLayout(panel2, BoxLayout.Y_AXIS);
+        panel2.setLayout(box2);
+        panel2.setAlignmentY(Component.TOP_ALIGNMENT);
+        panel2.removeAll();
+
+        Component rigidArea2 = Box.createRigidArea(new Dimension(5,5));
+        this.panel.add(rigidArea2);
+        JButton someButton = new JButton("Some_button");
+        someButton.setBackground(new Color(150, 245, 222));
+        panel2.add(someButton);
+
+
+        //Add listeners
+        encBtn.addActionListener(e -> {
+            sharedUtils.clearScreen(panel);
+            encryptGUI gui = new encryptGUI();
+            gui.presentGui(frame, mainGUI.this);
+        });
+        decBtn.addActionListener(e -> {
+            sharedUtils.clearScreen(panel);
+            //TODO: decryptGUI gui = new encryptGUI();
+            //TODO: gui.presentGui(frame, mainGUI.this);
+        });
+
+        this.panel.add(Box.createRigidArea(new Dimension(10, 10)));
+        this.panel.add(panel1);
+        panel1.setBackground(Color.WHITE);
+        this.panel.add(Box.createRigidArea(new Dimension(10, 0)));
+        this.panel.add(panel2);
+
     }
 
     /**
