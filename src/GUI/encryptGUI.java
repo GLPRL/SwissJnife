@@ -1,6 +1,5 @@
 package GUI;
 
-import GuiUtils.sharedUtils;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
@@ -15,7 +14,6 @@ public class encryptGUI {
         frame.add(panel);
 
         JButton backButton = new JButton("Return");
-        panel.setAlignmentX(Component.LEFT_ALIGNMENT);
         backButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         backButton.setBackground(new Color(248, 72, 72, 216));
         panel.add(backButton);
@@ -25,14 +23,16 @@ public class encryptGUI {
         });
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-
         int res = fileChooser.showOpenDialog(frame);
         if (res == JFileChooser.APPROVE_OPTION) {
             // Get the selected file
             java.io.File selectedFile = fileChooser.getSelectedFile();
             JOptionPane.showMessageDialog(frame, "Selected file: " + selectedFile.getAbsolutePath());
+        } else if (res == JFileChooser.CANCEL_OPTION) {
+            sharedUtils.clearScreen(panel);
+            gui.presentGUI();
         }
-        panel.add(fileChooser);
+        //panel.add(fileChooser);
         frame.setVisible(true);
     }
 }

@@ -1,5 +1,4 @@
 package GUI;
-import GuiUtils.sharedUtils;
 
 import javax.swing.*;
 import java.awt.*;

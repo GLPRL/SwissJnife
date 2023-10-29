@@ -1,4 +1,4 @@
-package GuiUtils;
+package GUI;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
