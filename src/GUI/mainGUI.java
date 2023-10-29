@@ -1,5 +1,8 @@
+package GUI;
+
 import javax.swing.*;
 import java.awt.*;
+
 
 /**
  * GUI class to present content of main screen
