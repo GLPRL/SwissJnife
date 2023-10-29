@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="GUI modifications and bug fix">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="Code organization">
+      <change afterPath="$PROJECT_DIR$/src/Logics/decrypt.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Logics/encrypt.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/encryptGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/encryptGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/mainGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sharedUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GuiUtils/sharedUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwissJnife.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SwissJnife.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/encryptGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/encryptGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GuiUtils/sharedUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GuiUtils/sharedUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +44,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -56,8 +60,8 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -200,7 +204,7 @@
       <updated>1698402627143</updated>
       <workItem from="1698402629240" duration="4028000" />
       <workItem from="1698500962516" duration="4535000" />
-      <workItem from="1698564021330" duration="8666000" />
+      <workItem from="1698564021330" duration="9549000" />
     </task>
     <task id="LOCAL‎-00001" summary="code re-organization">
       <option name="closed" value="true" />
@@ -242,7 +246,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1698573130402</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL‎-00006" summary="Code organization">
+      <option name="closed" value="true" />
+      <created>1698588624659</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL‎-00006" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1698588624659</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -267,6 +279,7 @@
     <MESSAGE value="encryptGUI new class for encrypting process.&#10;mainGUI: frame is a member in class, creation of buttons is with conditions for applying the correct behavior." />
     <MESSAGE value="GUI modifications" />
     <MESSAGE value="GUI modifications and bug fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="GUI modifications and bug fix" />
+    <MESSAGE value="Code organization" />
+    <option name="LAST_COMMIT_MESSAGE" value="Code organization" />
   </component>
 </project>
