@@ -4,6 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.awt.*;
+import Logics.encrypt;
 
 public class encryptGUI {
     public encryptGUI() {
@@ -27,7 +28,9 @@ public class encryptGUI {
         if (res == JFileChooser.APPROVE_OPTION) {
             // Get the selected file
             java.io.File selectedFile = fileChooser.getSelectedFile();
-            JOptionPane.showMessageDialog(frame, "Selected file: " + selectedFile.getAbsolutePath());
+            System.out.println(selectedFile.getAbsolutePath());
+            encrypt.encryptFile(selectedFile.getAbsolutePath());
+            //JOptionPane.showMessageDialog(frame, "Selected file: " + selectedFile.getAbsolutePath());
         } else if (res == JFileChooser.CANCEL_OPTION) {
             sharedUtils.clearScreen(panel);
             gui.presentGUI();
