@@ -17,11 +17,13 @@ public class mainGUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(650, 400);
 
+        Container contentPane = frame.getContentPane();
+        contentPane.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         panel = new JPanel();                               //Main panel settings
         BoxLayout box = new BoxLayout(panel, BoxLayout.X_AXIS);
+
         panel.setLayout(box);
-        panel.setBackground(Color.WHITE);
         frame.add(panel);
     }
 
@@ -29,6 +31,7 @@ public class mainGUI {
      * General method, creating the content of the main GUI
      */
     public void createContent() {
+        panel.removeAll();
         JPanel panel1 = new JPanel();                               //First column setup
         BoxLayout box1 = new BoxLayout(panel1, BoxLayout.Y_AXIS);
 
@@ -38,7 +41,6 @@ public class mainGUI {
         panel1.removeAll();
 
         Component rigidArea = Box.createRigidArea(new Dimension(10, 5));
-        rigidArea.setBackground(Color.WHITE);
         this.panel.add(rigidArea);
 
         //Create encrypt file button
@@ -75,14 +77,13 @@ public class mainGUI {
             gui.presentGui(frame, mainGUI.this);
         });
         decBtn.addActionListener(e -> {
-            sharedUtils.clearScreen(panel);
+            //TODO: sharedUtils.clearScreen(panel);
             //TODO: decryptGUI gui = new encryptGUI();
             //TODO: gui.presentGui(frame, mainGUI.this);
         });
 
         this.panel.add(Box.createRigidArea(new Dimension(10, 10)));
         this.panel.add(panel1);
-        panel1.setBackground(Color.WHITE);
         this.panel.add(Box.createRigidArea(new Dimension(10, 0)));
         this.panel.add(panel2);
 
