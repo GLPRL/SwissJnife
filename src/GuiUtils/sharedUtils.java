@@ -1,3 +1,4 @@
+package GuiUtils;
 import javax.swing.*;
 
 public class sharedUtils {
