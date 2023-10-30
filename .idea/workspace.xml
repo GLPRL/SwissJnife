@@ -7,7 +7,7 @@
     <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="Encryption works.&#10;TODO some progress bar">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/encryptGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/encryptGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logics/encrypt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logics/encrypt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/mainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/mainGUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,7 +218,8 @@
       <workItem from="1698564021330" duration="9680000" />
       <workItem from="1698594121269" duration="2171000" />
       <workItem from="1698607624272" duration="1088000" />
-      <workItem from="1698646106830" duration="13622000" />
+      <workItem from="1698646106830" duration="13642000" />
+      <workItem from="1698677760204" duration="3023000" />
     </task>
     <task id="LOCAL‎-00001" summary="code re-organization">
       <option name="closed" value="true" />
@@ -332,7 +333,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1698660727241</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL‎-00015" summary="Encryption works.&#10;TODO some progress bar">
+      <option name="closed" value="true" />
+      <created>1698668987395</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL‎-00015" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1698668987395</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
