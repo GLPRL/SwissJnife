@@ -16,10 +16,8 @@ public class encrypt {
                 //TODO: encrypt!
                 //TODO: regard if bytesRead < 32
             }
-        } catch (IOException e) {
+        } catch (IOException ignored) {
 
         }
     }
-
-
 }
