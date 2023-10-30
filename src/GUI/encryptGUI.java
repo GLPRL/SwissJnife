@@ -12,15 +12,9 @@ public class encryptGUI {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         frame.add(panel);
+        Container contentPane = frame.getContentPane();
+        contentPane.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-        JButton backButton = new JButton("Return");
-        backButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        backButton.setBackground(new Color(248, 72, 72, 216));
-        panel.add(backButton);
-        backButton.addActionListener(e -> {
-            sharedUtils.clearScreen(panel);
-            gui.presentGUI();
-        });
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         int res = fileChooser.showOpenDialog(frame);
@@ -29,8 +23,12 @@ public class encryptGUI {
             java.io.File selectedFile = fileChooser.getSelectedFile();
             try {
                 encrypt.encryptFile(selectedFile.getAbsolutePath());
+                sharedUtils.clearScreen(panel);
+                gui.presentGUI();
             } catch (Exception e) {
                 e.fillInStackTrace();
+                sharedUtils.clearScreen(panel);
+                gui.presentGUI();
             }
 
             //JOptionPane.showMessageDialog(frame, "Selected file: " + selectedFile.getAbsolutePath());

@@ -3,7 +3,6 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 
-
 /**
  * GUI class to present content of main screen
  */
@@ -66,12 +65,21 @@ public class mainGUI {
         panel2.setAlignmentY(Component.TOP_ALIGNMENT);
         panel2.removeAll();
 
-        Component rigidArea2 = Box.createRigidArea(new Dimension(5,5));
-        this.panel.add(rigidArea2);
-        JButton someButton = new JButton("Some_button");
-        someButton.setBackground(new Color(150, 245, 222));
-        panel2.add(someButton);
+        JButton vulScan = new JButton("Self Scanner");
+        vulScan.setBackground(new Color(150, 245, 222));
+        vulScan.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        panel2.add(vulScan);
 
+        JPanel panel3 = new JPanel();
+        BoxLayout box3 = new BoxLayout(panel3, BoxLayout.Y_AXIS);
+        panel3.setLayout(box3);
+        panel3.setAlignmentY(Component.TOP_ALIGNMENT);
+        panel3.removeAll();
+
+        JButton fw = new JButton("Firewall Config");
+        fw.setBackground(new Color(150, 245, 222));
+        fw.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        panel3.add(fw);
 
         //Add listeners
         encBtn.addActionListener(e -> {
@@ -84,12 +92,20 @@ public class mainGUI {
             //TODO: decryptGUI gui = new encryptGUI();
             //TODO: gui.presentGui(frame, mainGUI.this);
         });
+        vulScan.addActionListener(e -> {
+            //TODO
+        });
+        fw.addActionListener(e -> {
+            //TODO
+        });
+
 
         this.panel.add(Box.createRigidArea(new Dimension(10, 10)));
         this.panel.add(panel1);
         this.panel.add(Box.createRigidArea(new Dimension(10, 0)));
         this.panel.add(panel2);
-
+        this.panel.add(Box.createRigidArea(new Dimension(10, 0)));
+        this.panel.add(panel3);
     }
 
     /**
