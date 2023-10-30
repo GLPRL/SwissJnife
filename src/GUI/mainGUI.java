@@ -2,6 +2,8 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * GUI class to present content of main screen
@@ -9,6 +11,8 @@ import java.awt.*;
 public class mainGUI {
     JFrame frame;
     JPanel panel;
+    Color normal = new Color(150, 245, 222);
+    Color onHover = new Color(118, 192, 173);
 
     /**
      * Constructor.
@@ -82,22 +86,8 @@ public class mainGUI {
         panel3.add(fw);
 
         //Add listeners
-        encBtn.addActionListener(e -> {
-            sharedUtils.clearScreen(panel);
-            encryptGUI gui = new encryptGUI();
-            gui.presentGui(frame, mainGUI.this);
-        });
-        decBtn.addActionListener(e -> {
-            //TODO: sharedUtils.clearScreen(panel);
-            //TODO: decryptGUI gui = new encryptGUI();
-            //TODO: gui.presentGui(frame, mainGUI.this);
-        });
-        vulScan.addActionListener(e -> {
-            //TODO
-        });
-        fw.addActionListener(e -> {
-            //TODO
-        });
+        setListeners(encBtn, decBtn, vulScan, fw);
+
 
 
         this.panel.add(Box.createRigidArea(new Dimension(10, 10)));
@@ -115,5 +105,76 @@ public class mainGUI {
         createContent();
         // Show
         frame.setVisible(true);
+    }
+    public void setListeners(JButton encBtn, JButton decBtn, JButton vulScan, JButton fw) {
+        encBtn.addActionListener(e -> {
+            sharedUtils.clearScreen(panel);
+            encryptGUI gui = new encryptGUI();
+            gui.presentGui(frame, mainGUI.this);
+        });
+        decBtn.addActionListener(e -> {
+            //TODO: sharedUtils.clearScreen(panel);
+            //TODO: decryptGUI gui = new encryptGUI();
+            //TODO: gui.presentGui(frame, mainGUI.this);
+        });
+        vulScan.addActionListener(e -> {
+            //TODO
+        });
+        fw.addActionListener(e -> {
+            //TODO
+        });
+
+        encBtn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                encBtn.setBackground(onHover);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                encBtn.setBackground(normal);
+            }
+        });
+        decBtn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                decBtn.setBackground(onHover);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                decBtn.setBackground(normal);
+            }
+        });
+        vulScan.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                vulScan.setBackground(onHover);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                vulScan.setBackground(normal);
+            }
+        });
+        fw.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                fw.setBackground(onHover);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                fw.setBackground(normal);
+            }
+        });
     }
 }

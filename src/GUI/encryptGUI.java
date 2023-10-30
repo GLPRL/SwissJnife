@@ -11,7 +11,7 @@ public class encryptGUI {
     public void presentGui(@NotNull JFrame frame, mainGUI gui) {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        frame.add(panel);
+
         Container contentPane = frame.getContentPane();
         contentPane.setLayout(new FlowLayout(FlowLayout.CENTER));
 
@@ -30,13 +30,18 @@ public class encryptGUI {
                 sharedUtils.clearScreen(panel);
                 gui.presentGUI();
             }
-
-            //JOptionPane.showMessageDialog(frame, "Selected file: " + selectedFile.getAbsolutePath());
         } else if (res == JFileChooser.CANCEL_OPTION) {
             sharedUtils.clearScreen(panel);
             gui.presentGUI();
         }
-        //panel.add(fileChooser);
+        //Key data
+        JTextPane key = new JTextPane();
+        key.setFont(key.getFont().deriveFont(16.0f));
+        key.setEditable(false);
+        panel.add(key);
+
+
+        frame.add(panel);
         frame.setVisible(true);
     }
 }
