@@ -27,8 +27,12 @@ public class encryptGUI {
         if (res == JFileChooser.APPROVE_OPTION) {
             // Get the selected file
             java.io.File selectedFile = fileChooser.getSelectedFile();
-            System.out.println(selectedFile.getAbsolutePath());
-            encrypt.encryptFile(selectedFile.getAbsolutePath());
+            try {
+                encrypt.encryptFile(selectedFile.getAbsolutePath());
+            } catch (Exception e) {
+                e.fillInStackTrace();
+            }
+
             //JOptionPane.showMessageDialog(frame, "Selected file: " + selectedFile.getAbsolutePath());
         } else if (res == JFileChooser.CANCEL_OPTION) {
             sharedUtils.clearScreen(panel);
