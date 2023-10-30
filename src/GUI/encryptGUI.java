@@ -32,13 +32,14 @@ public class encryptGUI {
             }
         } else if (res == JFileChooser.CANCEL_OPTION) {
             sharedUtils.clearScreen(panel);
+            frame.removeAll();
             gui.presentGUI();
         }
         //Key data
-        JTextPane key = new JTextPane();
-        key.setFont(key.getFont().deriveFont(16.0f));
-        key.setEditable(false);
-        panel.add(key);
+        //JTextPane key = new JTextPane();
+        //key.setFont(key.getFont().deriveFont(16.0f));
+        //key.setEditable(false);
+        //panel.add(key);
 
 
         frame.add(panel);

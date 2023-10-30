@@ -1,9 +1,6 @@
 package Logics;
 
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
+import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
 import java.io.*;
 import java.security.InvalidAlgorithmParameterException;
@@ -19,50 +16,35 @@ public class encrypt {
      * @param filename absolute path of file to encrypt it's content
      */
     public static void encryptFile(String filename) throws NoSuchPaddingException, NoSuchAlgorithmException,
-            InvalidAlgorithmParameterException, InvalidKeyException, FileNotFoundException {
-        /*
-        BufferedReader reader;
-        FileWriter writer;
-
-        //Create new file
+            InvalidAlgorithmParameterException, InvalidKeyException, IOException, IllegalBlockSizeException, BadPaddingException {
         String destName = filename.replace(".txt", "");
         destName = destName + "Enc.txt";
-        openFile(destName);
-        String encryptedContent = "";
-
-        try {
-            reader = new BufferedReader(new FileReader(filename));
-            writer = new FileWriter(destName);
-            String line = reader.readLine();
-            String content = "";
-            while(line != null) {
-                content += line + "\n";
-                line = reader.readLine();
-            }
-            System.out.println(content);
-            writer.write(encryptedContent);
-            writer.close();
-            reader.close();
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-         */
-        //Dest file
-        String destName = filename.replace(".txt", "");
-        destName = destName + "Enc.txt";
-        SecretKey key = generateKey();          //key
-        IvParameterSpec iv = generateIv();      //IV
-        File src = new File(filename);          //Files
+        SecretKey key = generateKey();
+        IvParameterSpec iv = generateIv();
+        File src = new File(filename);
         File dest = new File(destName);
         FileInputStream inputStream = new FileInputStream(src);
         FileOutputStream outputStream = new FileOutputStream(dest);
 
-        Cipher cipher = Cipher.getInstance("AES");
+        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
         cipher.init(Cipher.ENCRYPT_MODE, key, iv);
 
         byte[] buffer = new byte[64];
         int bytesRead;
+
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            byte[] output = cipher.update(buffer, 0, bytesRead);
+            if (output != null) {
+                outputStream.write(output);
+            }
+        }
+
+        byte[] outputBytes = cipher.doFinal();
+        if (outputBytes != null) {
+            outputStream.write(outputBytes);
+        }
+        inputStream.close();
+        outputStream.close();
     }
 
     /**
@@ -72,7 +54,7 @@ public class encrypt {
     public static SecretKey generateKey() {
         try {
             KeyGenerator keyGen = KeyGenerator.getInstance("AES");
-            keyGen.init(bits);
+            keyGen.init(bits, new SecureRandom());
             return keyGen.generateKey();
         } catch (NoSuchAlgorithmException e) {
             e.fillInStackTrace();
