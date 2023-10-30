@@ -1,23 +1,38 @@
 package Logics;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 
+import static Logics.sharedUtils.openFile;
 public class encrypt {
-    static final int sizeToRead = 32;
     public static void encryptFile(String filename) {
+        BufferedReader reader;
+        FileWriter writer;
 
-        try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(filename))) {
-            byte[] buffer = new byte[sizeToRead];
-            int bytesRead;
+        //Create new file
+        String destName = filename.replace(".txt", "");
+        destName = destName + "Enc.txt";
+        openFile(destName);
+        String encryptedLine;
 
-            while((bytesRead = bis.read(buffer, 0, sizeToRead)) != -1) {
-                //TODO: encrypt!
-                //TODO: regard if bytesRead < 32
+        try {
+            reader = new BufferedReader(new FileReader(filename));
+            writer = new FileWriter(destName);
+            String line = reader.readLine();
+
+            while(line != null) {
+                System.out.println(line);
+                encryptedLine = encryptLine(line);
+                writer.write(encryptedLine + "\n");
+                line = reader.readLine();
             }
-        } catch (IOException ignored) {
+            writer.close();
+            reader.close();
 
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
+    }
+    public static String encryptLine(String line) {
+        return line;
     }
 }

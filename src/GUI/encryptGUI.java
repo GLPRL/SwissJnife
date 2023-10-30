@@ -1,10 +1,9 @@
 package GUI;
 
-import org.jetbrains.annotations.NotNull;
-
 import javax.swing.*;
 import java.awt.*;
 import Logics.encrypt;
+import org.jetbrains.annotations.NotNull;
 
 public class encryptGUI {
     public encryptGUI() {
