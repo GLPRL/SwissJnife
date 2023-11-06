@@ -6,8 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import Logics.encrypt;
 
-public class encryptGUI {
-    public encryptGUI() {
+public class decryptGUI {
+    public decryptGUI() {
     }
     public void presentGui(@NotNull JFrame frame, mainGUI gui) {
         JPanel panel = new JPanel();

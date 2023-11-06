@@ -78,11 +78,12 @@ public class mainGUI {
             sharedUtils.clearScreen(panel);
             encryptGUI gui = new encryptGUI();
             gui.presentGui(frame, mainGUI.this);
+//            decryptGUI gui2 = new decryptGUI();
         });
         decBtn.addActionListener(e -> {
-            //TODO: sharedUtils.clearScreen(panel);
-            //TODO: decryptGUI gui = new encryptGUI();
-            //TODO: gui.presentGui(frame, mainGUI.this);
+             sharedUtils.clearScreen(panel);
+             decryptGUI gui = new decryptGUI();
+             gui.presentGui(frame, mainGUI.this);
         });
 
         this.panel.add(Box.createRigidArea(new Dimension(10, 10)));
