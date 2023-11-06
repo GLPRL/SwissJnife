@@ -19,6 +19,7 @@ public class encryptGUI {
 
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        fileChooser.setApproveButtonText("Select");
 
         int res = fileChooser.showOpenDialog(frame);
         if (res == JFileChooser.APPROVE_OPTION) {

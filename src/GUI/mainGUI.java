@@ -117,9 +117,9 @@ public class mainGUI {
             gui.presentGui(frame, mainGUI.this);
         });
         decBtn.addActionListener(e -> {
-            //TODO: sharedUtils.clearScreen(panel);
-            //TODO: decryptGUI gui = new encryptGUI();
-            //TODO: gui.presentGui(frame, mainGUI.this);
+            sharedUtils.clearScreen(panel);
+            decryptGUI gui = new decryptGUI();
+            gui.presentGui(frame, mainGUI.this);
         });
         vulScan.addActionListener(e -> {
             //TODO
