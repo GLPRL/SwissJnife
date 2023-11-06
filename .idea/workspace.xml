@@ -243,7 +243,9 @@
       <workItem from="1698500962516" duration="4535000" />
       <workItem from="1698564021330" duration="9680000" />
       <workItem from="1698594121269" duration="2171000" />
-      <workItem from="1698607624272" duration="1041000" />
+      <workItem from="1698607624272" duration="1088000" />
+      <workItem from="1698646106830" duration="13642000" />
+      <workItem from="1698677760204" duration="3023000" />
     </task>
     <task id="LOCAL‎-00001" summary="code re-organization">
       <option name="closed" value="true" />
@@ -309,7 +311,63 @@
       <option name="project" value="LOCAL‎" />
       <updated>1698597745540</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL‎-00009" summary="Started basics for reading from a given file in encrypt.java">
+      <option name="closed" value="true" />
+      <created>1698608694005</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL‎-00009" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1698608694005</updated>
+    </task>
+    <task id="LOCAL‎-00010" summary="catch exception edited">
+      <option name="closed" value="true" />
+      <created>1698646834649</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL‎-00010" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1698646834649</updated>
+    </task>
+    <task id="LOCAL‎-00011" summary="encrypt.java : reading from src file and writing into dest file works.&#10;sharedUtils.java : contains utilities shared among files in logics package.">
+      <option name="closed" value="true" />
+      <created>1698650600199</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL‎-00011" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1698650600199</updated>
+    </task>
+    <task id="LOCAL‎-00012" summary="encrypt.java : changing the main running function. better encrypt by chunks and not whole file content.&#10;created key and IV generators.">
+      <option name="closed" value="true" />
+      <created>1698658297009</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL‎-00012" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1698658297009</updated>
+    </task>
+    <task id="LOCAL‎-00013" summary="encryptGUI.java : removed the return button. will return after encryption is done, will show also some loading bar, in the center (WIP)&#10;&#10;mainGUI.java : added buttons for firewall configuration and self host scanning for vulnerabilities.&#10;TODO.">
+      <option name="closed" value="true" />
+      <created>1698659803325</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL‎-00013" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1698659803325</updated>
+    </task>
+    <task id="LOCAL‎-00014" summary="encryptGUI.java : removed the return button. will return after encryption is done, will show also some loading bar, in the center (WIP)&#10;&#10;mainGUI.java : added buttons for firewall configuration and self host scanning for vulnerabilities.&#10;TODO.">
+      <option name="closed" value="true" />
+      <created>1698660727241</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL‎-00014" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1698660727241</updated>
+    </task>
+    <task id="LOCAL‎-00015" summary="Encryption works.&#10;TODO some progress bar">
+      <option name="closed" value="true" />
+      <created>1698668987395</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL‎-00015" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1698668987395</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -336,6 +394,23 @@
     <MESSAGE value="GUI modifications and bug fix" />
     <MESSAGE value="Code organization" />
     <MESSAGE value="decrypt.java : prep for decryption process.&#10;&#10;encrypt.java : prep for encryption process.&#10;&#10;encryptGUI.java : got a file chooser.&#10;&#10;added notnull annotations" />
-    <option name="LAST_COMMIT_MESSAGE" value="decrypt.java : prep for decryption process.&#10;&#10;encrypt.java : prep for encryption process.&#10;&#10;encryptGUI.java : got a file chooser.&#10;&#10;added notnull annotations" />
+    <MESSAGE value="Started basics for reading from a given file in encrypt.java" />
+    <MESSAGE value="catch exception edited" />
+    <MESSAGE value="encrypt.java : reading from src file and writing into dest file works.&#10;sharedUtils.java : contains utilities shared among files in logics package." />
+    <MESSAGE value="encrypt.java : changing the main running function. better encrypt by chunks and not whole file content.&#10;created key and IV generators." />
+    <MESSAGE value="encryptGUI.java : removed the return button. will return after encryption is done, will show also some loading bar, in the center (WIP)&#10;&#10;mainGUI.java : added buttons for firewall configuration and self host scanning for vulnerabilities.&#10;TODO." />
+    <MESSAGE value="Encryption works.&#10;TODO some progress bar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Encryption works.&#10;TODO some progress bar" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Logics/encrypt.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
