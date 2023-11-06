@@ -21,7 +21,7 @@ public class decrypt {
                 bos.write(buffer, 0, bytesRead);
             }
         } catch (IOException ignored) {
-            ignored.printStackTrace(); // Handle the exception appropriately in a real applicationn
+            ignored.printStackTrace(); // Handle the exception appropriately in a real application
         }
     }
 }
