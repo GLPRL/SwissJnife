@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="Encryption works.&#10;TODO some progress bar">
+    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="removed comments and added text for file selection">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_10_2023,_15_09_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_10_2023__15_09__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/encryptGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/encryptGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/mainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/mainGUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,7 +219,10 @@
       <workItem from="1698594121269" duration="2171000" />
       <workItem from="1698607624272" duration="1088000" />
       <workItem from="1698646106830" duration="13642000" />
-      <workItem from="1698677760204" duration="3023000" />
+      <workItem from="1698677760204" duration="3194000" />
+      <workItem from="1698759763938" duration="611000" />
+      <workItem from="1699105237025" duration="126000" />
+      <workItem from="1699276984219" duration="725000" />
     </task>
     <task id="LOCAL‎-00001" summary="code re-organization">
       <option name="closed" value="true" />
@@ -341,7 +344,23 @@
       <option name="project" value="LOCAL‎" />
       <updated>1698668987395</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL‎-00016" summary="GUI:&#10;key is presented in popup. clicking the text of the key copies it to clipboard.&#10;frame is in the middle of the screen.&#10;TODO add loading bar.&#10;misc gui changes.">
+      <option name="closed" value="true" />
+      <created>1698680875909</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL‎-00016" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1698680875909</updated>
+    </task>
+    <task id="LOCAL‎-00017" summary="removed comments and added text for file selection">
+      <option name="closed" value="true" />
+      <created>1699277161452</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL‎-00017" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1699277161452</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -374,7 +393,9 @@
     <MESSAGE value="encrypt.java : changing the main running function. better encrypt by chunks and not whole file content.&#10;created key and IV generators." />
     <MESSAGE value="encryptGUI.java : removed the return button. will return after encryption is done, will show also some loading bar, in the center (WIP)&#10;&#10;mainGUI.java : added buttons for firewall configuration and self host scanning for vulnerabilities.&#10;TODO." />
     <MESSAGE value="Encryption works.&#10;TODO some progress bar" />
-    <option name="LAST_COMMIT_MESSAGE" value="Encryption works.&#10;TODO some progress bar" />
+    <MESSAGE value="GUI:&#10;key is presented in popup. clicking the text of the key copies it to clipboard.&#10;frame is in the middle of the screen.&#10;TODO add loading bar.&#10;misc gui changes." />
+    <MESSAGE value="removed comments and added text for file selection" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed comments and added text for file selection" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
