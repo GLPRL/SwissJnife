@@ -2,7 +2,10 @@ package Logics;
 
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -56,8 +59,9 @@ public class encrypt {
         try {
             KeyGenerator keyGen = KeyGenerator.getInstance("AES");
             keyGen.init(bits, new SecureRandom());
-//            AESData TODO: Setter to AESDATA
-            return keyGen.generateKey();
+            SecretKey key = keyGen.generateKey();
+            Global.getInstance().aesData.setKey(key);
+            return key;
         } catch (NoSuchAlgorithmException e) {
             e.fillInStackTrace();
             return null;
@@ -71,6 +75,8 @@ public class encrypt {
     public static IvParameterSpec generateIv() {
         byte[] iv = new byte[16];
         new SecureRandom().nextBytes(iv);
-        return new IvParameterSpec(iv);
+        IvParameterSpec iVector = new IvParameterSpec(iv);
+        Global.getInstance().aesData.setIv(iVector);
+        return iVector;
     }
 }

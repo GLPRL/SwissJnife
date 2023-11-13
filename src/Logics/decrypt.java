@@ -14,7 +14,6 @@ public class decrypt {
 
     public static decryptFile(String filename) throws IOException, NoSuchPaddingException, NoSuchAlgorithmException {
 
-
         File src = new File(filename);
         String destName = "aaaa.txtenc";
         File dest = new File(destName);
