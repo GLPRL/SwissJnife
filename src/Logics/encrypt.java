@@ -47,6 +47,7 @@ public class encrypt {
         outputStream.close();
     }
 
+
     /**
      * Generate key for AES/CBC Encryption
      * @return some secret key
@@ -55,6 +56,7 @@ public class encrypt {
         try {
             KeyGenerator keyGen = KeyGenerator.getInstance("AES");
             keyGen.init(bits, new SecureRandom());
+//            AESData TODO: Setter to AESDATA
             return keyGen.generateKey();
         } catch (NoSuchAlgorithmException e) {
             e.fillInStackTrace();

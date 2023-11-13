@@ -1,27 +1,41 @@
 package Logics;
 
+import javax.crypto.*;
+import javax.crypto.spec.IvParameterSpec;
 import java.io.*;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.util.Base64;
 
 
 public class decrypt {
 
-    static final int SIZE_TO_READ = 32;
+    public static decryptFile(String filename) throws IOException, NoSuchPaddingException, NoSuchAlgorithmException {
 
-    public static void decryptFile(String inputFilename, String outputFilename) {
-        try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(inputFilename));
-             BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(outputFilename))) {
 
-            byte[] buffer = new byte[SIZE_TO_READ];
-            int bytesRead;
+        File src = new File(filename);
+        String destName = "aaaa.txtenc";
+        File dest = new File(destName);
+        FileInputStream inputStream = new FileInputStream(src);
+        FileOutputStream outputStream = new FileOutputStream(dest);
 
-            while ((bytesRead = bis.read(buffer, 0, SIZE_TO_READ)) != -1) {
-                // TODO: Implement your decryption logic here
-                // For example, you might XOR each byte with the same value used during encryption.
-                // Ensure to write the decrypted data to the output file.
-                bos.write(buffer, 0, bytesRead);
+        byte[] buffer = new byte[64];
+        int bytesRead;
+
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            byte[] output =
+            if (output != null) {
+                outputStream.write(output);
             }
-        } catch (IOException ignored) {
-            ignored.printStackTrace(); // Handle the exception appropriately in a real application
         }
+
+
     }
+
+
+
+
 }
+
