@@ -122,7 +122,7 @@ public class mainGUI {
         panel3.setAlignmentY(Component.TOP_ALIGNMENT);
         panel3.removeAll();
 
-        JButton sniff = new JButton("Firewall Config");
+        JButton sniff = new JButton("Network Sniffer");
         sniff.setBackground(new Color(150, 245, 222));
         sniff.setCursor(new Cursor(Cursor.HAND_CURSOR));
         panel3.add(sniff);
