@@ -2,7 +2,6 @@ package Logics;
 
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
-import java.awt.font.GlyphMetrics;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -19,7 +18,12 @@ public class decrypt {
      */
     public static void decryptFile(String filename) throws NoSuchPaddingException, NoSuchAlgorithmException,
             InvalidAlgorithmParameterException, InvalidKeyException, IOException, IllegalBlockSizeException, BadPaddingException {
-        String destName = filename.replace("Enc.txt", "Dec.txt");
+
+        String tempName = filename.substring(0, filename.length() - 3);
+        int suffixStart = tempName.lastIndexOf(".");
+        String suffix = tempName.substring(suffixStart + 1);
+        String destName = tempName.substring(0, suffixStart) + "Dec." + suffix;
+
         SecretKey key = Global.getInstance().aesData.getKey();
         IvParameterSpec iv = Global.getInstance().aesData.getIv();
         File src = new File(filename);

@@ -118,8 +118,8 @@ public class mainGUI {
         });
         decBtn.addActionListener(e -> {
             sharedUtils.clearScreen(panel);
-            //decryptGUI gui = new decryptGUI();
-            //gui.presentGui(frame, mainGUI.this);
+            decryptGUI gui = new decryptGUI();
+            gui.presentGui(frame, mainGUI.this);
         });
         vulScan.addActionListener(e -> {
             //TODO

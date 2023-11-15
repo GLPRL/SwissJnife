@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="Introduced Global class, for storing data required along several files.">
+    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="Tested decryption, work correctly.&#10;Changed the alteration of filenames when encrypting and decrypting.">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/netSnifferGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/netSnifferGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/mainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/mainGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logics/decrypt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logics/decrypt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logics/encrypt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logics/encrypt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logics/sharedUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logics/sharedUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -396,7 +394,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/yoni_decrypt" />
+                        <option value="origin/yoni_newDecrypt" />
                       </list>
                     </value>
                   </entry>
@@ -427,6 +425,23 @@
     <MESSAGE value="GUI:&#10;key is presented in popup. clicking the text of the key copies it to clipboard.&#10;frame is in the middle of the screen.&#10;TODO add loading bar.&#10;misc gui changes." />
     <MESSAGE value="removed comments and added text for file selection" />
     <MESSAGE value="Introduced Global class, for storing data required along several files." />
-    <option name="LAST_COMMIT_MESSAGE" value="Introduced Global class, for storing data required along several files." />
+    <MESSAGE value="Tested decryption, work correctly.&#10;Changed the alteration of filenames when encrypting and decrypting." />
+    <option name="LAST_COMMIT_MESSAGE" value="Tested decryption, work correctly.&#10;Changed the alteration of filenames when encrypting and decrypting." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Logics/decrypt.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Logics/decrypt.java</url>
+          <line>21</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
