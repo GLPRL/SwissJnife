@@ -98,13 +98,13 @@ public class mainGUI {
         panel3.setAlignmentY(Component.TOP_ALIGNMENT);
         panel3.removeAll();
 
-        JButton fw = new JButton("Firewall Config");
-        fw.setBackground(new Color(150, 245, 222));
-        fw.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        panel3.add(fw);
+        JButton sniff = new JButton("Firewall Config");
+        sniff.setBackground(new Color(150, 245, 222));
+        sniff.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        panel3.add(sniff);
 
         //Add listeners
-        setListeners(encBtn, decBtn, vulScan, fw);
+        setListeners(encBtn, decBtn, vulScan, sniff);
 
         this.panel.add(Box.createRigidArea(new Dimension(10, 10)));
         this.panel.add(panel1);
@@ -124,7 +124,7 @@ public class mainGUI {
         // Show
         frame.setVisible(true);
     }
-    public void setListeners(JButton encBtn, JButton decBtn, JButton vulScan, JButton fw) {
+    public void setListeners(JButton encBtn, JButton decBtn, JButton vulScan, JButton sniff) {
         encBtn.addActionListener(e -> {
             sharedUtils.clearScreen(panel);
             encryptGUI gui = new encryptGUI();
@@ -138,7 +138,7 @@ public class mainGUI {
         vulScan.addActionListener(e -> {
             //TODO
         });
-        fw.addActionListener(e -> {
+        sniff.addActionListener(e -> {
             sharedUtils.clearScreen(panel);
             netSnifferGUI gui = new netSnifferGUI();
             try {
@@ -187,17 +187,17 @@ public class mainGUI {
                 vulScan.setBackground(normal);
             }
         });
-        fw.addMouseListener(new MouseAdapter() {
+        sniff.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                fw.setBackground(onHover);
+                sniff.setBackground(onHover);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
-                fw.setBackground(normal);
+                sniff.setBackground(normal);
             }
         });
     }

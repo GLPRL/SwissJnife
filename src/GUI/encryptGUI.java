@@ -13,14 +13,14 @@ import Logics.encrypt;
 import org.jetbrains.annotations.NotNull;
 
 public class encryptGUI {
-    JPanel mainPopupPanel;
-    JPanel popupPanel;
+    JPanel panel;
+    JPanel buttonsPanel;
     JDialog popup;
     Color normal = new Color(150, 245, 222);
     Color onHover = new Color(118, 192, 173);
     public encryptGUI() {
-        mainPopupPanel = new JPanel();
-        popupPanel = new JPanel();
+        panel = new JPanel();
+        buttonsPanel = new JPanel();
         popup = new JDialog();
     }
 
@@ -52,18 +52,18 @@ public class encryptGUI {
      * @param frame programs' frame
      */
     public void dataPopup(JFrame frame) {
-        mainPopupPanel.setLayout(new BorderLayout());
+        panel.setLayout(new BorderLayout());
         popup.setTitle("SwissJnife - Key+IV data");
         popup.setSize(460, 130);
         popup.setLocationRelativeTo(frame);
         popup.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         popup.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-        popupPanel = new JPanel();
-        popupPanel.setLayout(new BoxLayout(popupPanel, BoxLayout.X_AXIS));
+        buttonsPanel = new JPanel();
+        buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.X_AXIS));
         createElements();
-        popupPanel.add(Box.createRigidArea(new Dimension(0, 10)));
-        mainPopupPanel.add(popupPanel, BorderLayout.NORTH);
-        popup.add(mainPopupPanel);
+        buttonsPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        panel.add(buttonsPanel, BorderLayout.NORTH);
+        popup.add(panel);
         popup.setVisible(true);
     }
 
@@ -76,7 +76,7 @@ public class encryptGUI {
 
         Dimension d = new Dimension(5, 0);
 
-        popupPanel.add(Box.createRigidArea(d));
+        buttonsPanel.add(Box.createRigidArea(d));
         JLabel infoLabel = new JLabel("");
         infoLabel.setHorizontalAlignment(JLabel.CENTER);
         infoLabel.setFont(infoLabel.getFont().deriveFont(17.0f));
@@ -105,9 +105,9 @@ public class encryptGUI {
             }
         });
 
-        popupPanel.add(ivBtn);
-        popupPanel.add(Box.createRigidArea(d));
-        mainPopupPanel.add(infoLabel, BorderLayout.CENTER);
+        buttonsPanel.add(ivBtn);
+        buttonsPanel.add(Box.createRigidArea(d));
+        panel.add(infoLabel, BorderLayout.CENTER);
 
         JButton keyBtn = new JButton("Copy Key to Clipboard");
         keyBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -132,14 +132,14 @@ public class encryptGUI {
                 keyBtn.setBackground(normal);
             }
         });
-        popupPanel.add(keyBtn);
+        buttonsPanel.add(keyBtn);
 
         JButton closeBtn = new JButton("Return to Menu");
         closeBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
         closeBtn.addActionListener(e -> popup.dispose());
         closeBtn.setAlignmentY(Component.TOP_ALIGNMENT);
-        popupPanel.add(Box.createRigidArea(d));
-        popupPanel.add(closeBtn);
-        popupPanel.add(Box.createRigidArea(d));
+        buttonsPanel.add(Box.createRigidArea(d));
+        buttonsPanel.add(closeBtn);
+        buttonsPanel.add(Box.createRigidArea(d));
     }
 }
