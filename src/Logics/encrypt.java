@@ -20,8 +20,7 @@ public class encrypt {
      */
     public static void encryptFile(String filename) throws NoSuchPaddingException, NoSuchAlgorithmException,
             InvalidAlgorithmParameterException, InvalidKeyException, IOException, IllegalBlockSizeException, BadPaddingException {
-        String destName = filename.replace(".txt", "");
-        destName = destName + "Enc.txt";
+        String destName = filename + "Enc";
         SecretKey key = generateKey();
         IvParameterSpec iv = generateIv();
         File src = new File(filename);
