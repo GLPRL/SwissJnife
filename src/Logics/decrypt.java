@@ -12,7 +12,7 @@ import java.util.Base64;
 
 public class decrypt {
 
-    public static decryptFile(String filename) throws IOException, NoSuchPaddingException, NoSuchAlgorithmException {
+    public static void decryptFile(String filename) throws IOException, NoSuchPaddingException, NoSuchAlgorithmException {
 
         File src = new File(filename);
         String destName = "aaaa.txtenc";
@@ -23,12 +23,12 @@ public class decrypt {
         byte[] buffer = new byte[64];
         int bytesRead;
 
-        while ((bytesRead = inputStream.read(buffer)) != -1) {
-            byte[] output =
-            if (output != null) {
-                outputStream.write(output);
-            }
-        }
+        //while ((bytesRead = inputStream.read(buffer)) != -1) {
+        //    byte[] output =
+        //    if (output != null) {
+        //        outputStream.write(output);
+        //    }
+        //}
 
 
     }
