@@ -59,6 +59,7 @@ public class mainGUI {
                     Desktop.getDesktop().browse(new URI("https://www.github.com/GLPRL/SwissJnife"));
                 } catch (IOException | URISyntaxException ex) {
                     //create error popup that we failed opening a browser
+                    errorPopup("Could not open the project on browser");
                     throw new RuntimeException(ex);
                 }
             }
@@ -224,5 +225,31 @@ public class mainGUI {
                 sniff.setBackground(normal);
             }
         });
+    }
+    public void errorPopup(String message) {
+        JDialog popup = new JDialog();
+        popup.setSize(240, 110);
+        popup.setLocationRelativeTo(frame);
+        popup.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        popup.setTitle("Error");
+
+        JPanel popupPanel = new JPanel();
+        popupPanel.setLayout(new BoxLayout(popupPanel, BoxLayout.Y_AXIS));
+
+        JLabel messageLabel = new JLabel(message);
+        messageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+
+        JButton retBtn = new JButton("Back");
+        retBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+        retBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        retBtn.addActionListener(e -> popup.dispose());
+        retBtn.setBackground(new Color(255, 48, 62, 255));
+
+        popupPanel.add(messageLabel);
+        popupPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        popupPanel.add(retBtn);
+        popup.add(popupPanel);
+        popup.setVisible(true);
     }
 }

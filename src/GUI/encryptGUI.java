@@ -137,6 +137,7 @@ public class encryptGUI {
         JButton closeBtn = new JButton("Return to Menu");
         closeBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
         closeBtn.addActionListener(e -> popup.dispose());
+        closeBtn.setBackground(new Color(255, 48, 62, 255));
         closeBtn.setAlignmentY(Component.TOP_ALIGNMENT);
         buttonsPanel.add(Box.createRigidArea(d));
         buttonsPanel.add(closeBtn);
