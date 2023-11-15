@@ -139,8 +139,6 @@ public class mainGUI {
         this.panel.add(panel3);
     }
 
-
-
     /**
      * Present the GUI and call to create the content
      */
