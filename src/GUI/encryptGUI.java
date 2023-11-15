@@ -1,18 +1,27 @@
 package GUI;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Arrays;
 
+import Logics.Global;
 import Logics.encrypt;
 import org.jetbrains.annotations.NotNull;
 
 public class encryptGUI {
+    JPanel mainPopupPanel;
+    JPanel popupPanel;
+    JDialog popup;
+    Color normal = new Color(150, 245, 222);
+    Color onHover = new Color(118, 192, 173);
     public encryptGUI() {
+        mainPopupPanel = new JPanel();
+        popupPanel = new JPanel();
+        popup = new JDialog();
     }
 
     public void presentGui(@NotNull JFrame frame, mainGUI gui) {
@@ -25,8 +34,8 @@ public class encryptGUI {
             // Get the selected file
             java.io.File selectedFile = fileChooser.getSelectedFile();
             try {
-                String keyIv = encrypt.encryptFile(selectedFile.getAbsolutePath());
-                dataPopup(frame, keyIv);
+                encrypt.encryptFile(selectedFile.getAbsolutePath());
+                dataPopup(frame);
                 gui.presentGUI();
             } catch (Exception e) {
                 e.fillInStackTrace();
@@ -38,61 +47,99 @@ public class encryptGUI {
         frame.setVisible(true);
     }
 
-    public void dataPopup(JFrame frame, String keyIv) {
-
-        int div = keyIv.indexOf("_");
-        String key = keyIv.substring(0, div);
-        String iv = keyIv.substring(div + 1);
-
-        JDialog popup = new JDialog();
+    /**
+     * Create the popup window
+     * @param frame programs' frame
+     */
+    public void dataPopup(JFrame frame) {
+        mainPopupPanel.setLayout(new BorderLayout());
         popup.setTitle("SwissJnife - Key+IV data");
-        popup.setSize(990, 110);
+        popup.setSize(460, 130);
         popup.setLocationRelativeTo(frame);
         popup.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         popup.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-
-        JLabel inst = new JLabel("Click the key and the initialization vector to copy to clipboard,\n" +
-                "make sure to keep the text in a safe location");
-        inst.setFont(inst.getFont().deriveFont(16.0f));
-        inst.setAlignmentX(Component.CENTER_ALIGNMENT);
-        JLabel keyLabel = new JLabel(key);
-        JLabel ivLabel = new JLabel(iv);
-        Border border = BorderFactory.createLineBorder(Color.GRAY, 1);
-        setText(keyLabel, border);
-        setText(ivLabel, border);
-        setOnLabelClick(keyLabel);
-        setOnLabelClick(ivLabel);
-
-        JButton closeBtn = new JButton("Return to Menu");
-        closeBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
-        closeBtn.addActionListener(e -> popup.dispose());
-
-        JPanel popupPanel = new JPanel();
-        popupPanel.setLayout(new BoxLayout(popupPanel, BoxLayout.PAGE_AXIS));
-        popupPanel.add(inst);
-        popupPanel.add(keyLabel);
-        popupPanel.add(Box.createRigidArea(new Dimension(0, 5)));
-        popupPanel.add(ivLabel);
-
-        popupPanel.add(closeBtn);
-        popup.add(popupPanel);
+        popupPanel = new JPanel();
+        popupPanel.setLayout(new BoxLayout(popupPanel, BoxLayout.X_AXIS));
+        createElements();
+        popupPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        mainPopupPanel.add(popupPanel, BorderLayout.NORTH);
+        popup.add(mainPopupPanel);
         popup.setVisible(true);
     }
-    public void setText(JLabel label, Border b) {
-        label.setBorder(b);
-        label.setFont(label.getFont().deriveFont(16.0f));
-        label.setAlignmentX(Component.CENTER_ALIGNMENT);
-    }
-    public void setOnLabelClick(JLabel label) {
-        label.addMouseListener(new MouseAdapter() {
+
+    /**
+     * Creating elements of the popup
+     */
+    public void createElements() {
+        String key = Arrays.toString(Global.getInstance().aesData.getKey().getEncoded());
+        String iv = Arrays.toString(Global.getInstance().aesData.getIv().getIV());
+
+        Dimension d = new Dimension(5, 0);
+
+        popupPanel.add(Box.createRigidArea(d));
+        JLabel infoLabel = new JLabel("");
+        infoLabel.setHorizontalAlignment(JLabel.CENTER);
+        infoLabel.setFont(infoLabel.getFont().deriveFont(17.0f));
+
+        JButton ivBtn = new JButton("Copy IV to Clipboard");
+        ivBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        ivBtn.setAlignmentY(Component.TOP_ALIGNMENT);
+        ivBtn.setBackground(new Color(150, 245, 222));
+        ivBtn.addActionListener(e -> {
+            Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+            StringSelection selection = new StringSelection(iv);
+            cb.setContents(selection, null);
+            infoLabel.setText("IV copied to clipboard");
+        });
+        ivBtn.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                String copiedKey = label.getText();
-                Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
-                StringSelection selection = new StringSelection(copiedKey);
-                cb.setContents(selection, null);
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                ivBtn.setBackground(onHover);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                ivBtn.setBackground(normal);
             }
         });
+
+        popupPanel.add(ivBtn);
+        popupPanel.add(Box.createRigidArea(d));
+        mainPopupPanel.add(infoLabel, BorderLayout.CENTER);
+
+        JButton keyBtn = new JButton("Copy Key to Clipboard");
+        keyBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        keyBtn.setAlignmentY(Component.TOP_ALIGNMENT);
+        keyBtn.setBackground(new Color(150, 245, 222));
+        keyBtn.addActionListener(e -> {
+            Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+            StringSelection selection = new StringSelection(key);
+            cb.setContents(selection, null);
+            infoLabel.setText("Key copied to clipboard");
+        });
+        keyBtn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                keyBtn.setBackground(onHover);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                keyBtn.setBackground(normal);
+            }
+        });
+        popupPanel.add(keyBtn);
+
+        JButton closeBtn = new JButton("Return to Menu");
+        closeBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        closeBtn.addActionListener(e -> popup.dispose());
+        closeBtn.setAlignmentY(Component.TOP_ALIGNMENT);
+        popupPanel.add(Box.createRigidArea(d));
+        popupPanel.add(closeBtn);
+        popupPanel.add(Box.createRigidArea(d));
     }
 }

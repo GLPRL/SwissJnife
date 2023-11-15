@@ -1,6 +1,7 @@
 package GUI;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -29,12 +30,25 @@ public class mainGUI {
 
         Container contentPane = frame.getContentPane();
         contentPane.setLayout(new FlowLayout(FlowLayout.CENTER));
-
+        addMenuBar();
         panel = new JPanel();                               //Main panel settings
         BoxLayout box = new BoxLayout(panel, BoxLayout.X_AXIS);
 
         panel.setLayout(box);
         frame.add(panel);
+    }
+
+    public void addMenuBar() {
+        JMenuBar menu = new JMenuBar();
+        JMenu file = new JMenu(("File"));
+        Border border = BorderFactory.createLineBorder(Color.BLACK, 1, false);
+        file.setBorder(border);
+        file.add(new JMenuItem("Credits"));
+        file.add(new JMenuItem("Github Project"));
+        file.add(new JMenuItem("Exit"));
+        menu.setBackground(Color.WHITE);
+        menu.add(file);
+        frame.setJMenuBar(menu);
     }
 
     /**

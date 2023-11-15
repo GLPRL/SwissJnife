@@ -10,7 +10,6 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.Arrays;
 
 public class encrypt {
     static final int bits = 256;
@@ -19,7 +18,7 @@ public class encrypt {
      * Runner of the encryption process
      * @param filename absolute path of file to encrypt it's content
      */
-    public static String encryptFile(String filename) throws NoSuchPaddingException, NoSuchAlgorithmException,
+    public static void encryptFile(String filename) throws NoSuchPaddingException, NoSuchAlgorithmException,
             InvalidAlgorithmParameterException, InvalidKeyException, IOException, IllegalBlockSizeException, BadPaddingException {
         String destName = filename + "Enc";
         SecretKey key = generateKey();
@@ -50,12 +49,6 @@ public class encrypt {
         }
         inputStream.close();
         outputStream.close();
-
-        assert key != null;
-        String keyString = Arrays.toString(key.getEncoded());
-        String ivString = Arrays.toString(iv.getIV());
-
-        return keyString + "_" + ivString;
     }
 
     /**

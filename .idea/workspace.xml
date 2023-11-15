@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="decryptGUI.java:&#10;removed popup, added better logging in case of a failure.&#10;encryptGUI.java:&#10;presenting the key iv pair for the user to save, in case the program is being closed, for decrypting the file.&#10;encrypt: fetching the byte array">
+    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="Added JMenu, visual changes to copy IV and key to clipboard, is done with buttons instead of showing the plain text.&#10;Some GUI changes as well.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/decryptGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/decryptGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/encryptGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/encryptGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/mainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/mainGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logics/encrypt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logics/encrypt.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,29 +60,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "gal__edits",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/galpe/IdeaProjects/SwissJnife/src",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.20146905",
-    "project.structure.side.proportion": "0.31578946",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;gal__edits&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/galpe/IdeaProjects/SwissJnife/src&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.20146905&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.31578946&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\galpe\IdeaProjects\SwissJnife\src" />
@@ -232,6 +232,7 @@
       <workItem from="1699276984219" duration="725000" />
       <workItem from="1699903516541" duration="22000" />
       <workItem from="1699963002940" duration="499000" />
+      <workItem from="1700047723698" duration="4215000" />
     </task>
     <task id="LOCAL‎-00001" summary="code re-organization">
       <option name="closed" value="true" />
@@ -385,7 +386,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1700041668344</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL‎-00020" summary="decryptGUI.java:&#10;removed popup, added better logging in case of a failure.&#10;encryptGUI.java:&#10;presenting the key iv pair for the user to save, in case the program is being closed, for decrypting the file.&#10;encrypt: fetching the byte array,&#10;asserting the key is not null">
+      <option name="closed" value="true" />
+      <created>1700044124458</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL‎-00020" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700044124458</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -436,6 +445,8 @@
     <MESSAGE value="Tested decryption, work correctly.&#10;Changed the alteration of filenames when encrypting and decrypting." />
     <MESSAGE value="decryptGUI.java:&#10;removed popup&#10;encryptGUI.java:&#10;presenting the key iv pair for the user to save, in case the program is being closed, for decrypting the file.&#10;encrypt: fetching the byte array" />
     <MESSAGE value="decryptGUI.java:&#10;removed popup, added better logging in case of a failure.&#10;encryptGUI.java:&#10;presenting the key iv pair for the user to save, in case the program is being closed, for decrypting the file.&#10;encrypt: fetching the byte array" />
-    <option name="LAST_COMMIT_MESSAGE" value="decryptGUI.java:&#10;removed popup, added better logging in case of a failure.&#10;encryptGUI.java:&#10;presenting the key iv pair for the user to save, in case the program is being closed, for decrypting the file.&#10;encrypt: fetching the byte array" />
+    <MESSAGE value="decryptGUI.java:&#10;removed popup, added better logging in case of a failure.&#10;encryptGUI.java:&#10;presenting the key iv pair for the user to save, in case the program is being closed, for decrypting the file.&#10;encrypt: fetching the byte array,&#10;asserting the key is not null" />
+    <MESSAGE value="Added JMenu, visual changes to copy IV and key to clipboard, is done with buttons instead of showing the plain text.&#10;Some GUI changes as well." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added JMenu, visual changes to copy IV and key to clipboard, is done with buttons instead of showing the plain text.&#10;Some GUI changes as well." />
   </component>
 </project>
