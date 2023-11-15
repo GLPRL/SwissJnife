@@ -2,7 +2,10 @@ package Logics;
 
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -17,8 +20,7 @@ public class encrypt {
      */
     public static void encryptFile(String filename) throws NoSuchPaddingException, NoSuchAlgorithmException,
             InvalidAlgorithmParameterException, InvalidKeyException, IOException, IllegalBlockSizeException, BadPaddingException {
-        String destName = filename.replace(".txt", "");
-        destName = destName + "Enc.txt";
+        String destName = filename + "Enc";
         SecretKey key = generateKey();
         IvParameterSpec iv = generateIv();
         File src = new File(filename);
@@ -47,6 +49,7 @@ public class encrypt {
         outputStream.close();
     }
 
+
     /**
      * Generate key for AES/CBC Encryption
      * @return some secret key
@@ -55,7 +58,9 @@ public class encrypt {
         try {
             KeyGenerator keyGen = KeyGenerator.getInstance("AES");
             keyGen.init(bits, new SecureRandom());
-            return keyGen.generateKey();
+            SecretKey key = keyGen.generateKey();
+            Global.getInstance().aesData.setKey(key);
+            return key;
         } catch (NoSuchAlgorithmException e) {
             e.fillInStackTrace();
             return null;
@@ -69,6 +74,8 @@ public class encrypt {
     public static IvParameterSpec generateIv() {
         byte[] iv = new byte[16];
         new SecureRandom().nextBytes(iv);
-        return new IvParameterSpec(iv);
+        IvParameterSpec iVector = new IvParameterSpec(iv);
+        Global.getInstance().aesData.setIv(iVector);
+        return iVector;
     }
 }

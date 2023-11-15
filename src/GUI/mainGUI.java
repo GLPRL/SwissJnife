@@ -100,6 +100,8 @@ public class mainGUI {
         this.panel.add(panel3);
     }
 
+
+
     /**
      * Present the GUI and call to create the content
      */
@@ -123,7 +125,13 @@ public class mainGUI {
             //TODO
         });
         fw.addActionListener(e -> {
-            //TODO
+            sharedUtils.clearScreen(panel);
+            netSnifferGUI gui = new netSnifferGUI();
+            try {
+                gui.presentGui(frame, mainGUI.this);
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
         });
 
         encBtn.addMouseListener(new MouseAdapter() {
