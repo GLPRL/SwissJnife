@@ -5,6 +5,9 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * GUI class to present content of main screen
@@ -29,24 +32,42 @@ public class mainGUI {
         frame.setLocation(x, y);
 
         Container contentPane = frame.getContentPane();
+        contentPane.setBackground(Color.WHITE);
         contentPane.setLayout(new FlowLayout(FlowLayout.CENTER));
-        addMenuBar();
+        createMenuBar();
         panel = new JPanel();                               //Main panel settings
         BoxLayout box = new BoxLayout(panel, BoxLayout.X_AXIS);
-
         panel.setLayout(box);
+        panel.setBackground(Color.WHITE);
         frame.add(panel);
     }
 
-    public void addMenuBar() {
+    public void createMenuBar() {
         JMenuBar menu = new JMenuBar();
+        menu.setBackground(new Color(246, 246, 246, 255));
         JMenu file = new JMenu(("File"));
-        Border border = BorderFactory.createLineBorder(Color.BLACK, 1, false);
+        Border border = BorderFactory.createLineBorder(Color.GRAY, 1, false);
+        menu.setBorder(border);
         file.setBorder(border);
-        file.add(new JMenuItem("Credits"));
-        file.add(new JMenuItem("Github Project"));
-        file.add(new JMenuItem("Exit"));
-        menu.setBackground(Color.WHITE);
+        JMenuItem credits = new JMenuItem("Credits");
+        credits.setBorder(border);
+        file.add(credits);
+        JMenuItem uri = new JMenuItem("Project on Github");
+        uri.addActionListener(e -> {
+            if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://www.github.com/GLPRL/SwissJnife"));
+                } catch (IOException | URISyntaxException ex) {
+                    //create error popup that we failed opening a browser
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+        uri.setBorder(border);
+        file.add(uri);
+        JMenuItem exit = new JMenuItem("Exit");
+        exit.setBorder(border);
+        file.add(exit);
         menu.add(file);
         frame.setJMenuBar(menu);
     }
@@ -65,6 +86,7 @@ public class mainGUI {
         panel1.removeAll();
 
         Component rigidArea = Box.createRigidArea(new Dimension(10, 5));
+        rigidArea.setBackground(Color.WHITE);
         this.panel.add(rigidArea);
 
         //Create encrypt file button
@@ -79,6 +101,7 @@ public class mainGUI {
         decBtn.setBackground(new Color(150, 245, 222));
         decBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
         panel1.add(decBtn);
+        panel1.setBackground(Color.WHITE);
 
         //Create second column
         JPanel panel2 = new JPanel();
@@ -105,8 +128,9 @@ public class mainGUI {
 
         //Add listeners
         setListeners(encBtn, decBtn, vulScan, sniff);
-
-        this.panel.add(Box.createRigidArea(new Dimension(10, 10)));
+        Component component = Box.createRigidArea(new Dimension(10, 10));
+        component.setBackground(Color.WHITE);
+        this.panel.add(component);
         this.panel.add(panel1);
         this.panel.add(Box.createRigidArea(new Dimension(10, 0)));
         this.panel.add(panel2);
