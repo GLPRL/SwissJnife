@@ -25,8 +25,8 @@ public class encryptGUI {
             // Get the selected file
             java.io.File selectedFile = fileChooser.getSelectedFile();
             try {
-                encrypt.encryptFile(selectedFile.getAbsolutePath());
-                dataPopup(frame);
+                String keyIv = encrypt.encryptFile(selectedFile.getAbsolutePath());
+                dataPopup(frame, keyIv);
                 gui.presentGUI();
             } catch (Exception e) {
                 e.fillInStackTrace();
@@ -38,32 +38,30 @@ public class encryptGUI {
         frame.setVisible(true);
     }
 
-    public void dataPopup(JFrame frame) {
+    public void dataPopup(JFrame frame, String keyIv) {
+
+        int div = keyIv.indexOf("_");
+        String key = keyIv.substring(0, div);
+        String iv = keyIv.substring(div + 1);
+
         JDialog popup = new JDialog();
-        popup.setTitle("SwissJnife - key data");
-        popup.setSize(500, 110);
+        popup.setTitle("SwissJnife - Key+IV data");
+        popup.setSize(990, 110);
         popup.setLocationRelativeTo(frame);
         popup.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         popup.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 
-        JLabel inst = new JLabel("Click the key data to copy to clipboard");
+        JLabel inst = new JLabel("Click the key and the initialization vector to copy to clipboard,\n" +
+                "make sure to keep the text in a safe location");
         inst.setFont(inst.getFont().deriveFont(16.0f));
         inst.setAlignmentX(Component.CENTER_ALIGNMENT);
-        JLabel key = new JLabel("YEET");
-        Border keyBorder = BorderFactory.createLineBorder(Color.GRAY, 1);
-        key.setBorder(keyBorder);
-        key.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                String copiedKey = key.getText();
-                Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
-                StringSelection selection = new StringSelection(copiedKey);
-                cb.setContents(selection, null);
-            }
-        });
-        key.setFont(key.getFont().deriveFont(16.0f));
-        key.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JLabel keyLabel = new JLabel(key);
+        JLabel ivLabel = new JLabel(iv);
+        Border border = BorderFactory.createLineBorder(Color.GRAY, 1);
+        setText(keyLabel, border);
+        setText(ivLabel, border);
+        setOnLabelClick(keyLabel);
+        setOnLabelClick(ivLabel);
 
         JButton closeBtn = new JButton("Return to Menu");
         closeBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -72,10 +70,29 @@ public class encryptGUI {
         JPanel popupPanel = new JPanel();
         popupPanel.setLayout(new BoxLayout(popupPanel, BoxLayout.PAGE_AXIS));
         popupPanel.add(inst);
-        popupPanel.add(key);
+        popupPanel.add(keyLabel);
+        popupPanel.add(Box.createRigidArea(new Dimension(0, 5)));
+        popupPanel.add(ivLabel);
 
         popupPanel.add(closeBtn);
         popup.add(popupPanel);
         popup.setVisible(true);
+    }
+    public void setText(JLabel label, Border b) {
+        label.setBorder(b);
+        label.setFont(label.getFont().deriveFont(16.0f));
+        label.setAlignmentX(Component.CENTER_ALIGNMENT);
+    }
+    public void setOnLabelClick(JLabel label) {
+        label.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                String copiedKey = label.getText();
+                Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+                StringSelection selection = new StringSelection(copiedKey);
+                cb.setContents(selection, null);
+            }
+        });
     }
 }
