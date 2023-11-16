@@ -1,10 +1,13 @@
-package GUI;
+package GUI.EncDec;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.swing.*;
-import Logics.decrypt;
+
+import GUI.mainGUI;
+import GUI.sharedUtils;
+import Logics.EncDec.decrypt;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;

@@ -1,6 +1,7 @@
-package Logics;
+package Logics.EncDec;
 
 import GUI.sharedUtils;
+import Logics.Global;
 
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;

@@ -1,4 +1,4 @@
-package GUI;
+package GUI.EncDec;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,8 +6,10 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.util.Arrays;
 
+import GUI.mainGUI;
+import GUI.sharedUtils;
 import Logics.Global;
-import Logics.encrypt;
+import Logics.EncDec.encrypt;
 import org.jetbrains.annotations.NotNull;
 
 /**

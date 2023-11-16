@@ -1,5 +1,9 @@
 package GUI;
 
+import GUI.EncDec.decryptGUI;
+import GUI.EncDec.encryptGUI;
+import GUI.sniffer.netSnifferGUI;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;

@@ -1,18 +1,16 @@
 package Logics;
 
+import Logics.EncDec.AESData;
+
 public class Global {
-    private static Global instance;
     public AESData aesData = new AESData();
 
 
+    private static final class InstanceHolder {
+        private static final Global instance = new Global();
+    }
+
     public static Global getInstance() {
-        if (instance == null) {
-            synchronized (Global.class) {
-                if (instance == null) {
-                    instance = new Global();
-                }
-            }
-        }
-        return instance;
+        return InstanceHolder.instance;
     }
 }

@@ -1,4 +1,4 @@
-package Logics;
+package Logics.EncDec;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;

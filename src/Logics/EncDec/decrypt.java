@@ -1,4 +1,6 @@
-package Logics;
+package Logics.EncDec;
+
+import Logics.Global;
 
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
