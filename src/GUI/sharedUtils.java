@@ -10,6 +10,11 @@ public class sharedUtils {
     final static Color normal = new Color(150, 245, 222);
     final static Color onHover = new Color(118, 192, 173);
     final static Color ret = new Color(255, 48, 62, 255);
+
+    /**
+     * Clear the screen of a given panel
+     * @param panel to clear
+     */
     public static void clearScreen(@NotNull JPanel panel) {
         panel.removeAll();
         SwingUtilities.invokeLater(() -> {
@@ -17,6 +22,11 @@ public class sharedUtils {
             panel.repaint();
         });
     }
+
+    /**
+     * Setting attributes of a general purpose button: Color, hovering attributes
+     * @param btn button to set
+     */
     public static void setGeneralButton(JButton btn) {
         btn.setBackground(normal);
         btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -39,6 +49,12 @@ public class sharedUtils {
         btn.setBackground(ret);
         btn.addActionListener(e -> popup.dispose());
     }
+
+    /**
+     * Display an error message
+     * @param message message to display
+     * @param frame for location options
+     */
     public static void errorPopup(String message, JFrame frame) {
         JDialog popup = new JDialog();
         popup.setSize(280, 110);

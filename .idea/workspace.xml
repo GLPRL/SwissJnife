@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="changed description of button">
+    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="General code cleanup and re-organization.&#10;Introduced error popups.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/decryptGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/decryptGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/encryptGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/encryptGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/mainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/mainGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/sharedUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/sharedUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logics/encrypt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logics/encrypt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Logics/sharedUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logics/sharedUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,7 +236,7 @@
       <workItem from="1700047723698" duration="4817000" />
       <workItem from="1700059339916" duration="3163000" />
       <workItem from="1700069970071" duration="1548000" />
-      <workItem from="1700120866778" duration="2010000" />
+      <workItem from="1700120866778" duration="2903000" />
     </task>
     <task id="LOCAL‎-00001" summary="code re-organization">
       <option name="closed" value="true" />
@@ -463,7 +462,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1700070874896</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL‎-00029" summary="General code cleanup and re-organization.&#10;Introduced error popups.">
+      <option name="closed" value="true" />
+      <created>1700122931195</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL‎-00029" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700122931195</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -493,7 +500,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="button generator function" />
     <MESSAGE value="encryptGUI new class for encrypting process.&#10;mainGUI: frame is a member in class, creation of buttons is with conditions for applying the correct behavior.&#10;gotta try to add a image button." />
     <MESSAGE value="encryptGUI new class for encrypting process.&#10;mainGUI: frame is a member in class, creation of buttons is with conditions for applying the correct behavior." />
     <MESSAGE value="GUI modifications" />
@@ -518,6 +524,7 @@
     <MESSAGE value="mainGUI.java:&#10;Added a top menu.&#10;Project on Github works and opens browser on the github project." />
     <MESSAGE value="mainGUI.java:&#10;Added a top menu.&#10;Project on Github works and opens browser on the github project.&#10;misc visual improvements." />
     <MESSAGE value="changed description of button" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed description of button" />
+    <MESSAGE value="General code cleanup and re-organization.&#10;Introduced error popups." />
+    <option name="LAST_COMMIT_MESSAGE" value="General code cleanup and re-organization.&#10;Introduced error popups." />
   </component>
 </project>

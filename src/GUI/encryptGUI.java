@@ -10,17 +10,29 @@ import Logics.Global;
 import Logics.encrypt;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * GUI for encrypting files.
+ */
 public class encryptGUI {
+    final String descIV = "IV";
+    final String descKey = "Key";
     JPanel panel;
     JPanel buttonsPanel;
     JDialog popup;
-
+    /**
+     * Constructor
+     */
     public encryptGUI() {
         panel = new JPanel();
         buttonsPanel = new JPanel();
         popup = new JDialog();
     }
 
+    /**
+     * Show the GUI for the user - file selection popup
+     * @param frame programs' frame
+     * @param gui main GUI to return when finished
+     */
     public void presentGui(@NotNull JFrame frame, mainGUI gui) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -66,15 +78,14 @@ public class encryptGUI {
     }
 
     /**
-     * Creating elements of the popup
+     * Creating elements of the popup for copying the Key and IV to clipboard.
      */
     public void createElements() {
         String key = Arrays.toString(Global.getInstance().aesData.getKey().getEncoded());
         String iv = Arrays.toString(Global.getInstance().aesData.getIv().getIV());
-
         Dimension d = new Dimension(5, 0);
 
-        buttonsPanel.add(Box.createRigidArea(d));
+
         JLabel infoLabel = new JLabel("");
         infoLabel.setHorizontalAlignment(JLabel.CENTER);
         infoLabel.setFont(infoLabel.getFont().deriveFont(17.0f));
@@ -82,33 +93,41 @@ public class encryptGUI {
         JButton ivBtn = new JButton("Copy IV to Clipboard");
         sharedUtils.setGeneralButton(ivBtn);
         ivBtn.setAlignmentY(Component.TOP_ALIGNMENT);
-        ivBtn.addActionListener(e -> {
-            Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
-            StringSelection selection = new StringSelection(iv);
-            cb.setContents(selection, null);
-            infoLabel.setText("IV copied to clipboard");
-        });
-
-        buttonsPanel.add(ivBtn);
-        buttonsPanel.add(Box.createRigidArea(d));
-        panel.add(infoLabel, BorderLayout.CENTER);
+        initClipboard(ivBtn, iv, infoLabel, descIV);
 
         JButton keyBtn = new JButton("Copy Key to Clipboard");
         keyBtn.setAlignmentY(Component.TOP_ALIGNMENT);
-        keyBtn.addActionListener(e -> {
-            Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
-            StringSelection selection = new StringSelection(key);
-            cb.setContents(selection, null);
-            infoLabel.setText("Key copied to clipboard");
-        });
+        initClipboard(keyBtn, key, infoLabel, descKey);
         sharedUtils.setGeneralButton(keyBtn);
-        buttonsPanel.add(keyBtn);
+
 
         JButton closeBtn = new JButton("Return to Menu");
         sharedUtils.setRetButton(closeBtn, popup);
         closeBtn.setAlignmentY(Component.TOP_ALIGNMENT);
+
+        buttonsPanel.add(Box.createRigidArea(d));
+        buttonsPanel.add(ivBtn);
+        buttonsPanel.add(Box.createRigidArea(d));
+        panel.add(infoLabel, BorderLayout.CENTER);
+        buttonsPanel.add(keyBtn);
         buttonsPanel.add(Box.createRigidArea(d));
         buttonsPanel.add(closeBtn);
         buttonsPanel.add(Box.createRigidArea(d));
+    }
+
+    /**
+     * Initializes clipboard when clicking to copy a given string.
+     * @param btn button clicked to copy to clipboard
+     * @param data data to copy to clipboard
+     * @param infoLabel announcing that the data was copied
+     * @param desc desc of the data that was copied
+     */
+    public void initClipboard(JButton btn, String data, JLabel infoLabel, String desc) {
+        btn.addActionListener(e -> {
+            Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+            StringSelection selection = new StringSelection(data);
+            cb.setContents(selection, null);
+            infoLabel.setText(desc + " copied to clipboard");
+        });
     }
 }

@@ -38,6 +38,10 @@ public class mainGUI {
         frame.add(panel);
     }
 
+    /**
+     * Creating menu bar at the top of the window.
+     * Allows to see credits, open the project on GitHub, and close the program.
+     */
     public void createMenuBar() {
         JMenuBar menu = new JMenuBar();
         menu.setBackground(new Color(246, 246, 246, 255));
@@ -140,6 +144,14 @@ public class mainGUI {
         // Show
         frame.setVisible(true);
     }
+
+    /**
+     * Setting click listeners to start a wanted program
+     * @param encBtn to begin file encryption
+     * @param decBtn to begin file decryption
+     * @param vulScan to begin system vulnerability scanning
+     * @param sniff to begin network sniffer
+     */
     public void setClickListeners(JButton encBtn, JButton decBtn, JButton vulScan, JButton sniff) {
         encBtn.addActionListener(e -> {
             sharedUtils.clearScreen(panel);
