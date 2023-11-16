@@ -4,8 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.Arrays;
 
 import Logics.Global;
@@ -16,8 +14,7 @@ public class encryptGUI {
     JPanel panel;
     JPanel buttonsPanel;
     JDialog popup;
-    Color normal = new Color(150, 245, 222);
-    Color onHover = new Color(118, 192, 173);
+
     public encryptGUI() {
         panel = new JPanel();
         buttonsPanel = new JPanel();
@@ -34,10 +31,11 @@ public class encryptGUI {
             // Get the selected file
             java.io.File selectedFile = fileChooser.getSelectedFile();
             try {
-                encrypt.encryptFile(selectedFile.getAbsolutePath());
+                encrypt.encryptFile(selectedFile.getAbsolutePath(), frame);
                 dataPopup(frame);
                 gui.presentGUI();
             } catch (Exception e) {
+                sharedUtils.errorPopup("Error: failed encrypting the file", frame);
                 e.fillInStackTrace();
                 gui.presentGUI();
             }
@@ -82,27 +80,13 @@ public class encryptGUI {
         infoLabel.setFont(infoLabel.getFont().deriveFont(17.0f));
 
         JButton ivBtn = new JButton("Copy IV to Clipboard");
-        ivBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        sharedUtils.setGeneralButton(ivBtn);
         ivBtn.setAlignmentY(Component.TOP_ALIGNMENT);
-        ivBtn.setBackground(new Color(150, 245, 222));
         ivBtn.addActionListener(e -> {
             Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
             StringSelection selection = new StringSelection(iv);
             cb.setContents(selection, null);
             infoLabel.setText("IV copied to clipboard");
-        });
-        ivBtn.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                super.mouseEntered(e);
-                ivBtn.setBackground(onHover);
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                super.mouseExited(e);
-                ivBtn.setBackground(normal);
-            }
         });
 
         buttonsPanel.add(ivBtn);
@@ -110,34 +94,18 @@ public class encryptGUI {
         panel.add(infoLabel, BorderLayout.CENTER);
 
         JButton keyBtn = new JButton("Copy Key to Clipboard");
-        keyBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
         keyBtn.setAlignmentY(Component.TOP_ALIGNMENT);
-        keyBtn.setBackground(new Color(150, 245, 222));
         keyBtn.addActionListener(e -> {
             Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
             StringSelection selection = new StringSelection(key);
             cb.setContents(selection, null);
             infoLabel.setText("Key copied to clipboard");
         });
-        keyBtn.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                super.mouseEntered(e);
-                keyBtn.setBackground(onHover);
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                super.mouseExited(e);
-                keyBtn.setBackground(normal);
-            }
-        });
+        sharedUtils.setGeneralButton(keyBtn);
         buttonsPanel.add(keyBtn);
 
         JButton closeBtn = new JButton("Return to Menu");
-        closeBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        closeBtn.addActionListener(e -> popup.dispose());
-        closeBtn.setBackground(new Color(255, 48, 62, 255));
+        sharedUtils.setRetButton(closeBtn, popup);
         closeBtn.setAlignmentY(Component.TOP_ALIGNMENT);
         buttonsPanel.add(Box.createRigidArea(d));
         buttonsPanel.add(closeBtn);

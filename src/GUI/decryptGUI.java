@@ -30,6 +30,7 @@ public class decryptGUI {
                 gui.presentGUI();
             } catch (InvalidAlgorithmParameterException | NoSuchPaddingException | IllegalBlockSizeException |
                      NoSuchAlgorithmException | IOException | BadPaddingException | InvalidKeyException e) {
+                sharedUtils.errorPopup("Error decrypting the file", frame);
                 throw new RuntimeException(e);
             }
         } else if (res == JFileChooser.CANCEL_OPTION) {

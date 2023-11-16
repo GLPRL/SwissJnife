@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="mainGUI.java:&#10;Added a top menu.&#10;Project on Github works and opens browser on the github project.">
+    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="changed description of button">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/decryptGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/decryptGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/encryptGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/encryptGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/mainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/mainGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/sharedUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/sharedUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Logics/encrypt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logics/encrypt.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -233,7 +235,9 @@
       <workItem from="1699903516541" duration="22000" />
       <workItem from="1699963002940" duration="499000" />
       <workItem from="1700047723698" duration="4817000" />
-      <workItem from="1700059339916" duration="2849000" />
+      <workItem from="1700059339916" duration="3163000" />
+      <workItem from="1700069970071" duration="1548000" />
+      <workItem from="1700120866778" duration="2010000" />
     </task>
     <task id="LOCAL‎-00001" summary="code re-organization">
       <option name="closed" value="true" />
@@ -427,7 +431,39 @@
       <option name="project" value="LOCAL‎" />
       <updated>1700060895953</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL‎-00025" summary="mainGUI.java:&#10;Added a top menu.&#10;Project on Github works and opens browser on the github project.&#10;misc visual improvements.">
+      <option name="closed" value="true" />
+      <created>1700062282452</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL‎-00025" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700062282452</updated>
+    </task>
+    <task id="LOCAL‎-00026" summary="mainGUI.java:&#10;Added a top menu.&#10;Project on Github works and opens browser on the github project.&#10;misc visual improvements.">
+      <option name="closed" value="true" />
+      <created>1700062483551</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL‎-00026" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700062483551</updated>
+    </task>
+    <task id="LOCAL‎-00027" summary="changed description of button">
+      <option name="closed" value="true" />
+      <created>1700070854452</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL‎-00027" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700070854452</updated>
+    </task>
+    <task id="LOCAL‎-00028" summary="changed description of button">
+      <option name="closed" value="true" />
+      <created>1700070874896</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL‎-00028" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700070874896</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -457,8 +493,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="code re-organization" />
-    <MESSAGE value="added button listeners for en/de-crypt" />
     <MESSAGE value="button generator function" />
     <MESSAGE value="encryptGUI new class for encrypting process.&#10;mainGUI: frame is a member in class, creation of buttons is with conditions for applying the correct behavior.&#10;gotta try to add a image button." />
     <MESSAGE value="encryptGUI new class for encrypting process.&#10;mainGUI: frame is a member in class, creation of buttons is with conditions for applying the correct behavior." />
@@ -482,6 +516,8 @@
     <MESSAGE value="Added JMenu, visual changes to copy IV and key to clipboard, is done with buttons instead of showing the plain text.&#10;Some GUI changes as well." />
     <MESSAGE value="fw -&gt; sniffer" />
     <MESSAGE value="mainGUI.java:&#10;Added a top menu.&#10;Project on Github works and opens browser on the github project." />
-    <option name="LAST_COMMIT_MESSAGE" value="mainGUI.java:&#10;Added a top menu.&#10;Project on Github works and opens browser on the github project." />
+    <MESSAGE value="mainGUI.java:&#10;Added a top menu.&#10;Project on Github works and opens browser on the github project.&#10;misc visual improvements." />
+    <MESSAGE value="changed description of button" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed description of button" />
   </component>
 </project>

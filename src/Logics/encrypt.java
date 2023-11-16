@@ -1,7 +1,10 @@
 package Logics;
 
+import GUI.sharedUtils;
+
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
+import javax.swing.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -18,10 +21,13 @@ public class encrypt {
      * Runner of the encryption process
      * @param filename absolute path of file to encrypt it's content
      */
-    public static void encryptFile(String filename) throws NoSuchPaddingException, NoSuchAlgorithmException,
+    public static void encryptFile(String filename, JFrame frame) throws NoSuchPaddingException, NoSuchAlgorithmException,
             InvalidAlgorithmParameterException, InvalidKeyException, IOException, IllegalBlockSizeException, BadPaddingException {
         String destName = filename + "Enc";
         SecretKey key = generateKey();
+        if (key == null) {
+            sharedUtils.errorPopup("failed generating the key", frame);
+        }
         IvParameterSpec iv = generateIv();
 
         File src = new File(filename);
