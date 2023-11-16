@@ -1,9 +1,11 @@
 package GUI;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * GUI class to present content of main screen
@@ -11,8 +13,6 @@ import java.awt.event.MouseEvent;
 public class mainGUI {
     JFrame frame;
     JPanel panel;
-    Color normal = new Color(150, 245, 222);
-    Color onHover = new Color(118, 192, 173);
 
     /**
      * Constructor.
@@ -28,13 +28,49 @@ public class mainGUI {
         frame.setLocation(x, y);
 
         Container contentPane = frame.getContentPane();
+        contentPane.setBackground(Color.WHITE);
         contentPane.setLayout(new FlowLayout(FlowLayout.CENTER));
-
+        createMenuBar();
         panel = new JPanel();                               //Main panel settings
         BoxLayout box = new BoxLayout(panel, BoxLayout.X_AXIS);
-
         panel.setLayout(box);
+        panel.setBackground(Color.WHITE);
         frame.add(panel);
+    }
+
+    /**
+     * Creating menu bar at the top of the window.
+     * Allows to see credits, open the project on GitHub, and close the program.
+     */
+    public void createMenuBar() {
+        JMenuBar menu = new JMenuBar();
+        menu.setBackground(new Color(246, 246, 246, 255));
+        JMenu file = new JMenu(("File"));
+        Border border = BorderFactory.createLineBorder(Color.GRAY, 1, false);
+        menu.setBorder(border);
+        file.setBorder(border);
+        JMenuItem credits = new JMenuItem("Credits");
+        credits.setBorder(border);
+        file.add(credits);
+        JMenuItem uri = new JMenuItem("Project on Github");
+        uri.addActionListener(e -> {
+            if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://www.github.com/GLPRL/SwissJnife"));
+                } catch (IOException | URISyntaxException ex) {
+                    //create error popup that we failed opening a browser
+                    sharedUtils.errorPopup("Could not open the project on browser", frame);
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+        uri.setBorder(border);
+        file.add(uri);
+        JMenuItem exit = new JMenuItem("Exit");
+        exit.setBorder(border);
+        file.add(exit);
+        menu.add(file);
+        frame.setJMenuBar(menu);
     }
 
     /**
@@ -51,20 +87,20 @@ public class mainGUI {
         panel1.removeAll();
 
         Component rigidArea = Box.createRigidArea(new Dimension(10, 5));
+        rigidArea.setBackground(Color.WHITE);
         this.panel.add(rigidArea);
 
         //Create encrypt file button
         JButton encBtn = new JButton("Encrypt File");
-        encBtn.setBackground(new Color(150, 245, 222));
-        encBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        sharedUtils.setGeneralButton(encBtn);
         panel1.add(encBtn);
         panel1.add(rigidArea);
 
         //Create decrypt file button
         JButton decBtn = new JButton("Decrypt File");
-        decBtn.setBackground(new Color(150, 245, 222));
-        decBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        sharedUtils.setGeneralButton(decBtn);
         panel1.add(decBtn);
+        panel1.setBackground(Color.WHITE);
 
         //Create second column
         JPanel panel2 = new JPanel();
@@ -74,8 +110,7 @@ public class mainGUI {
         panel2.removeAll();
 
         JButton vulScan = new JButton("Self Scanner");
-        vulScan.setBackground(new Color(150, 245, 222));
-        vulScan.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        sharedUtils.setGeneralButton(vulScan);
         panel2.add(vulScan);
 
         JPanel panel3 = new JPanel();
@@ -84,23 +119,22 @@ public class mainGUI {
         panel3.setAlignmentY(Component.TOP_ALIGNMENT);
         panel3.removeAll();
 
-        JButton fw = new JButton("Firewall Config");
-        fw.setBackground(new Color(150, 245, 222));
-        fw.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        panel3.add(fw);
+        JButton sniff = new JButton("Network Sniffer");
+        sharedUtils.setGeneralButton(sniff);
+        panel3.add(sniff);
 
         //Add listeners
-        setListeners(encBtn, decBtn, vulScan, fw);
+        setClickListeners(encBtn, decBtn, vulScan, sniff);
 
-        this.panel.add(Box.createRigidArea(new Dimension(10, 10)));
+        Component component = Box.createRigidArea(new Dimension(10, 10));
+        component.setBackground(Color.WHITE);
+        this.panel.add(component);
         this.panel.add(panel1);
         this.panel.add(Box.createRigidArea(new Dimension(10, 0)));
         this.panel.add(panel2);
         this.panel.add(Box.createRigidArea(new Dimension(10, 0)));
         this.panel.add(panel3);
     }
-
-
 
     /**
      * Present the GUI and call to create the content
@@ -110,7 +144,15 @@ public class mainGUI {
         // Show
         frame.setVisible(true);
     }
-    public void setListeners(JButton encBtn, JButton decBtn, JButton vulScan, JButton fw) {
+
+    /**
+     * Setting click listeners to start a wanted program
+     * @param encBtn to begin file encryption
+     * @param decBtn to begin file decryption
+     * @param vulScan to begin system vulnerability scanning
+     * @param sniff to begin network sniffer
+     */
+    public void setClickListeners(JButton encBtn, JButton decBtn, JButton vulScan, JButton sniff) {
         encBtn.addActionListener(e -> {
             sharedUtils.clearScreen(panel);
             encryptGUI gui = new encryptGUI();
@@ -124,67 +166,12 @@ public class mainGUI {
         vulScan.addActionListener(e -> {
             //TODO
         });
-        fw.addActionListener(e -> {
+        sniff.addActionListener(e -> {
             sharedUtils.clearScreen(panel);
             netSnifferGUI gui = new netSnifferGUI();
-            try {
-                gui.presentGui(frame, mainGUI.this);
-            } catch (Exception ex) {
-                throw new RuntimeException(ex);
-            }
+            gui.presentGui(frame, mainGUI.this);
         });
 
-        encBtn.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                super.mouseEntered(e);
-                encBtn.setBackground(onHover);
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                super.mouseExited(e);
-                encBtn.setBackground(normal);
-            }
-        });
-        decBtn.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                super.mouseEntered(e);
-                decBtn.setBackground(onHover);
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                super.mouseExited(e);
-                decBtn.setBackground(normal);
-            }
-        });
-        vulScan.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                super.mouseEntered(e);
-                vulScan.setBackground(onHover);
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                super.mouseExited(e);
-                vulScan.setBackground(normal);
-            }
-        });
-        fw.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                super.mouseEntered(e);
-                fw.setBackground(onHover);
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                super.mouseExited(e);
-                fw.setBackground(normal);
-            }
-        });
     }
+
 }

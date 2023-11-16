@@ -1,20 +1,38 @@
 package GUI;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.util.Arrays;
 
+import Logics.Global;
 import Logics.encrypt;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * GUI for encrypting files.
+ */
 public class encryptGUI {
+    final String descIV = "IV";
+    final String descKey = "Key";
+    JPanel panel;
+    JPanel buttonsPanel;
+    JDialog popup;
+    /**
+     * Constructor
+     */
     public encryptGUI() {
+        panel = new JPanel();
+        buttonsPanel = new JPanel();
+        popup = new JDialog();
     }
 
+    /**
+     * Show the GUI for the user - file selection popup
+     * @param frame programs' frame
+     * @param gui main GUI to return when finished
+     */
     public void presentGui(@NotNull JFrame frame, mainGUI gui) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -25,10 +43,11 @@ public class encryptGUI {
             // Get the selected file
             java.io.File selectedFile = fileChooser.getSelectedFile();
             try {
-                encrypt.encryptFile(selectedFile.getAbsolutePath());
+                encrypt.encryptFile(selectedFile.getAbsolutePath(), frame);
                 dataPopup(frame);
                 gui.presentGUI();
             } catch (Exception e) {
+                sharedUtils.errorPopup("Error: failed encrypting the file", frame);
                 e.fillInStackTrace();
                 gui.presentGUI();
             }
@@ -38,44 +57,77 @@ public class encryptGUI {
         frame.setVisible(true);
     }
 
+    /**
+     * Create the popup window
+     * @param frame programs' frame
+     */
     public void dataPopup(JFrame frame) {
-        JDialog popup = new JDialog();
-        popup.setTitle("SwissJnife - key data");
-        popup.setSize(500, 110);
+        panel.setLayout(new BorderLayout());
+        popup.setTitle("SwissJnife - Key+IV data");
+        popup.setSize(460, 130);
         popup.setLocationRelativeTo(frame);
         popup.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         popup.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+        buttonsPanel = new JPanel();
+        buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.X_AXIS));
+        createElements();
+        buttonsPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        panel.add(buttonsPanel, BorderLayout.NORTH);
+        popup.add(panel);
+        popup.setVisible(true);
+    }
 
-        JLabel inst = new JLabel("Click the key data to copy to clipboard");
-        inst.setFont(inst.getFont().deriveFont(16.0f));
-        inst.setAlignmentX(Component.CENTER_ALIGNMENT);
-        JLabel key = new JLabel("YEET");
-        Border keyBorder = BorderFactory.createLineBorder(Color.GRAY, 1);
-        key.setBorder(keyBorder);
-        key.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                String copiedKey = key.getText();
-                Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
-                StringSelection selection = new StringSelection(copiedKey);
-                cb.setContents(selection, null);
-            }
-        });
-        key.setFont(key.getFont().deriveFont(16.0f));
-        key.setAlignmentX(Component.CENTER_ALIGNMENT);
+    /**
+     * Creating elements of the popup for copying the Key and IV to clipboard.
+     */
+    public void createElements() {
+        String key = Arrays.toString(Global.getInstance().aesData.getKey().getEncoded());
+        String iv = Arrays.toString(Global.getInstance().aesData.getIv().getIV());
+        Dimension d = new Dimension(5, 0);
+
+
+        JLabel infoLabel = new JLabel("");
+        infoLabel.setHorizontalAlignment(JLabel.CENTER);
+        infoLabel.setFont(infoLabel.getFont().deriveFont(17.0f));
+
+        JButton ivBtn = new JButton("Copy IV to Clipboard");
+        sharedUtils.setGeneralButton(ivBtn);
+        ivBtn.setAlignmentY(Component.TOP_ALIGNMENT);
+        initClipboard(ivBtn, iv, infoLabel, descIV);
+
+        JButton keyBtn = new JButton("Copy Key to Clipboard");
+        keyBtn.setAlignmentY(Component.TOP_ALIGNMENT);
+        initClipboard(keyBtn, key, infoLabel, descKey);
+        sharedUtils.setGeneralButton(keyBtn);
+
 
         JButton closeBtn = new JButton("Return to Menu");
-        closeBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
-        closeBtn.addActionListener(e -> popup.dispose());
+        sharedUtils.setRetButton(closeBtn, popup);
+        closeBtn.setAlignmentY(Component.TOP_ALIGNMENT);
 
-        JPanel popupPanel = new JPanel();
-        popupPanel.setLayout(new BoxLayout(popupPanel, BoxLayout.PAGE_AXIS));
-        popupPanel.add(inst);
-        popupPanel.add(key);
+        buttonsPanel.add(Box.createRigidArea(d));
+        buttonsPanel.add(ivBtn);
+        buttonsPanel.add(Box.createRigidArea(d));
+        panel.add(infoLabel, BorderLayout.CENTER);
+        buttonsPanel.add(keyBtn);
+        buttonsPanel.add(Box.createRigidArea(d));
+        buttonsPanel.add(closeBtn);
+        buttonsPanel.add(Box.createRigidArea(d));
+    }
 
-        popupPanel.add(closeBtn);
-        popup.add(popupPanel);
-        popup.setVisible(true);
+    /**
+     * Initializes clipboard when clicking to copy a given string.
+     * @param btn button clicked to copy to clipboard
+     * @param data data to copy to clipboard
+     * @param infoLabel announcing that the data was copied
+     * @param desc desc of the data that was copied
+     */
+    public void initClipboard(JButton btn, String data, JLabel infoLabel, String desc) {
+        btn.addActionListener(e -> {
+            Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+            StringSelection selection = new StringSelection(data);
+            cb.setContents(selection, null);
+            infoLabel.setText(desc + " copied to clipboard");
+        });
     }
 }
