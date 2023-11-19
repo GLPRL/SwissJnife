@@ -2,14 +2,16 @@ package GUI;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicButtonUI;
+import javax.swing.plaf.basic.BasicRadioButtonUI;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class sharedUtils {
-    final static Color normal = new Color(150, 245, 222);
-    final static Color onHover = new Color(118, 192, 173);
-    final static Color ret = new Color(255, 48, 62, 255);
+    static Color normal = new Color(150, 245, 222);
+    static Color onHover = new Color(118, 192, 173);
+    static Color ret = new Color(255, 48, 62, 255);
 
     /**
      * Clear the screen of a given panel
@@ -80,5 +82,34 @@ public class sharedUtils {
         popupPanel.add(retBtn);
         popup.add(popupPanel);
         popup.setVisible(true);
+    }
+
+    /**
+     * Move the frame to the center of the screen
+     * @param frame frame to move
+     * @return center point of the screen
+     */
+    public static Point centerFrame(JFrame frame) {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (screenSize.width - frame.getWidth()) / 2;
+        int y = (screenSize.height - frame.getHeight()) / 2;
+        return new Point(x, y);
+    }
+    public static void noFocusBorder(JButton btn) {
+        btn.setUI(new BasicButtonUI() {
+            @Override
+            protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect,
+                                      Rectangle iconRect) {
+                //do nothing
+            }
+        });
+    }
+    public static void noFocusBorder(JRadioButton btn) {
+        btn.setUI(new BasicRadioButtonUI() {
+            @Override
+            protected void paintFocus(Graphics g, Rectangle t, Dimension d) {
+                //do nothing
+            }
+        });
     }
 }

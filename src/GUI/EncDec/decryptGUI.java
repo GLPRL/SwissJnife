@@ -8,7 +8,6 @@ import javax.swing.*;
 import GUI.mainGUI;
 import GUI.sharedUtils;
 import Logics.EncDec.decrypt;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
@@ -16,10 +15,12 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
 public class decryptGUI {
-    public decryptGUI() {
+    JFrame frame;
+    public decryptGUI(JFrame frame) {
+        this.frame = frame;
     }
 
-    public void presentGui(@NotNull JFrame frame, mainGUI gui) {
+    public void presentGui(mainGUI gui) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         fileChooser.setApproveButtonText("Select");

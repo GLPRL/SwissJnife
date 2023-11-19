@@ -3,6 +3,7 @@ package GUI;
 import GUI.EncDec.decryptGUI;
 import GUI.EncDec.encryptGUI;
 import GUI.sniffer.netSnifferGUI;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -26,10 +27,7 @@ public class mainGUI {
         frame = new JFrame("SwissJnife");              //Window settings
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(650, 400);
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = (screenSize.width - frame.getWidth()) / 2;
-        int y = (screenSize.height - frame.getHeight()) / 2;
-        frame.setLocation(x, y);
+        frame.setLocation(sharedUtils.centerFrame(this.frame));
 
         Container contentPane = frame.getContentPane();
         contentPane.setBackground(Color.WHITE);
@@ -56,6 +54,22 @@ public class mainGUI {
         JMenuItem credits = new JMenuItem("Credits");
         credits.setBorder(border);
         file.add(credits);
+        JMenuItem uri = createGitHubURI(border);
+        file.add(uri);
+        JMenuItem exit = new JMenuItem("Exit");
+        exit.setBorder(border);
+        file.add(exit);
+        menu.add(file);
+        frame.setJMenuBar(menu);
+    }
+
+    /**
+     * Get URI of GitHub project
+     * @param border border of the JMenuItem
+     * @return the item of the URI link
+     */
+    @NotNull
+    private JMenuItem createGitHubURI(Border border) {
         JMenuItem uri = new JMenuItem("Project on Github");
         uri.addActionListener(e -> {
             if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
@@ -69,12 +83,7 @@ public class mainGUI {
             }
         });
         uri.setBorder(border);
-        file.add(uri);
-        JMenuItem exit = new JMenuItem("Exit");
-        exit.setBorder(border);
-        file.add(exit);
-        menu.add(file);
-        frame.setJMenuBar(menu);
+        return uri;
     }
 
     /**
@@ -96,12 +105,14 @@ public class mainGUI {
 
         //Create encrypt file button
         JButton encBtn = new JButton("Encrypt File");
+        sharedUtils.noFocusBorder(encBtn);
         sharedUtils.setGeneralButton(encBtn);
         panel1.add(encBtn);
         panel1.add(rigidArea);
 
         //Create decrypt file button
         JButton decBtn = new JButton("Decrypt File");
+        sharedUtils.noFocusBorder(decBtn);
         sharedUtils.setGeneralButton(decBtn);
         panel1.add(decBtn);
         panel1.setBackground(Color.WHITE);
@@ -114,6 +125,7 @@ public class mainGUI {
         panel2.removeAll();
 
         JButton vulScan = new JButton("Self Scanner");
+        sharedUtils.noFocusBorder(vulScan);
         sharedUtils.setGeneralButton(vulScan);
         panel2.add(vulScan);
 
@@ -124,6 +136,7 @@ public class mainGUI {
         panel3.removeAll();
 
         JButton sniff = new JButton("Network Sniffer");
+        sharedUtils.noFocusBorder(sniff);
         sharedUtils.setGeneralButton(sniff);
         panel3.add(sniff);
 
@@ -159,21 +172,21 @@ public class mainGUI {
     public void setClickListeners(JButton encBtn, JButton decBtn, JButton vulScan, JButton sniff) {
         encBtn.addActionListener(e -> {
             sharedUtils.clearScreen(panel);
-            encryptGUI gui = new encryptGUI();
-            gui.presentGui(frame, mainGUI.this);
+            encryptGUI gui = new encryptGUI(frame);
+            gui.presentGui(mainGUI.this);
         });
         decBtn.addActionListener(e -> {
             sharedUtils.clearScreen(panel);
-            decryptGUI gui = new decryptGUI();
-            gui.presentGui(frame, mainGUI.this);
+            decryptGUI gui = new decryptGUI(frame);
+            gui.presentGui(mainGUI.this);
         });
         vulScan.addActionListener(e -> {
             //TODO
         });
         sniff.addActionListener(e -> {
             sharedUtils.clearScreen(panel);
-            netSnifferGUI gui = new netSnifferGUI();
-            gui.presentGui(frame, mainGUI.this);
+            netSnifferGUI gui = new netSnifferGUI(frame);
+            gui.presentGui(mainGUI.this);
         });
 
     }
