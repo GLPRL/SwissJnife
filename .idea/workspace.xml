@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="Port filtering finished, code organization.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/mainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/mainGUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -250,7 +250,7 @@
       <workItem from="1700147250044" duration="448000" />
       <workItem from="1700388338232" duration="13635000" />
       <workItem from="1700478964122" duration="2157000" />
-      <workItem from="1700495363208" duration="4564000" />
+      <workItem from="1700495363208" duration="4629000" />
     </task>
     <task id="LOCAL‎-00001" summary="code re-organization">
       <option name="closed" value="true" />
@@ -500,7 +500,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1700404422931</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL‎-00032" summary="Port filtering finished, code organization.">
+      <option name="closed" value="true" />
+      <created>1700500401024</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL‎-00032" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700500401024</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

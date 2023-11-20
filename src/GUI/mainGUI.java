@@ -26,7 +26,7 @@ public class mainGUI {
     public mainGUI() {
         frame = new JFrame("SwissJnife");              //Window settings
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(650, 400);
+        frame.setSize(650, 150);
         frame.setLocation(sharedUtils.centerFrame(this.frame));
 
         Container contentPane = frame.getContentPane();
