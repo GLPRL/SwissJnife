@@ -60,6 +60,17 @@ public class mainGUI {
         exit.setBorder(border);
         file.add(exit);
         menu.add(file);
+        JMenu encDec = new JMenu("Encryptor");
+        encDec.setBorder(border);
+        JMenuItem encDecHelp = new JMenuItem("Help");
+        encDec.add(encDecHelp);
+        menu.add(encDec);
+
+        JMenu sniffer = new JMenu("Sniffer");
+        sniffer.setBorder(border);
+        JMenuItem snifferHelp = new JMenuItem("Help");
+        sniffer.add(snifferHelp);
+        menu.add(sniffer);
         frame.setJMenuBar(menu);
     }
 

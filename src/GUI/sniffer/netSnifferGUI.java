@@ -7,6 +7,8 @@ import org.jetbrains.annotations.NotNull;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 
 /**
@@ -19,19 +21,18 @@ public class netSnifferGUI {
     JPanel portsPanel;
     JPanel normalPorts;
     JPanel buttonsPanel;
-    JRadioButton FTPrad = new JRadioButton("FTP (20,21)");
-    JRadioButton SSHrad = new JRadioButton("SSH (22)");
-    JRadioButton TELNETrad = new JRadioButton("Telnet (23)");
-    JRadioButton SMTPrad = new JRadioButton("SMTP (25)");
-    JRadioButton DNSrad = new JRadioButton("DNS (53)");
-    JRadioButton HTTPrad = new JRadioButton("HTTP (80)");
-    JRadioButton POP3rad = new JRadioButton("POP3 (110)");
-    JRadioButton IMAPrad = new JRadioButton("IMAP (143)");
-    JRadioButton SNMPrad = new JRadioButton("SNMP (161)");
-    JRadioButton LDAPrad = new JRadioButton("LDAP (389)");
-    JRadioButton HTTPSrad = new JRadioButton("HTTPS (443)");
-    JRadioButton RDPrad = new JRadioButton("RDP (3389)");
-    ButtonGroup ports = new ButtonGroup();
+    JToggleButton FTPrad = new JToggleButton("FTP (20,21)");
+    JToggleButton SSHrad = new JToggleButton("SSH (22)");
+    JToggleButton TELNETrad = new JToggleButton("Telnet (23)");
+    JToggleButton SMTPrad = new JToggleButton("SMTP (25)");
+    JToggleButton DNSrad = new JToggleButton("DNS (53)");
+    JToggleButton HTTPrad = new JToggleButton("HTTP (80)");
+    JToggleButton POP3rad = new JToggleButton("POP3 (110)");
+    JToggleButton IMAPrad = new JToggleButton("IMAP (143)");
+    JToggleButton SNMPrad = new JToggleButton("SNMP (161)");
+    JToggleButton LDAPrad = new JToggleButton("LDAP (389)");
+    JToggleButton HTTPSrad = new JToggleButton("HTTPS (443)");
+    JToggleButton RDPrad = new JToggleButton("RDP (3389)");
 
     /**
      * Constructor
@@ -118,6 +119,7 @@ public class netSnifferGUI {
     public void addPanels() {
         controlPanel.setLayout(new BoxLayout(controlPanel, BoxLayout.X_AXIS));
         setPortsPanel();
+
         setButtonsPanel();
 
         controlPanel.add(portsPanel);
@@ -131,16 +133,16 @@ public class netSnifferGUI {
     public void setPortsPanel() {
         Component rigidArea = Box.createRigidArea(new Dimension(0, 10));
         rigidArea.setBackground(new Color(189,189,189));
+        TitledBorder tb = new TitledBorder(new LineBorder(Color.BLACK), "Port Filter");
+        tb.setTitleColor(Color.BLACK);
+        tb.setTitleJustification(TitledBorder.CENTER);
+        tb.setTitleColor(Color.BLACK);
 
-        JLabel title = new JLabel("Port Filter");
-        title.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        title.setAlignmentX(Component.CENTER_ALIGNMENT);
-        portsPanel.add(title);
+        portsPanel.setBackground(Color.WHITE);
+        portsPanel.setBorder(tb);
 
-        portsPanel.setBackground(new Color(189, 189, 189));
-        portsPanel.setBorder(BorderFactory.createEtchedBorder());
-        portsPanel.setMaximumSize(new Dimension(250, 165));
-        portsPanel.setMinimumSize(new Dimension(250, 165));
+        portsPanel.setMaximumSize(new Dimension(350, 220));
+        portsPanel.setMinimumSize(new Dimension(350, 220));
 
         colSetup(FTPrad, SSHrad, TELNETrad, SMTPrad);
         colSetup(DNSrad, HTTPrad, POP3rad, IMAPrad);
@@ -153,6 +155,10 @@ public class netSnifferGUI {
 
         portsPanel.add(rigidArea);
         portsPanel.add(misc);
+        portsPanel.setMaximumSize(new Dimension(300, 190));
+        portsPanel.setMinimumSize(new Dimension(300, 190));
+        normalPorts.setBackground(Color.WHITE);
+        normalPorts.setLayout(new BoxLayout(normalPorts, BoxLayout.X_AXIS));
     }
 
     /**
@@ -162,24 +168,28 @@ public class netSnifferGUI {
      * @param btnThree third button
      * @param btnFour fourth button
      */
-    private void colSetup(JRadioButton btnOne, JRadioButton btnTwo, JRadioButton btnThree, JRadioButton btnFour) {
-        JPanel portCol1 = getColPanel();
+    private void colSetup(JToggleButton btnOne, JToggleButton btnTwo, JToggleButton btnThree, JToggleButton btnFour) {
+        JPanel col = getColPanel();
         portSetup(btnOne);
         portSetup(btnTwo);
         portSetup(btnThree);
         portSetup(btnFour);
-        portCol1.add(btnOne);
-        portCol1.add(btnTwo);
-        portCol1.add(btnThree);
-        portCol1.add(btnFour);
-        normalPorts.add(portCol1);
+        col.add(btnOne);
+        col.add(btnTwo);
+        col.add(btnThree);
+        col.add(btnFour);
+        normalPorts.add(col);
     }
 
+    /**
+     * Sets up a column panel for adding radio buttons
+     * @return new panel
+     */
     @NotNull
     private static JPanel getColPanel() {
         JPanel col = new JPanel();
         col.setLayout(new BoxLayout(col, BoxLayout.Y_AXIS));
-        col.setBackground(new Color(189, 189, 189));
+        col.setBackground(Color.WHITE);
         return col;
     }
 
@@ -191,7 +201,7 @@ public class netSnifferGUI {
     private static JPanel customPortPanel() {
         JPanel misc = new JPanel();
         misc.setLayout(new BoxLayout(misc, BoxLayout.X_AXIS));
-        misc.setBackground(new Color(189, 189, 189));
+        misc.setBackground(Color.WHITE);
 
         JLabel customPortLabel = new JLabel("Custom Port: ");
         customPortLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -207,36 +217,102 @@ public class netSnifferGUI {
 
         JButton addPortBtn = new JButton("Listen");
         addPortBtn.setBackground(Color.GREEN);
-        addPortBtn.setFont(new Font("Tahoma", Font.PLAIN, 14));
         addPortBtn.setMaximumSize(new Dimension(69, 21));
         addPortBtn.setMaximumSize(new Dimension(69, 21));
-        sharedUtils.noFocusBorder(addPortBtn);
-        addPortBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        misc.add(addPortBtn);
+        addRemovePort(addPortBtn, misc);
+
+        JButton removePortBtn = new JButton("Delete");
+        removePortBtn.setBackground(Color.RED);
+        removePortBtn.setMaximumSize(new Dimension(74, 21));
+        removePortBtn.setMaximumSize(new Dimension(74, 21));
+        addRemovePort(removePortBtn, misc);
+
         return misc;
+    }
+    public static void addRemovePort(JButton btn, JPanel panel) {
+        btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btn.setFont(new Font("Tahoma", Font.BOLD, 11));
+        sharedUtils.noFocusBorder(btn);
+        panel.add(Box.createRigidArea(new Dimension(5, 0)));
+        panel.add(btn);
     }
 
     /**
      * Creates general controls panel for the analyzer.
      */
     public void setButtonsPanel() {
-        buttonsPanel.setBackground(new Color(189, 189, 189));
-        buttonsPanel.setBorder(BorderFactory.createEtchedBorder());
-        buttonsPanel.setPreferredSize(new Dimension(300, 165));
-        normalPorts.setBackground(new Color(189, 189, 189));
-        normalPorts.setLayout(new BoxLayout(normalPorts, BoxLayout.X_AXIS));
+        buttonsPanel.setBackground(Color.WHITE);
+
+        TitledBorder tb = new TitledBorder(new LineBorder(Color.BLACK), "Controls");
+        tb.setTitleColor(Color.BLACK);
+        tb.setTitleJustification(TitledBorder.CENTER);
+        tb.setTitle("Controls");
+        buttonsPanel.setBorder(tb);
+        buttonsPanel.setMaximumSize(new Dimension(400, 220));
+        buttonsPanel.setMinimumSize(new Dimension(400, 220));
+        buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.X_AXIS));
+
+        JPanel interfacePanel = new JPanel();
+        interfacePanel.setBorder(new EtchedBorder());
+        interfacePanel.setLayout(new BoxLayout(interfacePanel, BoxLayout.Y_AXIS));
+        interfacePanel.setBackground(Color.WHITE);
+        interfacePanel.setMinimumSize(new Dimension(110, 90));
+        interfacePanel.setMaximumSize(new Dimension(110, 110));
+
+        JLabel interfaceLabel = new JLabel("Interface #");
+        interfaceLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
+        interfaceLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        interfacePanel.add(Box.createRigidArea(new Dimension(0, 5)));
+        interfacePanel.add(interfaceLabel);
+
+        JTextField interfaceText = new JTextField();
+        interfaceText.setPreferredSize(new Dimension(30, 25));
+        interfaceText.setMaximumSize(new Dimension(30, 25));
+        interfaceText.setHorizontalAlignment(SwingConstants.CENTER);
+        interfaceText.setAlignmentX(Component.CENTER_ALIGNMENT);
+        interfacePanel.add(Box.createRigidArea(new Dimension(0, 5)));
+        interfacePanel.add(interfaceText);
+
+        JButton interfaceSet = new JButton("Set");
+        sharedUtils.setGeneralButton(interfaceSet);
+        interfaceSet.setFont(new Font("Tahoma", Font.BOLD, 11));
+        interfaceSet.setHorizontalAlignment(SwingConstants.CENTER);
+        interfaceSet.setAlignmentX(Component.CENTER_ALIGNMENT);
+        interfaceSet.setMaximumSize(new Dimension(53, 25));
+        interfaceSet.setMinimumSize(new Dimension(53, 25));
+        sharedUtils.noFocusBorder(interfaceSet);
+        interfacePanel.add(Box.createRigidArea(new Dimension(0, 5)));
+        interfacePanel.add(interfaceSet);
+
+        JButton interfaceStart = new JButton("Start");
+        interfaceStart.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        sharedUtils.noFocusBorder(interfaceStart);
+        interfaceStart.setBackground(Color.GREEN);
+        interfaceStart.setFont(new Font("Tahoma", Font.BOLD, 11));
+        interfaceStart.setHorizontalAlignment(SwingConstants.CENTER);
+        interfaceStart.setAlignmentX(Component.CENTER_ALIGNMENT);
+        interfaceStart.setMaximumSize(new Dimension(70, 25));
+        interfaceStart.setMinimumSize(new Dimension(70, 25));
+        interfacePanel.add(Box.createRigidArea(new Dimension(0, 5)));
+        interfacePanel.add(interfaceStart);
+
+        interfacePanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        buttonsPanel.add(Box.createRigidArea(new Dimension(5, 0)));
+        buttonsPanel.add(interfacePanel);
+
     }
 
     /**
      * Setting visual attributes to a button
      * @param btn button to set
      */
-    public void portSetup(JRadioButton btn) {
+    public void portSetup(JToggleButton btn) {
+        btn.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btn.setHorizontalAlignment(SwingConstants.CENTER);
         btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn.setFont(new Font("Tahoma", Font.PLAIN, 11));
-        btn.setBackground(new Color(189, 189, 189));
-        btn.setSize(90, 25);
-        sharedUtils.noFocusBorder(btn);
-        ports.add(btn);
+        btn.setBackground(Color.WHITE);
+        btn.setMaximumSize(new Dimension(110, 25));
+        btn.setMinimumSize(new Dimension(110, 25));
     }
 }
