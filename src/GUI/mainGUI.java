@@ -169,6 +169,8 @@ public class mainGUI {
      */
     public void presentGUI() {
         createContent();
+        frame.setSize(650, 150);
+        frame.setLocation(sharedUtils.centerFrame(this.frame));
         // Show
         frame.setVisible(true);
     }

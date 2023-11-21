@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="resized the mainGUI window">
+    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="mainGUI.java : on return from sniffer, go to original size.&#10;finished netSnifferGUI.java .&#10;sharedUtils.java : returned no focus border for radio buttons.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/mainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/mainGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/sharedUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/sharedUtils.java" afterDir="false" />
@@ -253,7 +253,7 @@
       <workItem from="1700388338232" duration="13635000" />
       <workItem from="1700478964122" duration="2157000" />
       <workItem from="1700495363208" duration="4660000" />
-      <workItem from="1700560193021" duration="6172000" />
+      <workItem from="1700560193021" duration="12903000" />
     </task>
     <task id="LOCAL‎-00001" summary="code re-organization">
       <option name="closed" value="true" />
@@ -519,7 +519,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1700500474009</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL‎-00034" summary="Added menu items.&#10;Code arrangement.&#10;More finished ports panel, started the general controls panel.">
+      <option name="closed" value="true" />
+      <created>1700568183870</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL‎-00034" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700568183870</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -549,8 +557,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="decrypt.java : prep for decryption process.&#10;&#10;encrypt.java : prep for encryption process.&#10;&#10;encryptGUI.java : got a file chooser.&#10;&#10;added notnull annotations" />
-    <MESSAGE value="Started basics for reading from a given file in encrypt.java" />
     <MESSAGE value="catch exception edited" />
     <MESSAGE value="encrypt.java : reading from src file and writing into dest file works.&#10;sharedUtils.java : contains utilities shared among files in logics package." />
     <MESSAGE value="encrypt.java : changing the main running function. better encrypt by chunks and not whole file content.&#10;created key and IV generators." />
@@ -574,6 +580,8 @@
     <MESSAGE value="Code re-organization, comments.&#10;created some of the GUI for sniffer.&#10;removed the border that appears on click," />
     <MESSAGE value="Port filtering finished, code organization." />
     <MESSAGE value="resized the mainGUI window" />
-    <option name="LAST_COMMIT_MESSAGE" value="resized the mainGUI window" />
+    <MESSAGE value="Added menu items.&#10;Code arrangement.&#10;More finished ports panel, started the general controls panel." />
+    <MESSAGE value="mainGUI.java : on return from sniffer, go to original size.&#10;finished netSnifferGUI.java .&#10;sharedUtils.java : returned no focus border for radio buttons." />
+    <option name="LAST_COMMIT_MESSAGE" value="mainGUI.java : on return from sniffer, go to original size.&#10;finished netSnifferGUI.java .&#10;sharedUtils.java : returned no focus border for radio buttons." />
   </component>
 </project>

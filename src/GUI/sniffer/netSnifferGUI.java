@@ -16,11 +16,12 @@ import java.awt.*;
  */
 public class netSnifferGUI {
     JFrame frame;
-    JPanel mainPanel;
+    static JPanel mainPanel;
     JPanel controlPanel;
     JPanel portsPanel;
     JPanel normalPorts;
     JPanel buttonsPanel;
+    static mainGUI gui;
     JToggleButton FTPrad = new JToggleButton("FTP (20,21)");
     JToggleButton SSHrad = new JToggleButton("SSH (22)");
     JToggleButton TELNETrad = new JToggleButton("Telnet (23)");
@@ -39,7 +40,7 @@ public class netSnifferGUI {
      * @param frame programs' window.
      */
     public netSnifferGUI(@NotNull JFrame frame) {
-        this.mainPanel = new JPanel();
+        mainPanel = new JPanel();
         this.controlPanel = new JPanel();
         this.portsPanel = new JPanel();
         this.buttonsPanel = new JPanel();
@@ -64,7 +65,7 @@ public class netSnifferGUI {
      */
     public void presentGui(mainGUI gui) {
         createElements();
-
+        netSnifferGUI.gui = gui;
         frame.setVisible(true);
     }
     public void createElements() {
@@ -141,8 +142,8 @@ public class netSnifferGUI {
         portsPanel.setBackground(Color.WHITE);
         portsPanel.setBorder(tb);
 
-        portsPanel.setMaximumSize(new Dimension(350, 220));
-        portsPanel.setMinimumSize(new Dimension(350, 220));
+        portsPanel.setMaximumSize(new Dimension(350, 150));
+        portsPanel.setMinimumSize(new Dimension(350, 150));
 
         colSetup(FTPrad, SSHrad, TELNETrad, SMTPrad);
         colSetup(DNSrad, HTTPrad, POP3rad, IMAPrad);
@@ -217,14 +218,14 @@ public class netSnifferGUI {
 
         JButton addPortBtn = new JButton("Listen");
         addPortBtn.setBackground(Color.GREEN);
-        addPortBtn.setMaximumSize(new Dimension(69, 21));
-        addPortBtn.setMaximumSize(new Dimension(69, 21));
+        addPortBtn.setMaximumSize(new Dimension(75, 20));
+        addPortBtn.setMaximumSize(new Dimension(75, 20));
         addRemovePort(addPortBtn, misc);
 
         JButton removePortBtn = new JButton("Delete");
         removePortBtn.setBackground(Color.RED);
-        removePortBtn.setMaximumSize(new Dimension(74, 21));
-        removePortBtn.setMaximumSize(new Dimension(74, 21));
+        removePortBtn.setMaximumSize(new Dimension(75, 20));
+        removePortBtn.setMaximumSize(new Dimension(75, 20));
         addRemovePort(removePortBtn, misc);
 
         return misc;
@@ -252,12 +253,116 @@ public class netSnifferGUI {
         buttonsPanel.setMinimumSize(new Dimension(400, 220));
         buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.X_AXIS));
 
+        JPanel interfacePanel = getInterfacesPanel();
+        interfacePanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        buttonsPanel.add(Box.createRigidArea(new Dimension(5, 0)));
+        buttonsPanel.add(interfacePanel);
+
+        JPanel filterStatusPanel = createFilterStatusPanel();
+        buttonsPanel.add(filterStatusPanel);
+
+        JPanel generalPanel = createGeneralPanel();
+        buttonsPanel.add(generalPanel);
+
+    }
+    public static JPanel createGeneralPanel() {
+        JPanel panel = new JPanel();
+        panel.setBorder(new EtchedBorder());
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setBackground(Color.WHITE);
+        panel.setMaximumSize(new Dimension(95, 110));
+        panel.setMinimumSize(new Dimension(95, 110));
+
+        JButton startBtn = new JButton("Start");
+        startBtn.setFont(new Font("Tahoma", Font.BOLD, 11));
+        startBtn.setBackground(Color.GREEN);
+        startBtn.setHorizontalAlignment(SwingConstants.CENTER);
+        startBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+        sharedUtils.noFocusBorder(startBtn);
+        startBtn.setMinimumSize(new Dimension(75, 25));
+        startBtn.setMaximumSize(new Dimension(75, 25));
+        panel.add(Box.createRigidArea(new Dimension(0,5)));
+        panel.add(startBtn);
+
+        JButton exitBtn = new JButton("Exit");
+        exitBtn.setFont(new Font("Tahoma", Font.BOLD, 11));
+        exitBtn.setSize(startBtn.getSize());
+        exitBtn.setBackground(Color.RED);
+        exitBtn.setHorizontalAlignment(SwingConstants.CENTER);
+        exitBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+        exitBtn.setMinimumSize(new Dimension(75, 25));
+        exitBtn.setMaximumSize(new Dimension(75, 25));
+        exitBtn.addActionListener(e -> {
+            sharedUtils.clearScreen(mainPanel);
+            gui.presentGUI();
+        });
+        sharedUtils.noFocusBorder(exitBtn);
+        panel.add(Box.createRigidArea(new Dimension(0,5)));
+        panel.add(exitBtn);
+
+
+        return panel;
+    }
+    public static JPanel createFilterStatusPanel() {
+        JPanel panel = new JPanel();
+        panel.setBorder(new EtchedBorder());
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setBackground(Color.WHITE);
+        panel.setMaximumSize(new Dimension(200, 110));
+        panel.setMinimumSize(new Dimension(200, 110));
+
+        JLabel status = new JLabel("Status");
+        status.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        status.setMaximumSize(new Dimension(150, 25));
+        status.setMinimumSize(new Dimension(150, 25));
+        status.setBorder(BorderFactory.createRaisedBevelBorder());
+        status.setForeground(Color.RED);
+        status.setHorizontalAlignment(SwingConstants.CENTER);
+        status.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(status);
+
+        JPanel radioPanel = new JPanel();
+        radioPanel.setLayout(new BoxLayout(radioPanel, BoxLayout.X_AXIS));
+        radioPanel.setMaximumSize(new Dimension(150, 20));
+        radioPanel.setMinimumSize(new Dimension(150, 20));
+        radioPanel.setBackground(Color.WHITE);
+        radioPanel.setBackground(Color.WHITE);
+        ButtonGroup bg = new ButtonGroup();
+        JRadioButton allPorts = new JRadioButton("Disable");
+        allPorts.setBackground(Color.WHITE);
+        JRadioButton filterPorts = new JRadioButton("Enable");
+        filterPorts.setBackground(Color.WHITE);
+        sharedUtils.noFocusBorder(allPorts);
+        sharedUtils.noFocusBorder(filterPorts);
+        bg.add(allPorts);
+        bg.add(filterPorts);
+        radioPanel.add(allPorts);
+        radioPanel.add(filterPorts);
+        radioPanel.setBorder(new EtchedBorder());
+        filterPorts.addActionListener(e -> status.setText("Enabled (Using Filter)"));
+        allPorts.addActionListener(e -> status.setText("Disabled (All Ports)"));
+        panel.add(radioPanel);
+
+        JTextArea interfaceInfo = new JTextArea();
+        interfaceInfo.setLineWrap(true);
+        interfaceInfo.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        interfaceInfo.setEditable(false);
+        interfaceInfo.setForeground(new Color(0, 5, 54));
+        interfaceInfo.setMinimumSize(new Dimension(150, 80));
+        interfaceInfo.setMinimumSize(new Dimension(150, 80));
+        interfaceInfo.setBackground(new Color(231, 231, 231));
+        panel.add(interfaceInfo);
+        return panel;
+    }
+
+    @NotNull
+    private static JPanel getInterfacesPanel() {
         JPanel interfacePanel = new JPanel();
         interfacePanel.setBorder(new EtchedBorder());
         interfacePanel.setLayout(new BoxLayout(interfacePanel, BoxLayout.Y_AXIS));
         interfacePanel.setBackground(Color.WHITE);
-        interfacePanel.setMinimumSize(new Dimension(110, 90));
-        interfacePanel.setMaximumSize(new Dimension(110, 110));
+        interfacePanel.setMinimumSize(new Dimension(95, 110));
+        interfacePanel.setMaximumSize(new Dimension(95, 110));
 
         JLabel interfaceLabel = new JLabel("Interface #");
         interfaceLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -266,25 +371,25 @@ public class netSnifferGUI {
         interfacePanel.add(interfaceLabel);
 
         JTextField interfaceText = new JTextField();
-        interfaceText.setPreferredSize(new Dimension(30, 25));
-        interfaceText.setMaximumSize(new Dimension(30, 25));
+        interfaceText.setPreferredSize(new Dimension(40, 25));
+        interfaceText.setMaximumSize(new Dimension(40, 25));
         interfaceText.setHorizontalAlignment(SwingConstants.CENTER);
         interfaceText.setAlignmentX(Component.CENTER_ALIGNMENT);
         interfacePanel.add(Box.createRigidArea(new Dimension(0, 5)));
         interfacePanel.add(interfaceText);
 
-        JButton interfaceSet = new JButton("Set");
+        JButton interfaceSet = new JButton("List");
         sharedUtils.setGeneralButton(interfaceSet);
         interfaceSet.setFont(new Font("Tahoma", Font.BOLD, 11));
         interfaceSet.setHorizontalAlignment(SwingConstants.CENTER);
         interfaceSet.setAlignmentX(Component.CENTER_ALIGNMENT);
-        interfaceSet.setMaximumSize(new Dimension(53, 25));
-        interfaceSet.setMinimumSize(new Dimension(53, 25));
+        interfaceSet.setMaximumSize(new Dimension(70,25));
+        interfaceSet.setMinimumSize(new Dimension(70, 25));
         sharedUtils.noFocusBorder(interfaceSet);
         interfacePanel.add(Box.createRigidArea(new Dimension(0, 5)));
         interfacePanel.add(interfaceSet);
 
-        JButton interfaceStart = new JButton("Start");
+        JButton interfaceStart = new JButton("Set");
         interfaceStart.setCursor(new Cursor(Cursor.HAND_CURSOR));
         sharedUtils.noFocusBorder(interfaceStart);
         interfaceStart.setBackground(Color.GREEN);
@@ -295,11 +400,7 @@ public class netSnifferGUI {
         interfaceStart.setMinimumSize(new Dimension(70, 25));
         interfacePanel.add(Box.createRigidArea(new Dimension(0, 5)));
         interfacePanel.add(interfaceStart);
-
-        interfacePanel.add(Box.createRigidArea(new Dimension(0, 10)));
-        buttonsPanel.add(Box.createRigidArea(new Dimension(5, 0)));
-        buttonsPanel.add(interfacePanel);
-
+        return interfacePanel;
     }
 
     /**
@@ -312,6 +413,8 @@ public class netSnifferGUI {
         btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn.setFont(new Font("Tahoma", Font.PLAIN, 11));
         btn.setBackground(Color.WHITE);
+        btn.setFocusPainted(false);
+        btn.setBackground(new Color(213, 241, 250));
         btn.setMaximumSize(new Dimension(110, 25));
         btn.setMinimumSize(new Dimension(110, 25));
     }

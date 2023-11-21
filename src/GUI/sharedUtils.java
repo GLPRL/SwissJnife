@@ -3,6 +3,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonUI;
+import javax.swing.plaf.basic.BasicRadioButtonUI;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -99,6 +100,14 @@ public class sharedUtils {
             @Override
             protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect,
                                       Rectangle iconRect) {
+                //do nothing
+            }
+        });
+    }
+    public static void noFocusBorder(JRadioButton btn) {
+        btn.setUI(new BasicRadioButtonUI() {
+            @Override
+            protected void paintFocus(Graphics g, Rectangle t, Dimension d) {
                 //do nothing
             }
         });
