@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="scrollpane now actually works.&#10;but, it's in the southern part of the frame.">
+    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="listing devices works.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -253,7 +252,7 @@
       <workItem from="1700560193021" duration="12985000" />
       <workItem from="1700667390264" duration="1670000" />
       <workItem from="1700813324965" duration="2501000" />
-      <workItem from="1700815867440" duration="10360000" />
+      <workItem from="1700815867440" duration="10546000" />
     </task>
     <task id="LOCAL‎-00001" summary="code re-organization">
       <option name="closed" value="true" />
@@ -551,7 +550,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1700825529992</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL‎-00038" summary="listing devices works.">
+      <option name="closed" value="true" />
+      <created>1700826916683</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL‎-00038" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700826916683</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -581,7 +588,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="encrypt.java : changing the main running function. better encrypt by chunks and not whole file content.&#10;created key and IV generators." />
     <MESSAGE value="encryptGUI.java : removed the return button. will return after encryption is done, will show also some loading bar, in the center (WIP)&#10;&#10;mainGUI.java : added buttons for firewall configuration and self host scanning for vulnerabilities.&#10;TODO." />
     <MESSAGE value="Encryption works.&#10;TODO some progress bar" />
     <MESSAGE value="GUI:&#10;key is presented in popup. clicking the text of the key copies it to clipboard.&#10;frame is in the middle of the screen.&#10;TODO add loading bar.&#10;misc gui changes." />
@@ -606,6 +612,7 @@
     <MESSAGE value="mainGUI.java : on return from sniffer, go to original size.&#10;finished netSnifferGUI.java .&#10;sharedUtils.java : returned no focus border for radio buttons." />
     <MESSAGE value="disabling buttons on program start to prevent errors." />
     <MESSAGE value="scrollpane now actually works.&#10;but, it's in the southern part of the frame." />
-    <option name="LAST_COMMIT_MESSAGE" value="scrollpane now actually works.&#10;but, it's in the southern part of the frame." />
+    <MESSAGE value="listing devices works." />
+    <option name="LAST_COMMIT_MESSAGE" value="listing devices works." />
   </component>
 </project>
