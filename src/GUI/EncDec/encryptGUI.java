@@ -10,7 +10,6 @@ import GUI.mainGUI;
 import GUI.sharedUtils;
 import Logics.Global;
 import Logics.EncDec.encrypt;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * GUI for encrypting files.
@@ -21,26 +20,27 @@ public class encryptGUI {
     JPanel panel;
     JPanel buttonsPanel;
     JDialog popup;
+    JFrame frame;
     /**
      * Constructor
      */
-    public encryptGUI() {
+    public encryptGUI(JFrame frame) {
         panel = new JPanel();
         buttonsPanel = new JPanel();
         popup = new JDialog();
+        this.frame = frame;
     }
 
     /**
      * Show the GUI for the user - file selection popup
-     * @param frame programs' frame
      * @param gui main GUI to return when finished
      */
-    public void presentGui(@NotNull JFrame frame, mainGUI gui) {
+    public void presentGui(mainGUI gui) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         fileChooser.setApproveButtonText("Select");
 
-        int res = fileChooser.showOpenDialog(frame);
+        int res = fileChooser.showOpenDialog(this.frame);
         if (res == JFileChooser.APPROVE_OPTION) {
             // Get the selected file
             java.io.File selectedFile = fileChooser.getSelectedFile();
@@ -93,17 +93,20 @@ public class encryptGUI {
         infoLabel.setFont(infoLabel.getFont().deriveFont(17.0f));
 
         JButton ivBtn = new JButton("Copy IV to Clipboard");
+        sharedUtils.noFocusBorder(ivBtn);
         sharedUtils.setGeneralButton(ivBtn);
         ivBtn.setAlignmentY(Component.TOP_ALIGNMENT);
         initClipboard(ivBtn, iv, infoLabel, descIV);
 
         JButton keyBtn = new JButton("Copy Key to Clipboard");
+        sharedUtils.noFocusBorder(keyBtn);
         keyBtn.setAlignmentY(Component.TOP_ALIGNMENT);
         initClipboard(keyBtn, key, infoLabel, descKey);
         sharedUtils.setGeneralButton(keyBtn);
 
 
         JButton closeBtn = new JButton("Return to Menu");
+        sharedUtils.noFocusBorder(closeBtn);
         sharedUtils.setRetButton(closeBtn, popup);
         closeBtn.setAlignmentY(Component.TOP_ALIGNMENT);
 

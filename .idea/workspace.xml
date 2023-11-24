@@ -4,20 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="further cleanup,&#10;added packages, added jpcap.">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jpcap_0_7.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Logics/sniffer/netSniffer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/annotations_24_0_0.xml" beforeDir="false" />
+    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="listing devices works.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwissJnife.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SwissJnife.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/decryptGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/EncDec/decryptGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/encryptGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/EncDec/encryptGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/mainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/mainGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/netSnifferGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logics/AESData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logics/EncDec/AESData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logics/Global.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logics/Global.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logics/decrypt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logics/EncDec/decrypt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logics/encrypt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logics/EncDec/encrypt.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +22,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="gal_decrypt" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -77,11 +65,11 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "gal__sniffingGUI",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Program Files/Java/pcap4j-core-1.8.2.jar",
+    "last_opened_file_path": "C:/Users/galpe/IdeaProjects/SwissJnife/lib/jpcap.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -220,6 +208,18 @@
       <option name="USE_PATTERN" value="false" />
       <method v="2" />
     </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="SwissJnife" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -245,7 +245,14 @@
       <workItem from="1700059339916" duration="3163000" />
       <workItem from="1700069970071" duration="1548000" />
       <workItem from="1700120866778" duration="2903000" />
-      <workItem from="1700147250044" duration="298000" />
+      <workItem from="1700147250044" duration="448000" />
+      <workItem from="1700388338232" duration="13635000" />
+      <workItem from="1700478964122" duration="2157000" />
+      <workItem from="1700495363208" duration="4660000" />
+      <workItem from="1700560193021" duration="12985000" />
+      <workItem from="1700667390264" duration="1670000" />
+      <workItem from="1700813324965" duration="2501000" />
+      <workItem from="1700815867440" duration="10546000" />
     </task>
     <task id="LOCAL‎-00001" summary="code re-organization">
       <option name="closed" value="true" />
@@ -479,7 +486,79 @@
       <option name="project" value="LOCAL‎" />
       <updated>1700122931195</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL‎-00030" summary="further cleanup,&#10;added packages, added jpcap, instance holder to Global as well.">
+      <option name="closed" value="true" />
+      <created>1700147581742</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL‎-00030" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700147581742</updated>
+    </task>
+    <task id="LOCAL‎-00031" summary="Code re-organization, comments.&#10;created some of the GUI for sniffer.&#10;removed the border that appears on click,">
+      <option name="closed" value="true" />
+      <created>1700404422930</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL‎-00031" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700404422931</updated>
+    </task>
+    <task id="LOCAL‎-00032" summary="Port filtering finished, code organization.">
+      <option name="closed" value="true" />
+      <created>1700500401024</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL‎-00032" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700500401024</updated>
+    </task>
+    <task id="LOCAL‎-00033" summary="resized the mainGUI window">
+      <option name="closed" value="true" />
+      <created>1700500474009</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL‎-00033" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700500474009</updated>
+    </task>
+    <task id="LOCAL‎-00034" summary="Added menu items.&#10;Code arrangement.&#10;More finished ports panel, started the general controls panel.">
+      <option name="closed" value="true" />
+      <created>1700568183870</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL‎-00034" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700568183870</updated>
+    </task>
+    <task id="LOCAL‎-00035" summary="mainGUI.java : on return from sniffer, go to original size.&#10;finished netSnifferGUI.java .&#10;sharedUtils.java : returned no focus border for radio buttons.">
+      <option name="closed" value="true" />
+      <created>1700576945258</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL‎-00035" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700576945258</updated>
+    </task>
+    <task id="LOCAL‎-00036" summary="disabling buttons on program start to prevent errors.">
+      <option name="closed" value="true" />
+      <created>1700669024356</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL‎-00036" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700669024356</updated>
+    </task>
+    <task id="LOCAL‎-00037" summary="scrollpane now actually works.&#10;but, it's in the southern part of the frame.">
+      <option name="closed" value="true" />
+      <created>1700825529992</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL‎-00037" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700825529992</updated>
+    </task>
+    <task id="LOCAL‎-00038" summary="listing devices works.">
+      <option name="closed" value="true" />
+      <created>1700826916683</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL‎-00038" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700826916683</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -509,15 +588,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="encryptGUI new class for encrypting process.&#10;mainGUI: frame is a member in class, creation of buttons is with conditions for applying the correct behavior." />
-    <MESSAGE value="GUI modifications" />
-    <MESSAGE value="GUI modifications and bug fix" />
-    <MESSAGE value="Code organization" />
-    <MESSAGE value="decrypt.java : prep for decryption process.&#10;&#10;encrypt.java : prep for encryption process.&#10;&#10;encryptGUI.java : got a file chooser.&#10;&#10;added notnull annotations" />
-    <MESSAGE value="Started basics for reading from a given file in encrypt.java" />
-    <MESSAGE value="catch exception edited" />
-    <MESSAGE value="encrypt.java : reading from src file and writing into dest file works.&#10;sharedUtils.java : contains utilities shared among files in logics package." />
-    <MESSAGE value="encrypt.java : changing the main running function. better encrypt by chunks and not whole file content.&#10;created key and IV generators." />
     <MESSAGE value="encryptGUI.java : removed the return button. will return after encryption is done, will show also some loading bar, in the center (WIP)&#10;&#10;mainGUI.java : added buttons for firewall configuration and self host scanning for vulnerabilities.&#10;TODO." />
     <MESSAGE value="Encryption works.&#10;TODO some progress bar" />
     <MESSAGE value="GUI:&#10;key is presented in popup. clicking the text of the key copies it to clipboard.&#10;frame is in the middle of the screen.&#10;TODO add loading bar.&#10;misc gui changes." />
@@ -534,6 +604,15 @@
     <MESSAGE value="changed description of button" />
     <MESSAGE value="General code cleanup and re-organization.&#10;Introduced error popups." />
     <MESSAGE value="further cleanup,&#10;added packages, added jpcap." />
-    <option name="LAST_COMMIT_MESSAGE" value="further cleanup,&#10;added packages, added jpcap." />
+    <MESSAGE value="further cleanup,&#10;added packages, added jpcap, instance holder to Global as well." />
+    <MESSAGE value="Code re-organization, comments.&#10;created some of the GUI for sniffer.&#10;removed the border that appears on click," />
+    <MESSAGE value="Port filtering finished, code organization." />
+    <MESSAGE value="resized the mainGUI window" />
+    <MESSAGE value="Added menu items.&#10;Code arrangement.&#10;More finished ports panel, started the general controls panel." />
+    <MESSAGE value="mainGUI.java : on return from sniffer, go to original size.&#10;finished netSnifferGUI.java .&#10;sharedUtils.java : returned no focus border for radio buttons." />
+    <MESSAGE value="disabling buttons on program start to prevent errors." />
+    <MESSAGE value="scrollpane now actually works.&#10;but, it's in the southern part of the frame." />
+    <MESSAGE value="listing devices works." />
+    <option name="LAST_COMMIT_MESSAGE" value="listing devices works." />
   </component>
 </project>
