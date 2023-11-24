@@ -4,6 +4,7 @@ import GUI.mainGUI;
 import GUI.sharedUtils;
 import Logics.sniffer.netSniffer;
 import jpcap.NetworkInterface;
+import jpcap.NetworkInterfaceAddress;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
@@ -96,7 +97,6 @@ public class netSnifferGUI {
     private static void createLog() {
         // Create a JTextArea
         log = new JTextArea(22, 100);
-        log.setText("This is a JTextArea with a JScrollPane.\nYou can scroll vertically.");
         log.setLineWrap(true);
         log.setWrapStyleWord(true);
         log.setFont(new Font("Monospaced", Font.PLAIN, 12));
@@ -451,15 +451,38 @@ public class netSnifferGUI {
      * @param devices list of interfaces
      */
     public static void printInterfaceList(NetworkInterface[] devices) {
-        for (NetworkInterface device: devices) {
-            log.append("Name: " + device.name);
-            log.append("\nDescription: " + device.description);
-            log.append("\nDatalink name: " + device.datalink_name);
-            log.append("\nDatalink desc.: " + device.datalink_description);
-            log.append("\nMAC: " + Arrays.toString(device.mac_address));
-            log.append("\nIP: " + device.addresses[0].address);
-            log.append("\nSubnet Mask: " + device.addresses[0].subnet);
+        for (int i = 1; i < devices.length; i++) {
+
+            log.append("(" + i + ")\nName: " + devices[i].name);
+            log.append("\nDescription: " + devices[i].description);
+            log.append("\nDatalink name: " + devices[i].datalink_name);
+            log.append("\nDatalink desc.: " + devices[i].datalink_description);
+            log.append("\nMAC: " + formatMac(devices[i].mac_address));
+            log.append("\nIP: " + formatIP(devices[i].addresses));
+            log.append("\nSubnet Mask: " + getSubnetMask(devices[i]));
             log.append("\n ________________________________________________________________________\n");
+        }
+    }
+    public static String formatMac(byte[] mac) {
+        StringBuilder sb = new StringBuilder();
+        for (byte b: mac) {
+            sb.append(String.format("%02X:", b));
+        }
+        return sb.substring(0, sb.length() - 1).replace("/", "");
+    }
+    public static String formatIP(NetworkInterfaceAddress[] addr) {
+        StringBuilder sb = new StringBuilder();
+        for (NetworkInterfaceAddress address: addr) {
+            sb.append(address.address).append(" ");
+        }
+        return sb.toString().replace("/", "");
+    }
+    public static String getSubnetMask(NetworkInterface dev) {
+        NetworkInterfaceAddress[] addresses = dev.addresses;
+        if (addresses[0].subnet != null) {
+            return addresses[0].subnet.toString();
+        } else {
+            return "N/A"; // No addresses available
         }
     }
 }
