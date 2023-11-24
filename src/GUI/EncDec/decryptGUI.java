@@ -3,7 +3,6 @@ package GUI.EncDec;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
-import javax.security.auth.DestroyFailedException;
 import javax.swing.*;
 
 import GUI.mainGUI;
@@ -16,6 +15,7 @@ import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 
 public class decryptGUI {
     JFrame frame;
@@ -38,14 +38,12 @@ public class decryptGUI {
                     requestData();
                 }
                 decrypt.decryptFile(selectedFile.getAbsolutePath(), data);
+                Arrays.fill(data.getKey().getEncoded(), (byte) 0);
+                Arrays.fill(data.getIv().getIV(), (byte) 0);
                 gui.presentGUI();
-                data.getKey().destroy();
             } catch (InvalidAlgorithmParameterException | NoSuchPaddingException | IllegalBlockSizeException |
                      NoSuchAlgorithmException | IOException | BadPaddingException | InvalidKeyException e) {
                 sharedUtils.errorPopup("Error decrypting the file", frame);
-                throw new RuntimeException(e);
-            } catch (DestroyFailedException e) {
-                sharedUtils.errorPopup("Error destroying the key", frame);
                 throw new RuntimeException(e);
             }
         } else if (res == JFileChooser.CANCEL_OPTION) {
