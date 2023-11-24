@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="listing devices works.">
+    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="added required jars and dlls for jpcap">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/EncDec/decryptGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/EncDec/decryptGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/EncDec/encryptGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/EncDec/encryptGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/sharedUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/sharedUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Logics/EncDec/decrypt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logics/EncDec/decrypt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Logics/EncDec/encrypt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logics/EncDec/encrypt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Logics/Global.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +28,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="gal_sniffingGUI" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -67,13 +73,14 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "gal__sniffingGUI",
+    "git-widget-placeholder": "gal__finishDec",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/galpe/IdeaProjects/SwissJnife/lib/jpcap.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.20146905",
     "project.structure.side.proportion": "0.31578946",
@@ -253,6 +260,7 @@
       <workItem from="1700667390264" duration="1670000" />
       <workItem from="1700813324965" duration="2501000" />
       <workItem from="1700815867440" duration="10546000" />
+      <workItem from="1700832941963" duration="4975000" />
     </task>
     <task id="LOCAL‎-00001" summary="code re-organization">
       <option name="closed" value="true" />
@@ -558,7 +566,23 @@
       <option name="project" value="LOCAL‎" />
       <updated>1700826916683</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL‎-00039" summary="listing devices works.">
+      <option name="closed" value="true" />
+      <created>1700832973862</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL‎-00039" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700832973862</updated>
+    </task>
+    <task id="LOCAL‎-00040" summary="added required jars and dlls for jpcap">
+      <option name="closed" value="true" />
+      <created>1700833071850</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL‎-00040" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700833071850</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -588,7 +612,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="encryptGUI.java : removed the return button. will return after encryption is done, will show also some loading bar, in the center (WIP)&#10;&#10;mainGUI.java : added buttons for firewall configuration and self host scanning for vulnerabilities.&#10;TODO." />
     <MESSAGE value="Encryption works.&#10;TODO some progress bar" />
     <MESSAGE value="GUI:&#10;key is presented in popup. clicking the text of the key copies it to clipboard.&#10;frame is in the middle of the screen.&#10;TODO add loading bar.&#10;misc gui changes." />
     <MESSAGE value="removed comments and added text for file selection" />
@@ -613,6 +636,7 @@
     <MESSAGE value="disabling buttons on program start to prevent errors." />
     <MESSAGE value="scrollpane now actually works.&#10;but, it's in the southern part of the frame." />
     <MESSAGE value="listing devices works." />
-    <option name="LAST_COMMIT_MESSAGE" value="listing devices works." />
+    <MESSAGE value="added required jars and dlls for jpcap" />
+    <option name="LAST_COMMIT_MESSAGE" value="added required jars and dlls for jpcap" />
   </component>
 </project>

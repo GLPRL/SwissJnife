@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 import GUI.mainGUI;
 import GUI.sharedUtils;
-import Logics.Global;
+import Logics.EncDec.AESData;
 import Logics.EncDec.encrypt;
 
 /**
@@ -45,8 +45,8 @@ public class encryptGUI {
             // Get the selected file
             java.io.File selectedFile = fileChooser.getSelectedFile();
             try {
-                encrypt.encryptFile(selectedFile.getAbsolutePath(), frame);
-                dataPopup(frame);
+                AESData data = encrypt.encryptFile(selectedFile.getAbsolutePath(), frame);
+                dataPopup(frame, data);
                 gui.presentGUI();
             } catch (Exception e) {
                 sharedUtils.errorPopup("Error: failed encrypting the file", frame);
@@ -63,7 +63,7 @@ public class encryptGUI {
      * Create the popup window
      * @param frame programs' frame
      */
-    public void dataPopup(JFrame frame) {
+    public void dataPopup(JFrame frame, AESData data) {
         panel.setLayout(new BorderLayout());
         popup.setTitle("SwissJnife - Key+IV data");
         popup.setSize(460, 130);
@@ -72,7 +72,7 @@ public class encryptGUI {
         popup.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         buttonsPanel = new JPanel();
         buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.X_AXIS));
-        createElements();
+        createElements(data);
         buttonsPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         panel.add(buttonsPanel, BorderLayout.NORTH);
         popup.add(panel);
@@ -82,9 +82,9 @@ public class encryptGUI {
     /**
      * Creating elements of the popup for copying the Key and IV to clipboard.
      */
-    public void createElements() {
-        String key = Arrays.toString(Global.getInstance().aesData.getKey().getEncoded());
-        String iv = Arrays.toString(Global.getInstance().aesData.getIv().getIV());
+    public void createElements(AESData data) {
+        String key = Arrays.toString(data.getKey().getEncoded());
+        String iv = Arrays.toString(data.getIv().getIV());
         Dimension d = new Dimension(5, 0);
 
 

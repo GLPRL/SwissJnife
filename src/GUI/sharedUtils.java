@@ -1,12 +1,17 @@
 package GUI;
+import Logics.EncDec.AESData;
 import org.jetbrains.annotations.NotNull;
 
+import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.plaf.basic.BasicRadioButtonUI;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 
 public class sharedUtils {
     static Color normal = new Color(150, 245, 222);
@@ -111,5 +116,35 @@ public class sharedUtils {
                 //do nothing
             }
         });
+    }
+    public static AESData getKeyIv(String key, String iv) {
+        String[] keyNumberStrings = key.substring(1, key.length() - 1).split(", ");
+        int[] keyNumbers = new int[keyNumberStrings.length];
+        for (int i = 0; i < keyNumberStrings.length; i++) {
+            keyNumbers[i] = Integer.parseInt(keyNumberStrings[i]);
+        }
+
+        byte[] keyBytes = new byte[keyNumbers.length];
+        for (int i = 0; i < keyBytes.length; i++) {
+            keyBytes[i] = (byte) keyNumbers[i];
+        }
+        SecretKey secretKey = new SecretKeySpec(keyBytes, "AES");
+
+        String[] ivNumberStrings = iv.substring(1, iv.length() - 1).split(", ");
+        int[] ivNumbers = new int[ivNumberStrings.length];
+        for (int i = 0; i < ivNumberStrings.length; i++) {
+            ivNumbers[i] = Integer.parseInt(ivNumberStrings[i]);
+        }
+
+        byte[] ivBytes = new byte[ivNumbers.length];
+        for (int i = 0; i < ivBytes.length; i++) {
+            ivBytes[i] = (byte) ivNumbers[i];
+        }
+        IvParameterSpec ivParameterSpec = new IvParameterSpec(ivBytes);
+
+        AESData aesData = new AESData();
+        aesData.setKey(secretKey);
+        aesData.setIv(ivParameterSpec);
+        return aesData;
     }
 }
