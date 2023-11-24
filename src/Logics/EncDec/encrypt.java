@@ -1,7 +1,6 @@
 package Logics.EncDec;
 
 import GUI.sharedUtils;
-import Logics.Global;
 
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
@@ -21,8 +20,9 @@ public class encrypt {
     /**
      * Runner of the encryption process
      * @param filename absolute path of file to encrypt it's content
+     * @return data required for encryption, for user to save.
      */
-    public static void encryptFile(String filename, JFrame frame) throws NoSuchPaddingException, NoSuchAlgorithmException,
+    public static AESData encryptFile(String filename, JFrame frame) throws NoSuchPaddingException, NoSuchAlgorithmException,
             InvalidAlgorithmParameterException, InvalidKeyException, IOException, IllegalBlockSizeException, BadPaddingException {
         String destName = filename + "Enc";
         SecretKey key = generateKey();
@@ -30,6 +30,7 @@ public class encrypt {
             sharedUtils.errorPopup("failed generating the key", frame);
         }
         IvParameterSpec iv = generateIv();
+        AESData temp = new AESData();
 
         File src = new File(filename);
         File dest = new File(destName);
@@ -56,6 +57,10 @@ public class encrypt {
         }
         inputStream.close();
         outputStream.close();
+
+        temp.setIv(iv);
+        temp.setKey(key);
+        return temp;
     }
 
     /**
@@ -66,9 +71,7 @@ public class encrypt {
         try {
             KeyGenerator keyGen = KeyGenerator.getInstance("AES");
             keyGen.init(bits, new SecureRandom());
-            SecretKey key = keyGen.generateKey();
-            Global.getInstance().aesData.setKey(key);
-            return key;
+            return keyGen.generateKey();
         } catch (NoSuchAlgorithmException e) {
             e.fillInStackTrace();
             return null;
@@ -82,8 +85,6 @@ public class encrypt {
     public static IvParameterSpec generateIv() {
         byte[] iv = new byte[16];
         new SecureRandom().nextBytes(iv);
-        IvParameterSpec iVector = new IvParameterSpec(iv);
-        Global.getInstance().aesData.setIv(iVector);
-        return iVector;
+        return new IvParameterSpec(iv);
     }
 }
