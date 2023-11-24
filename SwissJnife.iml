@@ -28,6 +28,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="jpcap-0.7" level="project" />
+    <orderEntry type="library" name="jpcap" level="project" />
   </component>
 </module>

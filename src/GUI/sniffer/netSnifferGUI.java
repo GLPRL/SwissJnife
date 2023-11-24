@@ -2,20 +2,23 @@ package GUI.sniffer;
 
 import GUI.mainGUI;
 import GUI.sharedUtils;
+import Logics.sniffer.netSniffer;
+import jpcap.NetworkInterface;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.util.Arrays;
 
 /**
  * GUI for network analyzer.
  */
 public class netSnifferGUI {
-    JFrame frame;
+    static JFrame frame;
+    static JTextArea log;
     static JPanel mainPanel;
     JPanel controlPanel;
     JPanel portsPanel;
@@ -50,21 +53,24 @@ public class netSnifferGUI {
      */
     public netSnifferGUI(@NotNull JFrame frame) {
         mainPanel = new JPanel();
+        mainPanel.setLayout(new FlowLayout());
+        mainPanel.setBackground(Color.WHITE);
+
         this.controlPanel = new JPanel();
+        controlPanel.setBackground(Color.WHITE);
+
         this.portsPanel = new JPanel();
+        portsPanel.setLayout(new BoxLayout(portsPanel, BoxLayout.Y_AXIS));
+
         this.buttonsPanel = new JPanel();
         this.normalPorts = new JPanel();
-        this.frame = frame;
+        netSnifferGUI.frame = frame;
 
         frame.setTitle("SwissJnife - Network Traffic");
-        this.frame.setSize(860, 650);
-        this.frame.setLocation(sharedUtils.centerFrame(this.frame));
+        netSnifferGUI.frame.setSize(860, 650);
+        netSnifferGUI.frame.setLocation(sharedUtils.centerFrame(netSnifferGUI.frame));
+        netSnifferGUI.frame.add(mainPanel);
 
-        mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.Y_AXIS));
-        portsPanel.setLayout(new BoxLayout(portsPanel, BoxLayout.Y_AXIS));
-        mainPanel.setBackground(Color.WHITE);
-        controlPanel.setBackground(Color.WHITE);
-        this.frame.add(mainPanel);
 
     }
 
@@ -78,53 +84,34 @@ public class netSnifferGUI {
         frame.setVisible(true);
     }
     public void createElements() {
-        JTextArea log = createLogArea();
-        JScrollPane sp = setLogPane(log);
-        mainPanel.add(sp);
+        createLog();
         addPanels();
         Component rigidArea = Box.createRigidArea(new Dimension(0, 10));
         rigidArea.setBackground(Color.WHITE);
         mainPanel.add(rigidArea);
         mainPanel.add(controlPanel);
+
     }
 
-    /**
-     * Sets the text pane for scrolling
-     * @param log log to attach the pane
-     * @return whole panning area
-     */
-    @NotNull
-    private static JScrollPane setLogPane(JTextArea log) {
-        JScrollPane sp = new JScrollPane();
-        sp.setWheelScrollingEnabled(true);
-        sp.setBackground(Color.gray);
-        sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        sp.setViewportView(log);
-        return sp;
-    }
-
-    /**
-     * Create the textual log
-     * @return log window
-     */
-    @NotNull
-    private static JTextArea createLogArea() {
-        JTextArea log = new JTextArea();
-        Border logBorder = BorderFactory.createEtchedBorder();
-        log.setEditable(false);
+    private static void createLog() {
+        // Create a JTextArea
+        log = new JTextArea(22, 100);
+        log.setText("This is a JTextArea with a JScrollPane.\nYou can scroll vertically.");
+        log.setLineWrap(true);
+        log.setWrapStyleWord(true);
         log.setFont(new Font("Monospaced", Font.PLAIN, 12));
         log.setForeground(new Color(0, 0, 112));
-        log.setPreferredSize(new Dimension(800, 360));
-        log.setBorder(logBorder);
-        log.setLineWrap(true);
-        log.setBackground(Color.WHITE);
+        log.setBorder(BorderFactory.createEtchedBorder());
         log.setCursor(new Cursor(Cursor.TEXT_CURSOR));
-        return log;
+
+        JScrollPane scrollPane = new JScrollPane(log);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
+
     }
 
     /**
-     * Adding the controlling panels
+     * Adding the control panels
      */
     public void addPanels() {
         controlPanel.setLayout(new BoxLayout(controlPanel, BoxLayout.X_AXIS));
@@ -415,6 +402,11 @@ public class netSnifferGUI {
         interfacePanel.add(interfaceText);
 
         interfaceList = new JButton("List");
+        interfaceList.addActionListener(e -> {
+            netSniffer ns = new netSniffer();
+            NetworkInterface[] networkInterfaces = ns.listInterfaces();
+            printInterfaceList(networkInterfaces);
+        });
         sharedUtils.setGeneralButton(interfaceList);
         interfaceList.setFont(new Font("Tahoma", Font.BOLD, 11));
         interfaceList.setHorizontalAlignment(SwingConstants.CENTER);
@@ -438,7 +430,6 @@ public class netSnifferGUI {
         interfacePanel.add(interfaceSet);
         return interfacePanel;
     }
-
     /**
      * Setting visual attributes to a button
      * @param btn button to set
@@ -453,5 +444,22 @@ public class netSnifferGUI {
         btn.setBackground(new Color(213, 241, 250));
         btn.setMaximumSize(new Dimension(110, 25));
         btn.setMinimumSize(new Dimension(110, 25));
+    }
+
+    /**
+     * lists all the available interfaces.
+     * @param devices list of interfaces
+     */
+    public static void printInterfaceList(NetworkInterface[] devices) {
+        for (NetworkInterface device: devices) {
+            log.append("Name: " + device.name);
+            log.append("\nDescription: " + device.description);
+            log.append("\nDatalink name: " + device.datalink_name);
+            log.append("\nDatalink desc.: " + device.datalink_description);
+            log.append("\nMAC: " + Arrays.toString(device.mac_address));
+            log.append("\nIP: " + device.addresses[0].address);
+            log.append("\nSubnet Mask: " + device.addresses[0].subnet);
+            log.append("\n ________________________________________________________________________\n");
+        }
     }
 }
