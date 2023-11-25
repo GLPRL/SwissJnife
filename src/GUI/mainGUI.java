@@ -18,6 +18,7 @@ import java.net.URISyntaxException;
 public class mainGUI {
     JFrame frame;
     JPanel panel;
+    JButton exitBtn;
 
     /**
      * Constructor.
@@ -163,7 +164,7 @@ public class mainGUI {
         this.panel.add(Box.createRigidArea(new Dimension(10, 0)));
         this.panel.add(panel3);
 
-        JButton exitBtn = new JButton("Exit");
+        exitBtn = new JButton("Exit");
         sharedUtils.noFocusBorder(exitBtn);
         exitBtn.setBackground(Color.RED);
         exitBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -193,11 +194,13 @@ public class mainGUI {
     public void setClickListeners(JButton encBtn, JButton decBtn, JButton vulScan, JButton sniff) {
         encBtn.addActionListener(e -> {
             sharedUtils.clearScreen(panel);
+            frame.remove(exitBtn);
             encryptGUI gui = new encryptGUI(frame);
             gui.presentGui(mainGUI.this);
         });
         decBtn.addActionListener(e -> {
             sharedUtils.clearScreen(panel);
+            frame.remove(exitBtn);
             decryptGUI gui = new decryptGUI(frame);
             gui.presentGui(mainGUI.this);
         });
@@ -206,6 +209,7 @@ public class mainGUI {
         });
         sniff.addActionListener(e -> {
             sharedUtils.clearScreen(panel);
+            frame.remove(exitBtn);
             netSnifferGUI gui = new netSnifferGUI(frame);
             gui.presentGui(mainGUI.this);
         });
