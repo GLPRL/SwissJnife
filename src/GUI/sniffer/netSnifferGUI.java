@@ -12,7 +12,6 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.util.Arrays;
 
 /**
  * GUI for network analyzer.
@@ -20,6 +19,7 @@ import java.util.Arrays;
 public class netSnifferGUI {
     static JFrame frame;
     static JTextArea log;
+    static JScrollPane scrollPane;
     static JPanel mainPanel;
     JPanel controlPanel;
     JPanel portsPanel;
@@ -104,7 +104,7 @@ public class netSnifferGUI {
         log.setBorder(BorderFactory.createEtchedBorder());
         log.setCursor(new Cursor(Cursor.TEXT_CURSOR));
 
-        JScrollPane scrollPane = new JScrollPane(log);
+        scrollPane = new JScrollPane(log);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
 
@@ -316,6 +316,7 @@ public class netSnifferGUI {
         exitBtn.setMinimumSize(new Dimension(75, 25));
         exitBtn.setMaximumSize(new Dimension(75, 25));
         exitBtn.addActionListener(e -> {
+            frame.remove(scrollPane);
             sharedUtils.clearScreen(mainPanel);
             gui.presentGUI();
         });

@@ -162,6 +162,14 @@ public class mainGUI {
         this.panel.add(panel2);
         this.panel.add(Box.createRigidArea(new Dimension(10, 0)));
         this.panel.add(panel3);
+
+        JButton exitBtn = new JButton("Exit");
+        sharedUtils.noFocusBorder(exitBtn);
+        exitBtn.setBackground(Color.RED);
+        exitBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
+        exitBtn.addActionListener(e -> frame.dispose());
+        frame.add(Box.createRigidArea(new Dimension(10, 70)));
+        frame.add(exitBtn);
     }
 
     /**
