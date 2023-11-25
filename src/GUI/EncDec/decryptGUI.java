@@ -34,13 +34,15 @@ public class decryptGUI {
             // Get the selected file
             java.io.File selectedFile = fileChooser.getSelectedFile();
             try {
-                while(data == null) {
-                    requestData();
-                }
-                decrypt.decryptFile(selectedFile.getAbsolutePath(), data);
-                Arrays.fill(data.getKey().getEncoded(), (byte) 0);
-                Arrays.fill(data.getIv().getIV(), (byte) 0);
+                requestData();
                 gui.presentGUI();
+                if (data != null) {
+                    decrypt.decryptFile(selectedFile.getAbsolutePath(), data);
+                    Arrays.fill(data.getKey().getEncoded(), (byte) 0);
+                    Arrays.fill(data.getIv().getIV(), (byte) 0);
+                } else {
+                    sharedUtils.errorPopup("Invalid parameters", frame);
+                }
             } catch (InvalidAlgorithmParameterException | NoSuchPaddingException | IllegalBlockSizeException |
                      NoSuchAlgorithmException | IOException | BadPaddingException | InvalidKeyException e) {
                 sharedUtils.errorPopup("Error decrypting the file", frame);
@@ -95,15 +97,23 @@ public class decryptGUI {
         mainPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
         JButton finishBtn = new JButton("Finish");
-        finishBtn.setBackground(Color.GREEN);
         sharedUtils.noFocusBorder(finishBtn);
         sharedUtils.setRetButton(finishBtn, popup);
         finishBtn.setHorizontalAlignment(SwingConstants.CENTER);
         finishBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
-        finishBtn.addActionListener(e -> data = sharedUtils.getKeyIv(keyField.getText(), ivField.getText()));
+        finishBtn.addActionListener(e -> {
+            data = sharedUtils.getKeyIv(keyField.getText(), ivField.getText());
+        });
         mainPanel.add(finishBtn);
         mainPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
+        JButton cancelBtn = new JButton("Cancel");
+        sharedUtils.noFocusBorder(cancelBtn);
+        cancelBtn.setHorizontalAlignment(SwingConstants.CENTER);
+        cancelBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+        sharedUtils.setRetButton(cancelBtn, popup);
+        mainPanel.add(cancelBtn);
+        mainPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         popup.setVisible(true);
     }
 }
