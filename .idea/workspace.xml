@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="Removed global class.&#10;Added error message if failed destroying the key.&#10;When decrypting, program will ask user to input the key and vector each time.&#10;*need to deal with case if the key/iv are wrongly inputted">
+    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="Destroying the key using arrays fill method.&#10;still need to take care if the string isnt correct.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/EncDec/decryptGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/EncDec/decryptGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/sharedUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/sharedUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,30 +59,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "gal__finishDec",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/galpe/IdeaProjects/SwissJnife/lib/jpcap.jar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.20146905",
-    "project.structure.side.proportion": "0.31578946",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;gal__finishDec&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/galpe/IdeaProjects/SwissJnife/lib/jpcap.jar&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.20146905&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.31578946&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\galpe\IdeaProjects\SwissJnife\src" />
@@ -255,7 +256,8 @@
       <workItem from="1700667390264" duration="1670000" />
       <workItem from="1700813324965" duration="2501000" />
       <workItem from="1700815867440" duration="10546000" />
-      <workItem from="1700832941963" duration="6249000" />
+      <workItem from="1700832941963" duration="6368000" />
+      <workItem from="1700907631167" duration="1285000" />
     </task>
     <task id="LOCAL‎-00001" summary="code re-organization">
       <option name="closed" value="true" />
@@ -585,7 +587,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1700838131370</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL‎-00042" summary="Destroying the key using arrays fill method.&#10;still need to take care if the string isnt correct.">
+      <option name="closed" value="true" />
+      <created>1700839318311</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL‎-00042" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700839318311</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -615,7 +625,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="GUI:&#10;key is presented in popup. clicking the text of the key copies it to clipboard.&#10;frame is in the middle of the screen.&#10;TODO add loading bar.&#10;misc gui changes." />
     <MESSAGE value="removed comments and added text for file selection" />
     <MESSAGE value="Introduced Global class, for storing data required along several files." />
     <MESSAGE value="Tested decryption, work correctly.&#10;Changed the alteration of filenames when encrypting and decrypting." />
@@ -640,82 +649,7 @@
     <MESSAGE value="listing devices works." />
     <MESSAGE value="added required jars and dlls for jpcap" />
     <MESSAGE value="Removed global class.&#10;Added error message if failed destroying the key.&#10;When decrypting, program will ask user to input the key and vector each time.&#10;*need to deal with case if the key/iv are wrongly inputted" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed global class.&#10;Added error message if failed destroying the key.&#10;When decrypting, program will ask user to input the key and vector each time.&#10;*need to deal with case if the key/iv are wrongly inputted" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/GUI/EncDec/decryptGUI.java</url>
-          <line>46</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/GUI/EncDec/decryptGUI.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Logics/EncDec/decrypt.java</url>
-          <line>21</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Logics/EncDec/decrypt.java</url>
-          <line>33</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Logics/EncDec/decrypt.java</url>
-          <line>32</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Logics/EncDec/decrypt.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Logics/EncDec/decrypt.java</url>
-          <line>34</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Logics/EncDec/decrypt.java</url>
-          <line>36</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Logics/EncDec/decrypt.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Logics/EncDec/decrypt.java</url>
-          <line>42</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Logics/EncDec/decrypt.java</url>
-          <line>40</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Logics/EncDec/decrypt.java</url>
-          <line>48</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Logics/EncDec/decrypt.java</url>
-          <line>50</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Logics/EncDec/decrypt.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Destroying the key using arrays fill method.&#10;still need to take care if the string isnt correct." />
+    <option name="LAST_COMMIT_MESSAGE" value="Destroying the key using arrays fill method.&#10;still need to take care if the string isnt correct." />
   </component>
 </project>

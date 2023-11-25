@@ -11,6 +11,7 @@ import javax.swing.plaf.basic.BasicRadioButtonUI;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Objects;
 
 
 public class sharedUtils {
@@ -64,6 +65,7 @@ public class sharedUtils {
      */
     public static void errorPopup(String message, JFrame frame) {
         JDialog popup = new JDialog();
+        popup.setAlwaysOnTop(true);
         popup.setSize(280, 110);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (screenSize.width - frame.getWidth()) / 2;
@@ -79,7 +81,8 @@ public class sharedUtils {
         messageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JButton retBtn = new JButton("Back");
-        sharedUtils.setRetButton(retBtn, popup);
+        noFocusBorder(retBtn);
+        setRetButton(retBtn, popup);
         retBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         popupPanel.add(messageLabel);
@@ -118,8 +121,15 @@ public class sharedUtils {
         });
     }
     public static AESData getKeyIv(String key, String iv) {
+        if (key.isEmpty() || iv.isEmpty()) {
+            return null;
+        }
+
         String[] keyNumberStrings = key.substring(1, key.length() - 1).split(", ");
         int[] keyNumbers = new int[keyNumberStrings.length];
+        if (keyNumbers.length != 32) {
+            return null;
+        }
         for (int i = 0; i < keyNumberStrings.length; i++) {
             keyNumbers[i] = Integer.parseInt(keyNumberStrings[i]);
         }
@@ -132,6 +142,9 @@ public class sharedUtils {
 
         String[] ivNumberStrings = iv.substring(1, iv.length() - 1).split(", ");
         int[] ivNumbers = new int[ivNumberStrings.length];
+        if (ivNumbers.length != 16) {
+            return null;
+        }
         for (int i = 0; i < ivNumberStrings.length; i++) {
             ivNumbers[i] = Integer.parseInt(ivNumberStrings[i]);
         }
