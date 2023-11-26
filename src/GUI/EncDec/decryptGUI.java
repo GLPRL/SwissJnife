@@ -11,6 +11,8 @@ import Logics.EncDec.AESData;
 import Logics.EncDec.decrypt;
 
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -19,6 +21,7 @@ import java.security.NoSuchAlgorithmException;
 public class decryptGUI {
     JFrame frame;
     AESData data = null;
+    private int FLAG = 0;
     public decryptGUI(JFrame frame) {
         this.frame = frame;
     }
@@ -39,7 +42,11 @@ public class decryptGUI {
                     decrypt.decryptFile(selectedFile.getAbsolutePath(), data);
 
                 } else {
-                    sharedUtils.errorPopup("Invalid parameters", frame);
+                    if (FLAG == 0) {
+                        sharedUtils.errorPopup("Invalid parameters", frame);
+                    } else {
+                        FLAG = 0;
+                    }
                 }
             } catch (InvalidAlgorithmParameterException | NoSuchPaddingException | IllegalBlockSizeException |
                      NoSuchAlgorithmException | IOException | BadPaddingException | InvalidKeyException e) {
@@ -58,17 +65,24 @@ public class decryptGUI {
         popup.setLocation(sharedUtils.centerFrame(frame));
         popup.setLocationRelativeTo(frame);
         popup.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        popup.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                FLAG = 1;
+            }
+        });
         popup.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         popup.add(mainPanel);
-        mainPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        mainPanel.add(sharedUtils.W0_H10);
 
         JPanel keyPanel = new JPanel();
         keyPanel.setLayout(new BoxLayout(keyPanel, BoxLayout.X_AXIS));
         JLabel keyLabel = new JLabel("Key: ");
-        keyLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+        keyLabel.setFont(sharedUtils.TAHOMA_PLAIN_12);
         keyPanel.add(keyLabel);
         JTextField keyField = new JTextField();
         keyField.setBackground(Color.WHITE);
@@ -78,12 +92,12 @@ public class decryptGUI {
         keyPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         mainPanel.add(keyPanel);
-        mainPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        mainPanel.add(sharedUtils.W0_H15);
 
         JPanel ivPanel = new JPanel();
         ivPanel.setLayout(new BoxLayout(ivPanel, BoxLayout.X_AXIS));
         JLabel ivLabel = new JLabel("IV: ");
-        ivLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+        ivLabel.setFont(sharedUtils.TAHOMA_PLAIN_12);
         ivPanel.add(ivLabel);
         JTextField ivField = new JTextField();
         ivField.setBackground(Color.WHITE);
@@ -92,7 +106,7 @@ public class decryptGUI {
         ivPanel.add(ivField);
         ivPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         mainPanel.add(ivPanel);
-        mainPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        mainPanel.add(sharedUtils.W0_H10_2);
 
         JButton finishBtn = new JButton("Finish");
         sharedUtils.noFocusBorder(finishBtn);
@@ -101,15 +115,16 @@ public class decryptGUI {
         finishBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
         finishBtn.addActionListener(e -> data = sharedUtils.getKeyIv(keyField.getText(), ivField.getText()));
         mainPanel.add(finishBtn);
-        mainPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        mainPanel.add(sharedUtils.W0_H10_3);
 
         JButton cancelBtn = new JButton("Cancel");
         sharedUtils.noFocusBorder(cancelBtn);
         cancelBtn.setHorizontalAlignment(SwingConstants.CENTER);
         cancelBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
         sharedUtils.setRetButton(cancelBtn, popup);
+        cancelBtn.addActionListener(e -> FLAG = 1);
         mainPanel.add(cancelBtn);
-        mainPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        mainPanel.add(sharedUtils.W0_H10_4);
         popup.setVisible(true);
     }
 }

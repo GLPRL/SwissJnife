@@ -18,10 +18,15 @@ public class sharedUtils {
     public static Color onHover = new Color(118, 192, 173);
     public static Color ret = new Color(255, 48, 62, 255);
     public static Font TAHOMA_BOLD_12 = new Font("Tahoma", Font.BOLD, 12);
+    public static Font TAHOMA_PLAIN_12 = new Font("Tahoma", Font.PLAIN, 12);
     public static Cursor HAND_CURSOR = new Cursor(Cursor.HAND_CURSOR);
     public static Cursor TEXT_CURSOR = new Cursor(Cursor.TEXT_CURSOR);
     public static Cursor DEFAULT_CURSOR = new Cursor(Cursor.DEFAULT_CURSOR);
     public static Component W0_H10 = Box.createRigidArea(new Dimension(0, 10));
+    public static Component W0_H10_2 = Box.createRigidArea(new Dimension(0, 10));
+    public static Component W0_H10_3 = Box.createRigidArea(new Dimension(0, 10));
+    public static Component W0_H10_4 = Box.createRigidArea(new Dimension(0, 10));
+    public static Component W0_H15 = Box.createRigidArea(new Dimension(0, 15));
     public static Component W10_H0 = Box.createRigidArea(new Dimension(10, 0));
     public static Component W10_H0_2 = Box.createRigidArea(new Dimension(10, 0));
     public static Component W10_H70 = Box.createRigidArea(new Dimension(10, 70));

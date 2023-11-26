@@ -7,7 +7,7 @@
     <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="Code organization and cleanup.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/EncDec/decryptGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/EncDec/decryptGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logics/EncDec/decrypt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logics/EncDec/decrypt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/sharedUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/sharedUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -258,7 +258,7 @@
       <workItem from="1700815867440" duration="10546000" />
       <workItem from="1700832941963" duration="6368000" />
       <workItem from="1700907631167" duration="6258000" />
-      <workItem from="1700988559403" duration="2622000" />
+      <workItem from="1700988559403" duration="5176000" />
     </task>
     <task id="LOCAL‎-00001" summary="code re-organization">
       <option name="closed" value="true" />
@@ -628,7 +628,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1700991045551</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL‎-00047" summary="Code organization and cleanup.">
+      <option name="closed" value="true" />
+      <created>1700991214518</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL‎-00047" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700991214519</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
