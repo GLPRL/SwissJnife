@@ -15,7 +15,6 @@ import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 
 public class decryptGUI {
     JFrame frame;
@@ -38,8 +37,7 @@ public class decryptGUI {
                 gui.presentGUI();
                 if (data != null) {
                     decrypt.decryptFile(selectedFile.getAbsolutePath(), data);
-                    Arrays.fill(data.getKey().getEncoded(), (byte) 0);
-                    Arrays.fill(data.getIv().getIV(), (byte) 0);
+
                 } else {
                     sharedUtils.errorPopup("Invalid parameters", frame);
                 }
@@ -101,9 +99,7 @@ public class decryptGUI {
         sharedUtils.setRetButton(finishBtn, popup);
         finishBtn.setHorizontalAlignment(SwingConstants.CENTER);
         finishBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
-        finishBtn.addActionListener(e -> {
-            data = sharedUtils.getKeyIv(keyField.getText(), ivField.getText());
-        });
+        finishBtn.addActionListener(e -> data = sharedUtils.getKeyIv(keyField.getText(), ivField.getText()));
         mainPanel.add(finishBtn);
         mainPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
