@@ -43,11 +43,9 @@ public class sharedUtils {
     public static Component W0_H10_4 = Box.createRigidArea(new Dimension(0, 10));
     public static Component W0_H15 = Box.createRigidArea(new Dimension(0, 15));
     public static Component W5_H0 = Box.createRigidArea(new Dimension(5,0));
-    public static Component W5_H0_2 = Box.createRigidArea(new Dimension(5,0));
     public static Component W10_H0 = Box.createRigidArea(new Dimension(10, 0));
     public static Component W10_H0_2 = Box.createRigidArea(new Dimension(10, 0));
     public static Component W10_H70 = Box.createRigidArea(new Dimension(10, 70));
-    public static Component W10_H10 = Box.createRigidArea(new Dimension(10, 10));
     public static Component W10_H5 = Box.createRigidArea(new Dimension(10, 5));
     public static PlainDocument numericOnly = new PlainDocument() {
         @Override
@@ -214,6 +212,12 @@ public class sharedUtils {
         aesData.setIv(ivParameterSpec);
         return aesData;
     }
+
+    /**
+     * Formatting MAC Address string
+     * @param mac MAC addr.
+     * @return formatted string
+     */
     public static String formatMac(byte[] mac) {
         StringBuilder sb = new StringBuilder();
         for (byte b: mac) {
@@ -221,6 +225,12 @@ public class sharedUtils {
         }
         return sb.substring(0, sb.length() - 1).replace("/", "");
     }
+
+    /**
+     * Formatting IP Address string
+     * @param addr IP addr.
+     * @return formatted string
+     */
     public static String formatIP(NetworkInterfaceAddress[] addr) {
         StringBuilder sb = new StringBuilder();
         for (NetworkInterfaceAddress address: addr) {
@@ -228,6 +238,12 @@ public class sharedUtils {
         }
         return sb.toString().replace("/", "");
     }
+
+    /**
+     * Formatting Subnet Mask string
+     * @param dev device
+     * @return formatted string
+     */
     public static String getSubnetMask(NetworkInterface dev) {
         NetworkInterfaceAddress[] addresses = dev.addresses;
         if (addresses[0].subnet != null) {

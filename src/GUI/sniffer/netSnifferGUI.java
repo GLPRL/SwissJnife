@@ -4,16 +4,12 @@ import GUI.mainGUI;
 import GUI.sharedUtils;
 import Logics.sniffer.netSniffer;
 import jpcap.NetworkInterface;
-import jpcap.NetworkInterfaceAddress;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.PlainDocument;
 import java.awt.*;
 
 /**
@@ -491,7 +487,6 @@ public class netSnifferGUI {
     public static void printInterfaceList(NetworkInterface[] devices) {
         log.setText("");
         for (int i = 1; i < devices.length; i++) {
-
             log.append("(" + i + ")\nName: " + devices[i].name);
             log.append("\nDescription: " + devices[i].description);
             log.append("\nDatalink name: " + devices[i].datalink_name);

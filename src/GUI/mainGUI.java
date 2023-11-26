@@ -97,7 +97,6 @@ public class mainGUI {
         uri.setBorder(border);
         return uri;
     }
-
     /**
      * General method, creating the content of the main GUI
      */
