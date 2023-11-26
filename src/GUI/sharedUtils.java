@@ -11,13 +11,22 @@ import javax.swing.plaf.basic.BasicRadioButtonUI;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Objects;
 
 
 public class sharedUtils {
-    static Color normal = new Color(150, 245, 222);
-    static Color onHover = new Color(118, 192, 173);
-    static Color ret = new Color(255, 48, 62, 255);
+    public static Color normal = new Color(150, 245, 222);
+    public static Color onHover = new Color(118, 192, 173);
+    public static Color ret = new Color(255, 48, 62, 255);
+    public static Font TAHOMA_BOLD_12 = new Font("Tahoma", Font.BOLD, 12);
+    public static Cursor HAND_CURSOR = new Cursor(Cursor.HAND_CURSOR);
+    public static Cursor TEXT_CURSOR = new Cursor(Cursor.TEXT_CURSOR);
+    public static Cursor DEFAULT_CURSOR = new Cursor(Cursor.DEFAULT_CURSOR);
+    public static Component W0_H10 = Box.createRigidArea(new Dimension(0, 10));
+    public static Component W10_H0 = Box.createRigidArea(new Dimension(10, 0));
+    public static Component W10_H0_2 = Box.createRigidArea(new Dimension(10, 0));
+    public static Component W10_H70 = Box.createRigidArea(new Dimension(10, 70));
+    public static Component W10_H10 = Box.createRigidArea(new Dimension(10, 10));
+    public static Component W10_H5 = Box.createRigidArea(new Dimension(10, 5));
 
     /**
      * Clear the screen of a given panel
@@ -36,8 +45,9 @@ public class sharedUtils {
      * @param btn button to set
      */
     public static void setGeneralButton(JButton btn) {
+        btn.setFont(TAHOMA_BOLD_12);
         btn.setBackground(normal);
-        btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btn.setCursor(HAND_CURSOR);
         btn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -53,7 +63,7 @@ public class sharedUtils {
         });
     }
     public static void setRetButton(JButton btn, JDialog popup) {
-        btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btn.setCursor(HAND_CURSOR);
         btn.setBackground(ret);
         btn.addActionListener(e -> popup.dispose());
     }
@@ -86,7 +96,7 @@ public class sharedUtils {
         retBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         popupPanel.add(messageLabel);
-        popupPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        popupPanel.add(W0_H10);
         popupPanel.add(retBtn);
         popup.add(popupPanel);
         popup.setVisible(true);

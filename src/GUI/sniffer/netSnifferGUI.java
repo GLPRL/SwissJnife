@@ -108,7 +108,7 @@ public class netSnifferGUI {
         log.setFont(new Font("Monospaced", Font.PLAIN, 12));
         log.setForeground(new Color(0, 0, 112));
         log.setBorder(BorderFactory.createEtchedBorder());
-        log.setCursor(new Cursor(Cursor.TEXT_CURSOR));
+        log.setCursor(sharedUtils.TEXT_CURSOR);
 
         scrollPane = new JScrollPane(log);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -260,7 +260,7 @@ public class netSnifferGUI {
         return misc;
     }
     public static void addRemovePort(JButton btn, JPanel panel) {
-        btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btn.setCursor(sharedUtils.HAND_CURSOR);
         btn.setFont(new Font("Tahoma", Font.BOLD, 11));
         sharedUtils.noFocusBorder(btn);
         panel.add(Box.createRigidArea(new Dimension(5, 0)));
@@ -303,7 +303,7 @@ public class netSnifferGUI {
         panel.setMinimumSize(new Dimension(95, 110));
 
         startBtn = new JButton("Start");
-        startBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        startBtn.setCursor(sharedUtils.HAND_CURSOR);
         startBtn.setFont(new Font("Tahoma", Font.BOLD, 11));
         startBtn.setBackground(Color.GREEN);
         startBtn.setHorizontalAlignment(SwingConstants.CENTER);
@@ -320,7 +320,7 @@ public class netSnifferGUI {
         });
 
         exitBtn = new JButton("Exit");
-        exitBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        exitBtn.setCursor(sharedUtils.HAND_CURSOR);
         exitBtn.setFont(new Font("Tahoma", Font.BOLD, 11));
         exitBtn.setSize(startBtn.getSize());
         exitBtn.setBackground(Color.RED);
@@ -384,7 +384,7 @@ public class netSnifferGUI {
         interfaceInfo.setFont(new Font("Monospaced",  Font.PLAIN, 11));
         interfaceInfo.setLineWrap(true);
         interfaceInfo.setWrapStyleWord(true);
-        interfaceInfo.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        interfaceInfo.setCursor(sharedUtils.DEFAULT_CURSOR);
         interfaceInfo.setEditable(false);
         interfaceInfo.setForeground(new Color(0, 5, 54));
         interfaceInfo.setMinimumSize(new Dimension(150, 80));
@@ -449,7 +449,7 @@ public class netSnifferGUI {
 
         interfaceSet = new JButton("Set");
         interfaceSet.setEnabled(false);
-        interfaceSet.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        interfaceSet.setCursor(sharedUtils.HAND_CURSOR);
         sharedUtils.noFocusBorder(interfaceSet);
         interfaceSet.setBackground(Color.GREEN);
         interfaceSet.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -482,7 +482,7 @@ public class netSnifferGUI {
     public void portSetup(JToggleButton btn) {
         btn.setAlignmentX(Component.CENTER_ALIGNMENT);
         btn.setHorizontalAlignment(SwingConstants.CENTER);
-        btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btn.setCursor(sharedUtils.HAND_CURSOR);
         btn.setFont(new Font("Tahoma", Font.PLAIN, 11));
         btn.setBackground(Color.WHITE);
         btn.setFocusPainted(false);
