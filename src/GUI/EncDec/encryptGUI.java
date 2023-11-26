@@ -66,14 +66,14 @@ public class encryptGUI {
     public void dataPopup(JFrame frame, AESData data) {
         panel.setLayout(new BorderLayout());
         popup.setTitle("SwissJnife - Key+IV data");
-        popup.setSize(460, 130);
+        popup.setSize(490, 130);
         popup.setLocationRelativeTo(frame);
         popup.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         popup.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         buttonsPanel = new JPanel();
         buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.X_AXIS));
         createElements(data);
-        buttonsPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        buttonsPanel.add(sharedUtils.W0_H10);
         panel.add(buttonsPanel, BorderLayout.NORTH);
         popup.add(panel);
         popup.setVisible(true);

@@ -93,9 +93,6 @@ public class netSnifferGUI {
     public void createElements() {
         createLog();
         addPanels();
-        Component rigidArea = Box.createRigidArea(new Dimension(0, 10));
-        rigidArea.setBackground(Color.WHITE);
-        mainPanel.add(rigidArea);
         mainPanel.add(controlPanel);
 
     }
@@ -105,8 +102,8 @@ public class netSnifferGUI {
         log = new JTextArea(22, 100);
         log.setLineWrap(true);
         log.setWrapStyleWord(true);
-        log.setFont(new Font("Monospaced", Font.PLAIN, 12));
-        log.setForeground(new Color(0, 0, 112));
+        log.setFont(sharedUtils.MONO_PLAIN_12);
+        log.setForeground(sharedUtils.c00112);
         log.setBorder(BorderFactory.createEtchedBorder());
         log.setCursor(sharedUtils.TEXT_CURSOR);
 
@@ -126,7 +123,7 @@ public class netSnifferGUI {
         setButtonsPanel();
 
         controlPanel.add(portsPanel);
-        controlPanel.add(Box.createRigidArea(new Dimension(5,0)));
+        controlPanel.add(sharedUtils.W5_H0);
         controlPanel.add(buttonsPanel);
         setBtnLock(false);
     }
@@ -161,7 +158,7 @@ public class netSnifferGUI {
      */
     public void setPortsPanel() {
         Component rigidArea = Box.createRigidArea(new Dimension(0, 10));
-        rigidArea.setBackground(new Color(189,189,189));
+        rigidArea.setBackground(sharedUtils.x3189);
         TitledBorder tb = new TitledBorder(new LineBorder(Color.BLACK), "Port Filter");
         tb.setTitleColor(Color.BLACK);
         tb.setTitleJustification(TitledBorder.CENTER);
@@ -233,7 +230,7 @@ public class netSnifferGUI {
         misc.setBackground(Color.WHITE);
 
         JLabel customPortLabel = new JLabel("Custom Port: ");
-        customPortLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+        customPortLabel.setFont(sharedUtils.TAHOMA_BOLD_12);
         misc.add(customPortLabel);
 
         customPort = new JTextField();
@@ -243,6 +240,7 @@ public class netSnifferGUI {
         customPort.setMaximumSize(new Dimension(60, 22));
         customPort.setMinimumSize(new Dimension(60, 22));
         customPort.setHorizontalAlignment(JTextField.CENTER);
+        customPort.setDocument(sharedUtils.numericOnly2);
         misc.add(customPort);
 
         addPortBtn = new JButton("Listen");
@@ -261,7 +259,7 @@ public class netSnifferGUI {
     }
     public static void addRemovePort(JButton btn, JPanel panel) {
         btn.setCursor(sharedUtils.HAND_CURSOR);
-        btn.setFont(new Font("Tahoma", Font.BOLD, 11));
+        btn.setFont(sharedUtils.TAHOMA_BOLD_11);
         sharedUtils.noFocusBorder(btn);
         panel.add(Box.createRigidArea(new Dimension(5, 0)));
         panel.add(btn);
@@ -304,14 +302,13 @@ public class netSnifferGUI {
 
         startBtn = new JButton("Start");
         startBtn.setCursor(sharedUtils.HAND_CURSOR);
-        startBtn.setFont(new Font("Tahoma", Font.BOLD, 11));
+        startBtn.setFont(sharedUtils.TAHOMA_BOLD_11);
         startBtn.setBackground(Color.GREEN);
         startBtn.setHorizontalAlignment(SwingConstants.CENTER);
         startBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
         sharedUtils.noFocusBorder(startBtn);
-        startBtn.setMinimumSize(new Dimension(75, 25));
-        startBtn.setMaximumSize(new Dimension(75, 25));
-        panel.add(Box.createRigidArea(new Dimension(0,5)));
+        startBtn.setMinimumSize(new Dimension(75, 20));
+        startBtn.setMaximumSize(new Dimension(75, 20));
         panel.add(startBtn);
         startBtn.addActionListener(e -> {
             log.setText("");
@@ -321,13 +318,13 @@ public class netSnifferGUI {
 
         exitBtn = new JButton("Exit");
         exitBtn.setCursor(sharedUtils.HAND_CURSOR);
-        exitBtn.setFont(new Font("Tahoma", Font.BOLD, 11));
+        exitBtn.setFont(sharedUtils.TAHOMA_BOLD_11);
         exitBtn.setSize(startBtn.getSize());
         exitBtn.setBackground(Color.RED);
         exitBtn.setHorizontalAlignment(SwingConstants.CENTER);
         exitBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
-        exitBtn.setMinimumSize(new Dimension(75, 25));
-        exitBtn.setMaximumSize(new Dimension(75, 25));
+        exitBtn.setMinimumSize(new Dimension(75, 20));
+        exitBtn.setMaximumSize(new Dimension(75, 20));
         exitBtn.addActionListener(e -> {
             frame.remove(scrollPane);
             sharedUtils.clearScreen(mainPanel);
@@ -349,7 +346,7 @@ public class netSnifferGUI {
         panel.setMinimumSize(new Dimension(200, 110));
 
         JLabel status = new JLabel("Status");
-        status.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        status.setFont(sharedUtils.TAHOMA_PLAIN_13);
         status.setMaximumSize(new Dimension(150, 25));
         status.setMinimumSize(new Dimension(150, 25));
         status.setBorder(BorderFactory.createRaisedBevelBorder());
@@ -376,20 +373,26 @@ public class netSnifferGUI {
         radioPanel.add(allPorts);
         radioPanel.add(filterPorts);
         radioPanel.setBorder(new EtchedBorder());
-        filterPorts.addActionListener(e -> status.setText("Enabled (Using Filter)"));
-        allPorts.addActionListener(e -> status.setText("Disabled (All Ports)"));
+        filterPorts.addActionListener(e -> {
+            status.setText("Enabled (Using Filter)");
+            //TODO
+        });
+        allPorts.addActionListener(e -> {
+            status.setText("Disabled (All Ports)");
+            //TODO
+        });
         panel.add(radioPanel);
 
         interfaceInfo = new JTextArea();
-        interfaceInfo.setFont(new Font("Monospaced",  Font.PLAIN, 11));
+        interfaceInfo.setFont(sharedUtils.MONO_PLAIN_11);
         interfaceInfo.setLineWrap(true);
         interfaceInfo.setWrapStyleWord(true);
         interfaceInfo.setCursor(sharedUtils.DEFAULT_CURSOR);
         interfaceInfo.setEditable(false);
-        interfaceInfo.setForeground(new Color(0, 5, 54));
+        interfaceInfo.setForeground(sharedUtils.c0554);
         interfaceInfo.setMinimumSize(new Dimension(150, 80));
         interfaceInfo.setMinimumSize(new Dimension(150, 80));
-        interfaceInfo.setBackground(new Color(231, 231, 231));
+        interfaceInfo.setBackground(sharedUtils.x3231);
         panel.add(interfaceInfo);
         return panel;
     }
@@ -404,25 +407,15 @@ public class netSnifferGUI {
         interfacePanel.setMaximumSize(new Dimension(95, 110));
 
         JLabel interfaceLabel = new JLabel("Interface #");
-        interfaceLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
+        interfaceLabel.setFont(sharedUtils.TAHOMA_PLAIN_11);
         interfaceLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         interfacePanel.add(Box.createRigidArea(new Dimension(0, 5)));
         interfacePanel.add(interfaceLabel);
 
         JTextField interfaceText = new JTextField();
-        PlainDocument doc = new PlainDocument() {
-            @Override
-            public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException {
-                if (str == null) {
-                    return;
-                }
-                if (str.matches("\\d*") && !str.isEmpty()) {
-                    super.insertString(offset, str, attr);
-                }
-            }
-        };
+
         interfaceText.setEnabled(false);
-        interfaceText.setDocument(doc);
+        interfaceText.setDocument(sharedUtils.numericOnly);
         interfaceText.setPreferredSize(new Dimension(40, 25));
         interfaceText.setMaximumSize(new Dimension(40, 25));
         interfaceText.setHorizontalAlignment(SwingConstants.CENTER);
@@ -438,7 +431,7 @@ public class netSnifferGUI {
             interfaceText.setEnabled(true);
         });
         sharedUtils.setGeneralButton(interfaceList);
-        interfaceList.setFont(new Font("Tahoma", Font.BOLD, 11));
+        interfaceList.setFont(sharedUtils.TAHOMA_BOLD_11);
         interfaceList.setHorizontalAlignment(SwingConstants.CENTER);
         interfaceList.setAlignmentX(Component.CENTER_ALIGNMENT);
         interfaceList.setMaximumSize(new Dimension(70,25));
@@ -452,7 +445,7 @@ public class netSnifferGUI {
         interfaceSet.setCursor(sharedUtils.HAND_CURSOR);
         sharedUtils.noFocusBorder(interfaceSet);
         interfaceSet.setBackground(Color.GREEN);
-        interfaceSet.setFont(new Font("Tahoma", Font.BOLD, 11));
+        interfaceSet.setFont(sharedUtils.TAHOMA_BOLD_11);
         interfaceSet.setHorizontalAlignment(SwingConstants.CENTER);
         interfaceSet.setAlignmentX(Component.CENTER_ALIGNMENT);
         interfaceSet.setMaximumSize(new Dimension(70, 25));
@@ -483,10 +476,10 @@ public class netSnifferGUI {
         btn.setAlignmentX(Component.CENTER_ALIGNMENT);
         btn.setHorizontalAlignment(SwingConstants.CENTER);
         btn.setCursor(sharedUtils.HAND_CURSOR);
-        btn.setFont(new Font("Tahoma", Font.PLAIN, 11));
+        btn.setFont(sharedUtils.TAHOMA_PLAIN_11);
         btn.setBackground(Color.WHITE);
         btn.setFocusPainted(false);
-        btn.setBackground(new Color(213, 241, 250));
+        btn.setBackground(sharedUtils.c213241250);
         btn.setMaximumSize(new Dimension(110, 25));
         btn.setMinimumSize(new Dimension(110, 25));
     }
@@ -503,32 +496,11 @@ public class netSnifferGUI {
             log.append("\nDescription: " + devices[i].description);
             log.append("\nDatalink name: " + devices[i].datalink_name);
             log.append("\nDatalink desc.: " + devices[i].datalink_description);
-            log.append("\nMAC: " + formatMac(devices[i].mac_address));
-            log.append("\nIP: " + formatIP(devices[i].addresses));
-            log.append("\nSubnet Mask: " + getSubnetMask(devices[i]));
+            log.append("\nMAC: " + sharedUtils.formatMac(devices[i].mac_address));
+            log.append("\nIP: " + sharedUtils.formatIP(devices[i].addresses));
+            log.append("\nSubnet Mask: " + sharedUtils.getSubnetMask(devices[i]));
             log.append("\n ________________________________________________________________________\n");
         }
     }
-    public static String formatMac(byte[] mac) {
-        StringBuilder sb = new StringBuilder();
-        for (byte b: mac) {
-            sb.append(String.format("%02X:", b));
-        }
-        return sb.substring(0, sb.length() - 1).replace("/", "");
-    }
-    public static String formatIP(NetworkInterfaceAddress[] addr) {
-        StringBuilder sb = new StringBuilder();
-        for (NetworkInterfaceAddress address: addr) {
-            sb.append(address.address).append(" ");
-        }
-        return sb.toString().replace("/", "");
-    }
-    public static String getSubnetMask(NetworkInterface dev) {
-        NetworkInterfaceAddress[] addresses = dev.addresses;
-        if (addresses[0].subnet != null) {
-            return addresses[0].subnet.toString();
-        } else {
-            return "N/A"; // No addresses available
-        }
-    }
+
 }
