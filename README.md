@@ -5,8 +5,7 @@ SwissJnife is a multi tool written in Java, currently featuring file encryption 
 
 Requirements & Dependencies:
 - Installed Java (https://www.java.com)
-- JPCAP library (Provided DLL and JAR in /lib for Windows)
-- WinPcap / nPcap (https://www.winpcap.org)
+- 
 
 Our GUI is created using SWING Java Library as front end for user-friendly use of the tools.
 
