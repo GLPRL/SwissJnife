@@ -196,7 +196,7 @@ public class mainGUI {
             gui.presentGui(mainGUI.this);
         });
         vulScan.addActionListener(e -> {
-            //TODO
+            sharedUtils.errorPopup("Feature is not yet available", frame);
         });
         sniff.addActionListener(e -> {
             sharedUtils.clearScreen(panel);

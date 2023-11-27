@@ -120,8 +120,8 @@ public class sharedUtils {
         popup.setAlwaysOnTop(true);
         popup.setSize(280, 110);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = (screenSize.width - frame.getWidth()) / 2;
-        int y = (screenSize.height - frame.getHeight()) / 2;
+        int x = (screenSize.width - frame.getWidth()) / 2 + 140;
+        int y = (screenSize.height - frame.getHeight()) / 2 + 55;
         popup.setLocation(x, y);
         popup.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         popup.setTitle("Error");
