@@ -8,8 +8,6 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.border.TitledBorder;
 import java.awt.*;
 
 /**
@@ -246,11 +244,12 @@ public class netSnifferGUI {
         misc.add(customPortLabel);
 
         customPort = new JTextField();
+        customPort.setFont(sharedUtils.TAHOMA_PLAIN_11);
         customPort.setEnabled(false);
         customPort.setBackground(Color.WHITE);
         customPort.setBorder(new EtchedBorder());
-        customPort.setMaximumSize(new Dimension(60, 22));
-        customPort.setMinimumSize(new Dimension(60, 22));
+        customPort.setMaximumSize(new Dimension(80, 22));
+        customPort.setMinimumSize(new Dimension(80, 22));
         customPort.setHorizontalAlignment(JTextField.CENTER);
         customPort.setDocument(sharedUtils.numericOnly2);
         misc.add(customPort);
@@ -258,6 +257,7 @@ public class netSnifferGUI {
         addPortBtn = new JButton();
         sharedUtils.setSnifferBtn(addPortBtn, "Listen", Color.GREEN);
         addPortBtn.addActionListener(e -> {
+            assignPort(Integer.parseInt(customPort.getText()), true);
             customPort.setText("");
         });
         misc.add(Box.createRigidArea(new Dimension(5, 0)));
@@ -266,6 +266,7 @@ public class netSnifferGUI {
         removePortBtn = new JButton();
         sharedUtils.setSnifferBtn(removePortBtn, "Delete", Color.RED);
         removePortBtn.addActionListener(e -> {
+            assignPort(Integer.parseInt(customPort.getText()), false);
             customPort.setText("");
         });
         removePortBtn.setBackground(Color.RED);
@@ -431,7 +432,7 @@ public class netSnifferGUI {
         interfacePanel.add(interfaceLabel);
 
         interfaceText = new JTextField();
-
+        interfaceText.setFont(sharedUtils.TAHOMA_PLAIN_11);
         interfaceText.setEnabled(false);
         interfaceText.setDocument(sharedUtils.numericOnly);
         interfaceText.setPreferredSize(new Dimension(40, 25));
@@ -519,6 +520,69 @@ public class netSnifferGUI {
             log.append("\nIP: " + sharedUtils.formatIP(devices[i].addresses));
             log.append("\nSubnet Mask: " + sharedUtils.getSubnetMask(devices[i]));
             log.append("\n ________________________________________________________________________\n");
+        }
+    }
+
+    /**
+     * Assigns port to listen
+     * @param portNum port
+     */
+    public static void assignPort(int portNum, boolean b) {
+        isInPanel(portNum, b);
+    }
+    public static void isInPanel(int portNum, boolean b) {
+        switch (portNum) {
+            case 20, 21: {
+                FTPrad.setSelected(b);
+                break;
+            }
+            case 22: {
+                SSHrad.setSelected(b);
+                break;
+            }
+            case 23: {
+                TELNETrad.setSelected(b);
+                break;
+            }
+            case 25: {
+                SMTPrad.setSelected(b);
+                break;
+            }
+            case 53: {
+                DNSrad.setSelected(b);
+                break;
+            }
+            case 80: {
+                HTTPrad.setSelected(b);
+                break;
+            }
+            case 110: {
+                POP3rad.setSelected(b);
+                break;
+            }
+            case 143: {
+                IMAPrad.setSelected(b);
+                break;
+            }
+            case 161: {
+                SNMPrad.setSelected(b);
+                break;
+            }
+            case 389: {
+                LDAPrad.setSelected(b);
+                break;
+            }
+            case 443: {
+                HTTPSrad.setSelected(b);
+                break;
+            }
+            case 3389: {
+                RDPrad.setSelected(b);
+                break;
+            }
+            default: {
+                //do nothing
+            }
         }
     }
 }

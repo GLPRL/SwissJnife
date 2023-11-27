@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="further code arrangement">
+    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="Tested listening thread">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logics/sniffer/netSniffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logics/sniffer/netSniffer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -261,15 +260,7 @@
       <workItem from="1700988559403" duration="8023000" />
       <workItem from="1701065497374" duration="8372000" />
       <workItem from="1701080299270" duration="1822000" />
-      <workItem from="1701085586584" duration="72000" />
-    </task>
-    <task id="LOCAL‎-00008" summary="decrypt.java : prep for decryption process.&#10;&#10;encrypt.java : prep for encryption process.&#10;&#10;encryptGUI.java : got a file chooser.&#10;&#10;added notnull annotations">
-      <option name="closed" value="true" />
-      <created>1698597745540</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL‎-00008" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1698597745540</updated>
+      <workItem from="1701085586584" duration="1037000" />
     </task>
     <task id="LOCAL‎-00009" summary="Started basics for reading from a given file in encrypt.java">
       <option name="closed" value="true" />
@@ -655,7 +646,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1701081969593</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL‎-00057" summary="Tested listening thread">
+      <option name="closed" value="true" />
+      <created>1701085739403</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL‎-00057" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1701085739403</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -685,7 +684,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="mainGUI.java:&#10;Added a top menu.&#10;Project on Github works and opens browser on the github project." />
     <MESSAGE value="mainGUI.java:&#10;Added a top menu.&#10;Project on Github works and opens browser on the github project.&#10;misc visual improvements." />
     <MESSAGE value="changed description of button" />
     <MESSAGE value="General code cleanup and re-organization.&#10;Introduced error popups." />
@@ -710,6 +708,7 @@
     <MESSAGE value="sharedUtils.java corrected location for error popup.&#10;self scanner isn't available yet, so presenting a message indicating that." />
     <MESSAGE value="Improved behavior of start/stop button.&#10;When setting the interface, general information will be displayed to it's right" />
     <MESSAGE value="further code arrangement" />
-    <option name="LAST_COMMIT_MESSAGE" value="further code arrangement" />
+    <MESSAGE value="Tested listening thread" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tested listening thread" />
   </component>
 </project>
