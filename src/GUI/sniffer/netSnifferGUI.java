@@ -25,6 +25,7 @@ public class netSnifferGUI {
     JPanel portsPanel;
     JPanel normalPorts;
     JPanel buttonsPanel;
+    static Thread snifferThread;
     static mainGUI gui;
     static JRadioButton filterPorts;
     static JRadioButton allPorts;
@@ -303,13 +304,23 @@ public class netSnifferGUI {
         startBtn.setHorizontalAlignment(SwingConstants.CENTER);
         startBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
         sharedUtils.noFocusBorder(startBtn);
+        startBtn.setPreferredSize(new Dimension(75, 20));
         startBtn.setMinimumSize(new Dimension(75, 20));
         startBtn.setMaximumSize(new Dimension(75, 20));
         panel.add(startBtn);
         startBtn.addActionListener(e -> {
-            log.setText("");
-            Thread snifferThread = new Thread(() -> ns.listen(log));
-            snifferThread.start();
+            if (startBtn.getText().equals("Start")) {
+                log.setText("");
+                snifferThread = new Thread(() -> ns.listen(log));
+                snifferThread.start();
+                startBtn.setBackground(Color.YELLOW);
+                startBtn.setText("Stop");
+            } else {
+                startBtn.setBackground(Color.GREEN);
+                startBtn.setText("Start");
+                snifferThread.interrupt();
+            }
+
         });
 
         exitBtn = new JButton("Exit");
@@ -455,6 +466,7 @@ public class netSnifferGUI {
                     ns.setNetworkInterface(interfaceID);
                     interfaceInfo.setText("");
                     setBtnLock(true);
+                    interfaceText.setEnabled(false);
                 }
             } else {
                 interfaceInfo.setText("No interface selected");
