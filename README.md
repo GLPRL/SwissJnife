@@ -4,9 +4,9 @@ Developed by Gal Pearl & Yonatan
 SwissJnife is a multi tool written in Java, currently featuring file encryption / decryption and a network sniffer (scanner is currently in progress).
 
 Requirements & Dependencies:
-- Installed Java
-- JPCAP library (Provided DLL and JAR in /lib)
-- WinPcap / nPcap
+- Installed Java (https://www.java.com)
+- JPCAP library (Provided DLL and JAR in /lib for Windows)
+- WinPcap / nPcap (https://www.winpcap.org)
 
 Our GUI is created using SWING Java Library as front end for user-friendly use of the tools.
 
