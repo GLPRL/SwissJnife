@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="Code organization and cleanup.">
+    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="GUI improvements">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/EncDec/encryptGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/EncDec/encryptGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/sharedUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/sharedUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -258,15 +260,7 @@
       <workItem from="1700832941963" duration="6368000" />
       <workItem from="1700907631167" duration="6258000" />
       <workItem from="1700988559403" duration="8023000" />
-      <workItem from="1701065497374" duration="890000" />
-    </task>
-    <task id="LOCAL‎-00003" summary="encryptGUI new class for encrypting process.&#10;mainGUI: frame is a member in class, creation of buttons is with conditions for applying the correct behavior.">
-      <option name="closed" value="true" />
-      <created>1698505470487</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL‎-00003" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1698505470487</updated>
+      <workItem from="1701065497374" duration="4546000" />
     </task>
     <task id="LOCAL‎-00004" summary="GUI modifications">
       <option name="closed" value="true" />
@@ -652,7 +646,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1700996930574</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL‎-00052" summary="GUI improvements">
+      <option name="closed" value="true" />
+      <created>1701066445367</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL‎-00052" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1701066445368</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -682,7 +684,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="decryptGUI.java:&#10;removed popup, added better logging in case of a failure.&#10;encryptGUI.java:&#10;presenting the key iv pair for the user to save, in case the program is being closed, for decrypting the file.&#10;encrypt: fetching the byte array" />
     <MESSAGE value="decryptGUI.java:&#10;removed popup, added better logging in case of a failure.&#10;encryptGUI.java:&#10;presenting the key iv pair for the user to save, in case the program is being closed, for decrypting the file.&#10;encrypt: fetching the byte array,&#10;asserting the key is not null" />
     <MESSAGE value="Added JMenu, visual changes to copy IV and key to clipboard, is done with buttons instead of showing the plain text.&#10;Some GUI changes as well." />
     <MESSAGE value="fw -&gt; sniffer" />
@@ -707,6 +708,7 @@
     <MESSAGE value="set an exit button in main gui.&#10;removing all the components of netSnifferGUI.java correctly." />
     <MESSAGE value="mainGUI correctly removes exit button when moving between guis.&#10;added getInterfaces and listen, that will run in thread. changed setnetworkinterface.&#10;general gui improvements, to prevent errors and improve error handling, interface# receives only a number." />
     <MESSAGE value="Code organization and cleanup." />
-    <option name="LAST_COMMIT_MESSAGE" value="Code organization and cleanup." />
+    <MESSAGE value="GUI improvements" />
+    <option name="LAST_COMMIT_MESSAGE" value="GUI improvements" />
   </component>
 </project>

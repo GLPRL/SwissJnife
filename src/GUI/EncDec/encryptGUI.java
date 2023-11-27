@@ -47,6 +47,8 @@ public class encryptGUI {
             try {
                 AESData data = encrypt.encryptFile(selectedFile.getAbsolutePath(), frame);
                 dataPopup(frame, data);
+                Arrays.fill(data.getKey().getEncoded(), (byte) 0);
+                Arrays.fill(data.getIv().getIV(), (byte) 0);
                 gui.presentGUI();
             } catch (Exception e) {
                 sharedUtils.errorPopup("Error: failed encrypting the file", frame);

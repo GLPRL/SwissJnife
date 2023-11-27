@@ -26,7 +26,7 @@ public class sharedUtils {
     public static Font TAHOMA_BOLD_12 = new Font("Tahoma", Font.BOLD, 12);
     public static Font TAHOMA_PLAIN_12 = new Font("Tahoma", Font.PLAIN, 12);
     public static Font MONO_PLAIN_12 = new Font("Monospaced", Font.PLAIN, 12);
-    public static Font MONO_PLAIN_11 = new Font("Monospaced", Font.PLAIN, 1);
+    public static Font MONO_PLAIN_11 = new Font("Monospaced", Font.PLAIN, 11);
     public static Font TAHOMA_BOLD_11 = new Font("Tahoma", Font.BOLD, 11);
     public static Font TAHOMA_PLAIN_11 = new Font("Tahoma", Font.PLAIN, 11);
     public static Color x3189 = new Color(189,189,189);
