@@ -8,6 +8,8 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.plaf.basic.BasicRadioButtonUI;
 import javax.swing.text.AttributeSet;
@@ -251,5 +253,23 @@ public class sharedUtils {
         } else {
             return "N/A";
         }
+    }
+    public static void setSnifferBtn(JButton btn, String name, Color c) {
+        btn.setText(name);
+        btn.setBackground(c);
+        btn.setCursor(HAND_CURSOR);
+        btn.setFont(TAHOMA_BOLD_11);
+        btn.setHorizontalAlignment(SwingConstants.CENTER);
+        btn.setAlignmentX(Component.CENTER_ALIGNMENT);
+        noFocusBorder(btn);
+        btn.setPreferredSize(new Dimension(75, 20));
+        btn.setMinimumSize(new Dimension(75, 20));
+        btn.setMaximumSize(new Dimension(75, 20));
+    }
+    public static TitledBorder getTitledBorder(String title) {
+        TitledBorder tb = new TitledBorder(new LineBorder(Color.BLACK), title);
+        tb.setTitleColor(Color.BLACK);
+        tb.setTitleJustification(TitledBorder.CENTER);
+        return tb;
     }
 }

@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="sharedUtils.java corrected location for error popup.&#10;self scanner isn't available yet, so presenting a message indicating that.">
+    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="Improved behavior of start/stop button.&#10;When setting the interface, general information will be displayed to it's right">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/sharedUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/sharedUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logics/sniffer/netSniffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logics/sniffer/netSniffer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,30 +59,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "gal__sniffer",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/galpe/IdeaProjects/SwissJnife/lib/jpcap.jar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "SDKs",
-    "project.structure.proportion": "0.20146905",
-    "project.structure.side.proportion": "0.31578946",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;gal__sniffer&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/galpe/IdeaProjects/SwissJnife/lib/jpcap.jar&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.20146905&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.31578946&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\galpe\IdeaProjects\SwissJnife\src" />
@@ -259,15 +259,8 @@
       <workItem from="1700832941963" duration="6368000" />
       <workItem from="1700907631167" duration="6258000" />
       <workItem from="1700988559403" duration="8023000" />
-      <workItem from="1701065497374" duration="8295000" />
-    </task>
-    <task id="LOCAL‎-00006" summary="Code organization">
-      <option name="closed" value="true" />
-      <created>1698588624659</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL‎-00006" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1698588624659</updated>
+      <workItem from="1701065497374" duration="8372000" />
+      <workItem from="1701080299270" duration="1630000" />
     </task>
     <task id="LOCAL‎-00007" summary="decrypt.java : prep for decryption process.&#10;&#10;encrypt.java : prep for encryption process.&#10;&#10;encryptGUI.java : got a file chooser.&#10;&#10;added notnull annotations">
       <option name="closed" value="true" />
@@ -653,7 +646,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1701077952332</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL‎-00055" summary="Improved behavior of start/stop button.&#10;When setting the interface, general information will be displayed to it's right">
+      <option name="closed" value="true" />
+      <created>1701079893254</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL‎-00055" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1701079893255</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -683,7 +684,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added JMenu, visual changes to copy IV and key to clipboard, is done with buttons instead of showing the plain text.&#10;Some GUI changes as well." />
     <MESSAGE value="fw -&gt; sniffer" />
     <MESSAGE value="mainGUI.java:&#10;Added a top menu.&#10;Project on Github works and opens browser on the github project." />
     <MESSAGE value="mainGUI.java:&#10;Added a top menu.&#10;Project on Github works and opens browser on the github project.&#10;misc visual improvements." />
@@ -708,6 +708,7 @@
     <MESSAGE value="Code organization and cleanup." />
     <MESSAGE value="GUI improvements" />
     <MESSAGE value="sharedUtils.java corrected location for error popup.&#10;self scanner isn't available yet, so presenting a message indicating that." />
-    <option name="LAST_COMMIT_MESSAGE" value="sharedUtils.java corrected location for error popup.&#10;self scanner isn't available yet, so presenting a message indicating that." />
+    <MESSAGE value="Improved behavior of start/stop button.&#10;When setting the interface, general information will be displayed to it's right" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved behavior of start/stop button.&#10;When setting the interface, general information will be displayed to it's right" />
   </component>
 </project>

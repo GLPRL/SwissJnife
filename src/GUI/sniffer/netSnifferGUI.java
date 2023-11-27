@@ -76,8 +76,6 @@ public class netSnifferGUI {
         netSnifferGUI.frame.setSize(860, 650);
         netSnifferGUI.frame.setLocation(sharedUtils.centerFrame(netSnifferGUI.frame));
         netSnifferGUI.frame.add(mainPanel);
-
-
     }
 
     /**
@@ -132,14 +130,31 @@ public class netSnifferGUI {
     }
 
     /**
-     * Sets locking status for listening capabilities
+     * Sets locking status for the buttons
      * @param b is locked
      */
-    public static void setBtnLock(Boolean b) {
+    public static void setBtnLock(boolean b) {
+        setMiscBtnLock(b);
+        setPortLock(b);
+    }
+
+    /**
+     * Setting lock status for misc buttons
+     * @param b true/false for locking status
+     */
+    public static void setMiscBtnLock(boolean b) {
+        filterPorts.setEnabled(b);
+        allPorts.setEnabled(b);
         customPort.setEnabled(b);
         addPortBtn.setEnabled(b);
         removePortBtn.setEnabled(b);
         startBtn.setEnabled(b);
+    }
+    /**
+     * Setting lock status for port filtering buttons
+     * @param b true/false for locking status
+     */
+    public static void setPortLock(boolean b) {
         FTPrad.setEnabled(b);
         SSHrad.setEnabled(b);
         TELNETrad.setEnabled(b);
@@ -152,8 +167,6 @@ public class netSnifferGUI {
         LDAPrad.setEnabled(b);
         HTTPSrad.setEnabled(b);
         RDPrad.setEnabled(b);
-        filterPorts.setEnabled(b);
-        allPorts.setEnabled(b);
     }
 
     /**
@@ -162,13 +175,9 @@ public class netSnifferGUI {
     public void setPortsPanel() {
         Component rigidArea = Box.createRigidArea(new Dimension(0, 10));
         rigidArea.setBackground(sharedUtils.x3189);
-        TitledBorder tb = new TitledBorder(new LineBorder(Color.BLACK), "Port Filter");
-        tb.setTitleColor(Color.BLACK);
-        tb.setTitleJustification(TitledBorder.CENTER);
-        tb.setTitleColor(Color.BLACK);
-
+        portsPanel.setBorder(sharedUtils.getTitledBorder("Port Filter"));
         portsPanel.setBackground(Color.WHITE);
-        portsPanel.setBorder(tb);
+
 
         portsPanel.setMaximumSize(new Dimension(350, 150));
         portsPanel.setMinimumSize(new Dimension(350, 150));
@@ -246,43 +255,32 @@ public class netSnifferGUI {
         customPort.setDocument(sharedUtils.numericOnly2);
         misc.add(customPort);
 
-        addPortBtn = new JButton("Listen");
+        addPortBtn = new JButton();
+        sharedUtils.setSnifferBtn(addPortBtn, "Listen", Color.GREEN);
         addPortBtn.addActionListener(e -> {
             customPort.setText("");
         });
-        addPortBtn.setBackground(Color.GREEN);
-        addRemovePort(addPortBtn, misc);
+        misc.add(Box.createRigidArea(new Dimension(5, 0)));
+        misc.add(addPortBtn);
 
-        removePortBtn = new JButton("Delete");
+        removePortBtn = new JButton();
+        sharedUtils.setSnifferBtn(removePortBtn, "Delete", Color.RED);
         removePortBtn.addActionListener(e -> {
             customPort.setText("");
         });
         removePortBtn.setBackground(Color.RED);
-        addRemovePort(removePortBtn, misc);
+        misc.add(Box.createRigidArea(new Dimension(5, 0)));
+        misc.add(removePortBtn);
 
         return misc;
     }
-    public static void addRemovePort(JButton btn, JPanel panel) {
-        btn.setMaximumSize(new Dimension(75, 20));
-        btn.setMaximumSize(new Dimension(75, 20));
-        btn.setCursor(sharedUtils.HAND_CURSOR);
-        btn.setFont(sharedUtils.TAHOMA_BOLD_11);
-        sharedUtils.noFocusBorder(btn);
-        panel.add(Box.createRigidArea(new Dimension(5, 0)));
-        panel.add(btn);
-    }
-
     /**
      * Creates general controls panel for the analyzer.
      */
     public void setButtonsPanel() {
         buttonsPanel.setBackground(Color.WHITE);
 
-        TitledBorder tb = new TitledBorder(new LineBorder(Color.BLACK), "Controls");
-        tb.setTitleColor(Color.BLACK);
-        tb.setTitleJustification(TitledBorder.CENTER);
-        tb.setTitle("Controls");
-        buttonsPanel.setBorder(tb);
+        buttonsPanel.setBorder(sharedUtils.getTitledBorder("Controls"));
         buttonsPanel.setMaximumSize(new Dimension(400, 220));
         buttonsPanel.setMinimumSize(new Dimension(400, 220));
         buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.X_AXIS));
@@ -307,16 +305,8 @@ public class netSnifferGUI {
         panel.setMaximumSize(new Dimension(95, 110));
         panel.setMinimumSize(new Dimension(95, 110));
 
-        startBtn = new JButton("Start");
-        startBtn.setCursor(sharedUtils.HAND_CURSOR);
-        startBtn.setFont(sharedUtils.TAHOMA_BOLD_11);
-        startBtn.setBackground(Color.GREEN);
-        startBtn.setHorizontalAlignment(SwingConstants.CENTER);
-        startBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
-        sharedUtils.noFocusBorder(startBtn);
-        startBtn.setPreferredSize(new Dimension(75, 20));
-        startBtn.setMinimumSize(new Dimension(75, 20));
-        startBtn.setMaximumSize(new Dimension(75, 20));
+        startBtn = new JButton();
+        sharedUtils.setSnifferBtn(startBtn, "Start", Color.GREEN);
         panel.add(startBtn);
         startBtn.addActionListener(e -> {
             if (startBtn.getText().equals("Start")) {
@@ -324,45 +314,19 @@ public class netSnifferGUI {
                     allPorts.setSelected(true);
                     status.setText("Enabled (Using Filter)");
                 }
-                interfaceText.setEnabled(false);
+
                 log.setText("");
                 snifferThread = new Thread(() -> ns.listen(log));
                 snifferThread.start();
                 startBtn.setBackground(Color.YELLOW);
                 startBtn.setText("Stop");
+                interfaceText.setEnabled(false);
                 filterPorts.setEnabled(true);
                 allPorts.setEnabled(true);
-                FTPrad.setEnabled(true);
-                SSHrad.setEnabled(true);
-                TELNETrad.setEnabled(true);
-                SMTPrad.setEnabled(true);
-                DNSrad.setEnabled(true);
-                HTTPrad.setEnabled(true);
-                POP3rad.setEnabled(true);
-                IMAPrad.setEnabled(true);
-                SNMPrad.setEnabled(true);
-                LDAPrad.setEnabled(true);
-                HTTPSrad.setEnabled(true);
-                RDPrad.setEnabled(true);
+                setPortLock(true);
             } else {
                 interfaceText.setEnabled(true);
-                customPort.setEnabled(false);
-                addPortBtn.setEnabled(false);
-                removePortBtn.setEnabled(false);
-                FTPrad.setEnabled(false);
-                SSHrad.setEnabled(false);
-                TELNETrad.setEnabled(false);
-                SMTPrad.setEnabled(false);
-                DNSrad.setEnabled(false);
-                HTTPrad.setEnabled(false);
-                POP3rad.setEnabled(false);
-                IMAPrad.setEnabled(false);
-                SNMPrad.setEnabled(false);
-                LDAPrad.setEnabled(false);
-                HTTPSrad.setEnabled(false);
-                RDPrad.setEnabled(false);
-                filterPorts.setEnabled(false);
-                allPorts.setEnabled(false);
+                setBtnLock(false);
                 status.setText("Status");
                 startBtn.setBackground(Color.GREEN);
                 interfaceInfo.setText("");
@@ -372,21 +336,13 @@ public class netSnifferGUI {
 
         });
 
-        exitBtn = new JButton("Exit");
-        exitBtn.setCursor(sharedUtils.HAND_CURSOR);
-        exitBtn.setFont(sharedUtils.TAHOMA_BOLD_11);
-        exitBtn.setSize(startBtn.getSize());
-        exitBtn.setBackground(Color.RED);
-        exitBtn.setHorizontalAlignment(SwingConstants.CENTER);
-        exitBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
-        exitBtn.setMinimumSize(new Dimension(75, 20));
-        exitBtn.setMaximumSize(new Dimension(75, 20));
+        exitBtn = new JButton();
+        sharedUtils.setSnifferBtn(exitBtn, "Exit", Color.RED);
         exitBtn.addActionListener(e -> {
             frame.remove(scrollPane);
             sharedUtils.clearScreen(mainPanel);
             gui.presentGUI();
         });
-        sharedUtils.noFocusBorder(exitBtn);
         panel.add(Box.createRigidArea(new Dimension(0,5)));
         panel.add(exitBtn);
 
@@ -454,6 +410,10 @@ public class netSnifferGUI {
         return panel;
     }
 
+    /**
+     * Interface selection, settings and listing
+     * @return panel contains all of the above
+     */
     @NotNull
     private static JPanel getInterfacesPanel() {
         JPanel interfacePanel = new JPanel();
@@ -528,8 +488,8 @@ public class netSnifferGUI {
         return interfacePanel;
     }
     /**
-     * Setting visual attributes to a button
-     * @param btn button to set
+     * Setting visual attributes to a toggle button
+     * @param btn toggle button to set
      */
     public void portSetup(JToggleButton btn) {
         btn.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -560,5 +520,4 @@ public class netSnifferGUI {
             log.append("\n ________________________________________________________________________\n");
         }
     }
-
 }
