@@ -332,6 +332,7 @@ public class netSnifferGUI {
                 interfaceInfo.setText("");
                 startBtn.setText("Start");
                 snifferThread.interrupt();
+                log.append("Stopped Listening");
             }
 
         });

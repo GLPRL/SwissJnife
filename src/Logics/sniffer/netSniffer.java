@@ -29,8 +29,7 @@ public class netSniffer {
         return interfaces;
     }
     public void listen(JTextArea log) {
-
-
+        log.append("Started Listening...");
     }
     public String getNetworkInterfaceInfo() {
         return "Listening on: \n" + networkInterface.description + "\n" +
