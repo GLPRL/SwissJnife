@@ -4,11 +4,14 @@ import GUI.mainGUI;
 import GUI.sharedUtils;
 import Logics.sniffer.netSniffer;
 import org.jetbrains.annotations.NotNull;
+import org.pcap4j.core.PcapAddress;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
-import java.io.IOException;
+import java.net.Inet4Address;
+import java.net.Inet6Address;
+import java.util.List;
 
 /**
  * GUI for network analyzer.
@@ -52,6 +55,7 @@ public class netSnifferGUI {
 
     /**
      * Constructor
+     *
      * @param frame programs' window.
      */
     public netSnifferGUI(@NotNull JFrame frame) {
@@ -78,6 +82,7 @@ public class netSnifferGUI {
 
     /**
      * Present the sniffers' gui
+     *
      * @param gui mainGUI to return
      */
     public void presentGui(mainGUI gui) {
@@ -85,6 +90,7 @@ public class netSnifferGUI {
         netSnifferGUI.gui = gui;
         frame.setVisible(true);
     }
+
     public void createElements() {
         createLog();
         addPanels();
@@ -129,6 +135,7 @@ public class netSnifferGUI {
 
     /**
      * Sets locking status for the buttons
+     *
      * @param b is locked
      */
     public static void setBtnLock(boolean b) {
@@ -138,6 +145,7 @@ public class netSnifferGUI {
 
     /**
      * Setting lock status for misc buttons
+     *
      * @param b true/false for locking status
      */
     public static void setMiscBtnLock(boolean b) {
@@ -148,8 +156,10 @@ public class netSnifferGUI {
         removePortBtn.setEnabled(b);
         startBtn.setEnabled(b);
     }
+
     /**
      * Setting lock status for port filtering buttons
+     *
      * @param b true/false for locking status
      */
     public static void setPortLock(boolean b) {
@@ -199,10 +209,11 @@ public class netSnifferGUI {
 
     /**
      * Setting each column of JRadioButtons
-     * @param btnOne first button
-     * @param btnTwo second button
+     *
+     * @param btnOne   first button
+     * @param btnTwo   second button
      * @param btnThree third button
-     * @param btnFour fourth button
+     * @param btnFour  fourth button
      */
     private void colSetup(JToggleButton btnOne, JToggleButton btnTwo, JToggleButton btnThree, JToggleButton btnFour) {
         JPanel col = getColPanel();
@@ -219,6 +230,7 @@ public class netSnifferGUI {
 
     /**
      * Sets up a column panel for adding radio buttons
+     *
      * @return new panel
      */
     @NotNull
@@ -231,6 +243,7 @@ public class netSnifferGUI {
 
     /**
      * Sets the custom ports panel filtering
+     *
      * @return panel for filtering custom ports
      */
     @NotNull
@@ -275,6 +288,7 @@ public class netSnifferGUI {
 
         return misc;
     }
+
     /**
      * Creates general controls panel for the analyzer.
      */
@@ -298,6 +312,7 @@ public class netSnifferGUI {
         buttonsPanel.add(generalPanel);
 
     }
+
     public static JPanel createGeneralPanel() {
         JPanel panel = new JPanel();
         panel.setBorder(new EtchedBorder());
@@ -318,13 +333,7 @@ public class netSnifferGUI {
 
                 log.setText("");
                 snifferThread = new Thread(() -> {
-                    //try {
-                        //TODO: LISTEN
-                        //ns.listen(log);
-                    //} catch (IOException ex) {
-                    //    sharedUtils.errorPopup("Error while listening", frame);
-                    //    throw new RuntimeException(ex);
-                    //}
+                    ns.listen(log);
                 });
                 snifferThread.start();
                 startBtn.setBackground(Color.YELLOW);
@@ -353,12 +362,13 @@ public class netSnifferGUI {
             sharedUtils.clearScreen(mainPanel);
             gui.presentGUI();
         });
-        panel.add(Box.createRigidArea(new Dimension(0,5)));
+        panel.add(Box.createRigidArea(new Dimension(0, 5)));
         panel.add(exitBtn);
 
 
         return panel;
     }
+
     public static JPanel createFilterStatusPanel() {
         JPanel panel = new JPanel();
         panel.setBorder(new EtchedBorder());
@@ -422,6 +432,7 @@ public class netSnifferGUI {
 
     /**
      * Interface selection, settings and listing
+     *
      * @return panel contains all of the above
      */
     @NotNull
@@ -453,7 +464,8 @@ public class netSnifferGUI {
         interfaceList = new JButton("List");
         interfaceList.addActionListener(e -> {
             //TODO: List all the interfaces and print to log
-
+            printInterfaceList();
+            ns.getInterfaces();
             interfaceSet.setEnabled(true);
             interfaceText.setEnabled(true);
         });
@@ -461,7 +473,7 @@ public class netSnifferGUI {
         interfaceList.setFont(sharedUtils.TAHOMA_BOLD_11);
         interfaceList.setHorizontalAlignment(SwingConstants.CENTER);
         interfaceList.setAlignmentX(Component.CENTER_ALIGNMENT);
-        interfaceList.setMaximumSize(new Dimension(70,25));
+        interfaceList.setMaximumSize(new Dimension(70, 25));
         interfaceList.setMinimumSize(new Dimension(70, 25));
         sharedUtils.noFocusBorder(interfaceList);
         interfacePanel.add(Box.createRigidArea(new Dimension(0, 5)));
@@ -481,13 +493,13 @@ public class netSnifferGUI {
             if (!interfaceText.getText().isEmpty()) {
                 int interfaceID = Integer.parseInt(interfaceText.getText());
                 //TODO: check for list of interfaces, that if the user entered incorrect ID then give a message.
-                if (true/*interfaceID >= ns.getInterfaces().length || interfaceID < 0*/) {
+                if (interfaceID >= ns.getInterfaces().size() || interfaceID < 0) {
                     interfaceInfo.setText("Wrong interface ID");
                 } else {
                     //TODO: set the target interface to the ID selected
-                    //ns.setNetworkInterface(interfaceID);
+                    ns.setNetworkInterface(interfaceID);
                     interfaceInfo.setText("");
-                    //TODO: print the info to the -> interfaceInfo.setText(ns.getNetworkInterfaceInfo());
+                    interfaceInfo.setText(ns.getNetworkInterfaceInfo());
                     setBtnLock(true);
                     interfaceText.setEnabled(false);
                 }
@@ -499,8 +511,10 @@ public class netSnifferGUI {
         interfacePanel.add(interfaceSet);
         return interfacePanel;
     }
+
     /**
      * Setting visual attributes to a toggle button
+     *
      * @param btn toggle button to set
      */
     public void portSetup(JToggleButton btn) {
@@ -518,23 +532,38 @@ public class netSnifferGUI {
     /**
      * lists all the available interfaces.
      */
-    public static void printInterfaceList(/*devices*/) {
+    public static void printInterfaceList() {
         log.setText("");
-        //for (int i = 0; i < devices.length; i++) {
-            //Print device name, desc & datalink name, desc. mac addr and IP addr
+        if (ns.getInterfaces() == null) {
+            log.append("Could not load interface list\n");
+            return;
+        }
+        for (int i = 0; i < ns.getInterfaces().size(); i++) {
+            log.append("(" + i + ")\n");
+            log.append(ns.getInterfaces().get(i).getName() + "\n");
+            log.append(ns.getInterfaces().get(i).getDescription() + "\n");
+            List<PcapAddress> addresses = ns.getInterfaces().get(i).getAddresses();
+            for (PcapAddress addr: addresses) {
+                if (addr.getAddress() instanceof Inet4Address) {
+                    log.append("IPv4: " + addr.getAddress().toString().replace("/", "") + "\n");
+                    log.append("Subnet Mask: " + addr.getNetmask() + "\n");
+                }
+                if (addr.getAddress() instanceof Inet6Address) {
+                    log.append("IPv6: " + addr.getAddress().toString().replace("/", "") + "\n");
+                    log.append("Subnet Mask: " + addr.getNetmask() + "\n");
+                }
+            }
 
-            //log.append("\n ________________________________________________________________________\n");
-        //}
+            log.append("\n ________________________________________________________________________\n");
+        }
     }
 
     /**
      * Assigns port to listen
+     *
      * @param portNum port
      */
     public static void assignPort(int portNum, boolean b) {
-        isInPanel(portNum, b);
-    }
-    public static void isInPanel(int portNum, boolean b) {
         switch (portNum) {
             case 20, 21: {
                 FTPrad.setSelected(b);

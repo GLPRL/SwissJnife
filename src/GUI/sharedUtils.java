@@ -1,7 +1,6 @@
 package GUI;
 import Logics.EncDec.AESData;
-import jpcap.NetworkInterface;
-import jpcap.NetworkInterfaceAddress;
+
 import org.jetbrains.annotations.NotNull;
 
 import javax.crypto.SecretKey;
@@ -213,46 +212,6 @@ public class sharedUtils {
         aesData.setKey(secretKey);
         aesData.setIv(ivParameterSpec);
         return aesData;
-    }
-
-    /**
-     * Formatting MAC Address string
-     * @param mac MAC addr.
-     * @return formatted string
-     */
-    public static String formatMac(byte[] mac) {
-        StringBuilder sb = new StringBuilder();
-        for (byte b: mac) {
-            sb.append(String.format("%02X:", b));
-        }
-        return sb.substring(0, sb.length() - 1).replace("/", "");
-    }
-
-    /**
-     * Formatting IP Address string
-     * @param addr IP addr.
-     * @return formatted string
-     */
-    public static String formatIP(NetworkInterfaceAddress[] addr) {
-        StringBuilder sb = new StringBuilder();
-        for (NetworkInterfaceAddress address: addr) {
-            sb.append(address.address).append(" ");
-        }
-        return sb.toString().replace("/", "");
-    }
-
-    /**
-     * Formatting Subnet Mask string
-     * @param dev device
-     * @return formatted string
-     */
-    public static String getSubnetMask(NetworkInterface dev) {
-        NetworkInterfaceAddress[] addresses = dev.addresses;
-        if (addresses[0].subnet != null) {
-            return addresses[0].subnet.toString();
-        } else {
-            return "N/A";
-        }
     }
     public static void setSnifferBtn(JButton btn, String name, Color c) {
         btn.setText(name);

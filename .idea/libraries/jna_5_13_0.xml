@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="jpcap">
+  <library name="jna-5.13.0">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/jpcap.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jna-5.13.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
