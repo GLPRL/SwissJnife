@@ -1,5 +1,6 @@
 package Logics.sniffer;
 
+import GUI.sharedUtils;
 import jpcap.*;
 
 import javax.swing.*;
@@ -30,5 +31,10 @@ public class netSniffer {
     public void listen(JTextArea log) {
 
 
+    }
+    public String getNetworkInterfaceInfo() {
+        return "Listening on: \n" + networkInterface.description + "\n" +
+                "IP: " + sharedUtils.formatIP(networkInterface.addresses) + "\nMAC: " +
+                sharedUtils.formatMac(networkInterface.mac_address);
     }
 }

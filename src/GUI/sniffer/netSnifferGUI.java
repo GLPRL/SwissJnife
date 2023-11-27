@@ -365,6 +365,7 @@ public class netSnifferGUI {
                 allPorts.setEnabled(false);
                 status.setText("Status");
                 startBtn.setBackground(Color.GREEN);
+                interfaceInfo.setText("");
                 startBtn.setText("Start");
                 snifferThread.interrupt();
             }
@@ -445,10 +446,11 @@ public class netSnifferGUI {
         interfaceInfo.setCursor(sharedUtils.DEFAULT_CURSOR);
         interfaceInfo.setEditable(false);
         interfaceInfo.setForeground(sharedUtils.c0554);
-        interfaceInfo.setMinimumSize(new Dimension(150, 80));
-        interfaceInfo.setMinimumSize(new Dimension(150, 80));
         interfaceInfo.setBackground(sharedUtils.x3231);
-        panel.add(interfaceInfo);
+        interfaceInfo.setFont(sharedUtils.MONO_PLAIN_11);
+        JScrollPane pane = new JScrollPane(interfaceInfo);
+        pane.setPreferredSize(new Dimension(150, 80));
+        panel.add(pane);
         return panel;
     }
 
@@ -508,11 +510,12 @@ public class netSnifferGUI {
         interfaceSet.addActionListener(e -> {
             if (!interfaceText.getText().isEmpty()) {
                 int interfaceID = Integer.parseInt(interfaceText.getText());
-                if (interfaceID >= ns.getInterfaces().length || interfaceID <= 0) {
+                if (interfaceID >= ns.getInterfaces().length || interfaceID < 0) {
                     interfaceInfo.setText("Wrong interface ID");
                 } else {
                     ns.setNetworkInterface(interfaceID);
                     interfaceInfo.setText("");
+                    interfaceInfo.setText(ns.getNetworkInterfaceInfo());
                     setBtnLock(true);
                     interfaceText.setEnabled(false);
                 }
@@ -546,7 +549,7 @@ public class netSnifferGUI {
      */
     public static void printInterfaceList(NetworkInterface[] devices) {
         log.setText("");
-        for (int i = 1; i < devices.length; i++) {
+        for (int i = 0; i < devices.length; i++) {
             log.append("(" + i + ")\nName: " + devices[i].name);
             log.append("\nDescription: " + devices[i].description);
             log.append("\nDatalink name: " + devices[i].datalink_name);
