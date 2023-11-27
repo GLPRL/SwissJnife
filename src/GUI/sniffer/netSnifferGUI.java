@@ -3,12 +3,12 @@ package GUI.sniffer;
 import GUI.mainGUI;
 import GUI.sharedUtils;
 import Logics.sniffer.netSniffer;
-import jpcap.NetworkInterface;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
+import java.io.IOException;
 
 /**
  * GUI for network analyzer.
@@ -317,7 +317,15 @@ public class netSnifferGUI {
                 }
 
                 log.setText("");
-                snifferThread = new Thread(() -> ns.listen(log));
+                snifferThread = new Thread(() -> {
+                    //try {
+                        //TODO: LISTEN
+                        //ns.listen(log);
+                    //} catch (IOException ex) {
+                    //    sharedUtils.errorPopup("Error while listening", frame);
+                    //    throw new RuntimeException(ex);
+                    //}
+                });
                 snifferThread.start();
                 startBtn.setBackground(Color.YELLOW);
                 startBtn.setText("Stop");
@@ -444,8 +452,8 @@ public class netSnifferGUI {
 
         interfaceList = new JButton("List");
         interfaceList.addActionListener(e -> {
-            NetworkInterface[] networkInterfaces = ns.listInterfaces();
-            printInterfaceList(networkInterfaces);
+            //TODO: List all the interfaces and print to log
+
             interfaceSet.setEnabled(true);
             interfaceText.setEnabled(true);
         });
@@ -472,12 +480,14 @@ public class netSnifferGUI {
         interfaceSet.addActionListener(e -> {
             if (!interfaceText.getText().isEmpty()) {
                 int interfaceID = Integer.parseInt(interfaceText.getText());
-                if (interfaceID >= ns.getInterfaces().length || interfaceID < 0) {
+                //TODO: check for list of interfaces, that if the user entered incorrect ID then give a message.
+                if (true/*interfaceID >= ns.getInterfaces().length || interfaceID < 0*/) {
                     interfaceInfo.setText("Wrong interface ID");
                 } else {
-                    ns.setNetworkInterface(interfaceID);
+                    //TODO: set the target interface to the ID selected
+                    //ns.setNetworkInterface(interfaceID);
                     interfaceInfo.setText("");
-                    interfaceInfo.setText(ns.getNetworkInterfaceInfo());
+                    //TODO: print the info to the -> interfaceInfo.setText(ns.getNetworkInterfaceInfo());
                     setBtnLock(true);
                     interfaceText.setEnabled(false);
                 }
@@ -507,20 +517,14 @@ public class netSnifferGUI {
 
     /**
      * lists all the available interfaces.
-     * @param devices list of interfaces
      */
-    public static void printInterfaceList(NetworkInterface[] devices) {
+    public static void printInterfaceList(/*devices*/) {
         log.setText("");
-        for (int i = 0; i < devices.length; i++) {
-            log.append("(" + i + ")\nName: " + devices[i].name);
-            log.append("\nDescription: " + devices[i].description);
-            log.append("\nDatalink name: " + devices[i].datalink_name);
-            log.append("\nDatalink desc.: " + devices[i].datalink_description);
-            log.append("\nMAC: " + sharedUtils.formatMac(devices[i].mac_address));
-            log.append("\nIP: " + sharedUtils.formatIP(devices[i].addresses));
-            log.append("\nSubnet Mask: " + sharedUtils.getSubnetMask(devices[i]));
-            log.append("\n ________________________________________________________________________\n");
-        }
+        //for (int i = 0; i < devices.length; i++) {
+            //Print device name, desc & datalink name, desc. mac addr and IP addr
+
+            //log.append("\n ________________________________________________________________________\n");
+        //}
     }
 
     /**
