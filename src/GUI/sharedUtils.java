@@ -1,23 +1,75 @@
 package GUI;
 import Logics.EncDec.AESData;
+
 import org.jetbrains.annotations.NotNull;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.plaf.basic.BasicRadioButtonUI;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Objects;
 
 
 public class sharedUtils {
-    static Color normal = new Color(150, 245, 222);
-    static Color onHover = new Color(118, 192, 173);
-    static Color ret = new Color(255, 48, 62, 255);
+    public static Color normal = new Color(150, 245, 222);
+    public static Color onHover = new Color(118, 192, 173);
+    public static Color ret = new Color(255, 48, 62, 255);
+    public static Font TAHOMA_PLAIN_13= new Font("Tahoma", Font.PLAIN, 13);
+    public static Font TAHOMA_BOLD_12 = new Font("Tahoma", Font.BOLD, 12);
+    public static Font TAHOMA_PLAIN_12 = new Font("Tahoma", Font.PLAIN, 12);
+    public static Font MONO_PLAIN_12 = new Font("Monospaced", Font.PLAIN, 12);
+    public static Font MONO_PLAIN_11 = new Font("Monospaced", Font.PLAIN, 11);
+    public static Font TAHOMA_BOLD_11 = new Font("Tahoma", Font.BOLD, 11);
+    public static Font TAHOMA_PLAIN_11 = new Font("Tahoma", Font.PLAIN, 11);
+    public static Color x3189 = new Color(189,189,189);
+    public static Color c213241250= new Color(213, 241, 250);
+    public static Color c0554 = new Color(0, 5, 54);
+    public static Color x3231 = new Color(231, 231, 231);
+    public static Color c00112 = new Color(0, 0, 112);
+    public static Cursor HAND_CURSOR = new Cursor(Cursor.HAND_CURSOR);
+    public static Cursor TEXT_CURSOR = new Cursor(Cursor.TEXT_CURSOR);
+    public static Cursor DEFAULT_CURSOR = new Cursor(Cursor.DEFAULT_CURSOR);
+    public static Component W0_H10 = Box.createRigidArea(new Dimension(0, 10));
+    public static Component W0_H10_2 = Box.createRigidArea(new Dimension(0, 10));
+    public static Component W0_H10_3 = Box.createRigidArea(new Dimension(0, 10));
+    public static Component W0_H10_4 = Box.createRigidArea(new Dimension(0, 10));
+    public static Component W0_H15 = Box.createRigidArea(new Dimension(0, 15));
+    public static Component W5_H0 = Box.createRigidArea(new Dimension(5,0));
+    public static Component W10_H0 = Box.createRigidArea(new Dimension(10, 0));
+    public static Component W10_H0_2 = Box.createRigidArea(new Dimension(10, 0));
+    public static Component W10_H70 = Box.createRigidArea(new Dimension(10, 70));
+    public static Component W10_H5 = Box.createRigidArea(new Dimension(10, 5));
+    public static PlainDocument numericOnly = new PlainDocument() {
+        @Override
+        public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException {
+            if (str == null) {
+                return;
+            }
+            if (str.matches("\\d*") && !str.isEmpty()) {
+                super.insertString(offset, str, attr);
+            }
+        }
+    };
+    public static PlainDocument numericOnly2 = new PlainDocument() {
+        @Override
+        public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException {
+            if (str == null) {
+                return;
+            }
+            if (str.matches("\\d*") && !str.isEmpty()) {
+                super.insertString(offset, str, attr);
+            }
+        }
+    };
 
     /**
      * Clear the screen of a given panel
@@ -36,8 +88,9 @@ public class sharedUtils {
      * @param btn button to set
      */
     public static void setGeneralButton(JButton btn) {
+        btn.setFont(TAHOMA_BOLD_12);
         btn.setBackground(normal);
-        btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btn.setCursor(HAND_CURSOR);
         btn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -53,7 +106,7 @@ public class sharedUtils {
         });
     }
     public static void setRetButton(JButton btn, JDialog popup) {
-        btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btn.setCursor(HAND_CURSOR);
         btn.setBackground(ret);
         btn.addActionListener(e -> popup.dispose());
     }
@@ -68,8 +121,8 @@ public class sharedUtils {
         popup.setAlwaysOnTop(true);
         popup.setSize(280, 110);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = (screenSize.width - frame.getWidth()) / 2;
-        int y = (screenSize.height - frame.getHeight()) / 2;
+        int x = (screenSize.width - frame.getWidth()) / 2 + 140;
+        int y = (screenSize.height - frame.getHeight()) / 2 + 55;
         popup.setLocation(x, y);
         popup.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         popup.setTitle("Error");
@@ -86,7 +139,7 @@ public class sharedUtils {
         retBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         popupPanel.add(messageLabel);
-        popupPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        popupPanel.add(W0_H10);
         popupPanel.add(retBtn);
         popup.add(popupPanel);
         popup.setVisible(true);
@@ -159,5 +212,23 @@ public class sharedUtils {
         aesData.setKey(secretKey);
         aesData.setIv(ivParameterSpec);
         return aesData;
+    }
+    public static void setSnifferBtn(JButton btn, String name, Color c) {
+        btn.setText(name);
+        btn.setBackground(c);
+        btn.setCursor(HAND_CURSOR);
+        btn.setFont(TAHOMA_BOLD_11);
+        btn.setHorizontalAlignment(SwingConstants.CENTER);
+        btn.setAlignmentX(Component.CENTER_ALIGNMENT);
+        noFocusBorder(btn);
+        btn.setPreferredSize(new Dimension(75, 20));
+        btn.setMinimumSize(new Dimension(75, 20));
+        btn.setMaximumSize(new Dimension(75, 20));
+    }
+    public static TitledBorder getTitledBorder(String title) {
+        TitledBorder tb = new TitledBorder(new LineBorder(Color.BLACK), title);
+        tb.setTitleColor(Color.BLACK);
+        tb.setTitleJustification(TitledBorder.CENTER);
+        return tb;
     }
 }

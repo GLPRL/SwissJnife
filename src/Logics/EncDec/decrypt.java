@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 
 
 public class decrypt {
@@ -50,6 +51,9 @@ public class decrypt {
         }
         inputStream.close();
         outputStream.close();
+
+        Arrays.fill(data.getKey().getEncoded(), (byte) 0);
+        Arrays.fill(data.getIv().getIV(), (byte) 0);
     }
 
 }

@@ -18,6 +18,7 @@ import java.net.URISyntaxException;
 public class mainGUI {
     JFrame frame;
     JPanel panel;
+    JButton exitBtn;
 
     /**
      * Constructor.
@@ -34,8 +35,7 @@ public class mainGUI {
         contentPane.setLayout(new FlowLayout(FlowLayout.CENTER));
         createMenuBar();
         panel = new JPanel();                               //Main panel settings
-        BoxLayout box = new BoxLayout(panel, BoxLayout.X_AXIS);
-        panel.setLayout(box);
+        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         panel.setBackground(Color.WHITE);
         frame.add(panel);
     }
@@ -57,6 +57,7 @@ public class mainGUI {
         JMenuItem uri = createGitHubURI(border);
         file.add(uri);
         JMenuItem exit = new JMenuItem("Exit");
+        exit.setCursor(sharedUtils.HAND_CURSOR);
         exit.setBorder(border);
         file.add(exit);
         menu.add(file);
@@ -96,30 +97,25 @@ public class mainGUI {
         uri.setBorder(border);
         return uri;
     }
-
     /**
      * General method, creating the content of the main GUI
      */
     public void createContent() {
         panel.removeAll();
-        JPanel panel1 = new JPanel();                               //First column setup
-        BoxLayout box1 = new BoxLayout(panel1, BoxLayout.Y_AXIS);
-
-        //Create first column
-        panel1.setLayout(box1);
+        JPanel panel1 = new JPanel();
+        panel1.setLayout(new BoxLayout(panel1, BoxLayout.Y_AXIS));
         panel1.setAlignmentY(Component.TOP_ALIGNMENT);
         panel1.removeAll();
 
-        Component rigidArea = Box.createRigidArea(new Dimension(10, 5));
-        rigidArea.setBackground(Color.WHITE);
-        this.panel.add(rigidArea);
+        sharedUtils.W10_H5.setBackground(Color.WHITE);
+        this.panel.add(sharedUtils.W10_H5);
 
         //Create encrypt file button
         JButton encBtn = new JButton("Encrypt File");
         sharedUtils.noFocusBorder(encBtn);
         sharedUtils.setGeneralButton(encBtn);
         panel1.add(encBtn);
-        panel1.add(rigidArea);
+        panel1.add(sharedUtils.W10_H5);
 
         //Create decrypt file button
         JButton decBtn = new JButton("Decrypt File");
@@ -130,8 +126,7 @@ public class mainGUI {
 
         //Create second column
         JPanel panel2 = new JPanel();
-        BoxLayout box2 = new BoxLayout(panel2, BoxLayout.Y_AXIS);
-        panel2.setLayout(box2);
+        panel2.setLayout(new BoxLayout(panel2, BoxLayout.Y_AXIS));
         panel2.setAlignmentY(Component.TOP_ALIGNMENT);
         panel2.removeAll();
 
@@ -141,8 +136,7 @@ public class mainGUI {
         panel2.add(vulScan);
 
         JPanel panel3 = new JPanel();
-        BoxLayout box3 = new BoxLayout(panel3, BoxLayout.Y_AXIS);
-        panel3.setLayout(box3);
+        panel3.setLayout(new BoxLayout(panel3, BoxLayout.Y_AXIS));
         panel3.setAlignmentY(Component.TOP_ALIGNMENT);
         panel3.removeAll();
 
@@ -154,14 +148,21 @@ public class mainGUI {
         //Add listeners
         setClickListeners(encBtn, decBtn, vulScan, sniff);
 
-        Component component = Box.createRigidArea(new Dimension(10, 10));
-        component.setBackground(Color.WHITE);
-        this.panel.add(component);
+        this.panel.add(sharedUtils.W10_H0);
         this.panel.add(panel1);
-        this.panel.add(Box.createRigidArea(new Dimension(10, 0)));
+        this.panel.add(sharedUtils.W10_H0);
         this.panel.add(panel2);
-        this.panel.add(Box.createRigidArea(new Dimension(10, 0)));
+        this.panel.add(sharedUtils.W10_H0_2);
         this.panel.add(panel3);
+
+        exitBtn = new JButton("Exit");
+        exitBtn.setCursor(sharedUtils.HAND_CURSOR);
+        sharedUtils.noFocusBorder(exitBtn);
+        exitBtn.setBackground(Color.RED);
+        exitBtn.setFont(sharedUtils.TAHOMA_BOLD_12);
+        exitBtn.addActionListener(e -> frame.dispose());
+        frame.add(sharedUtils.W10_H70);
+        frame.add(exitBtn);
     }
 
     /**
@@ -171,7 +172,6 @@ public class mainGUI {
         createContent();
         frame.setSize(650, 150);
         frame.setLocation(sharedUtils.centerFrame(this.frame));
-        // Show
         frame.setVisible(true);
     }
 
@@ -185,19 +185,22 @@ public class mainGUI {
     public void setClickListeners(JButton encBtn, JButton decBtn, JButton vulScan, JButton sniff) {
         encBtn.addActionListener(e -> {
             sharedUtils.clearScreen(panel);
+            frame.remove(exitBtn);
             encryptGUI gui = new encryptGUI(frame);
             gui.presentGui(mainGUI.this);
         });
         decBtn.addActionListener(e -> {
             sharedUtils.clearScreen(panel);
+            frame.remove(exitBtn);
             decryptGUI gui = new decryptGUI(frame);
             gui.presentGui(mainGUI.this);
         });
         vulScan.addActionListener(e -> {
-            //TODO
+            sharedUtils.errorPopup("Feature is not yet available", frame);
         });
         sniff.addActionListener(e -> {
             sharedUtils.clearScreen(panel);
+            frame.remove(exitBtn);
             netSnifferGUI gui = new netSnifferGUI(frame);
             gui.presentGui(mainGUI.this);
         });

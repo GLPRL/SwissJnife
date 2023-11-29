@@ -4,15 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="Destroying the key using arrays fill method.&#10;still need to take care if the string isnt correct.">
+    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="transition from jpcap to pcap4j.">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/pcap4j_2_0_0_alpha_6_javadoc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/pcap4j_core_2_0_0_alpha_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/pcap4j_packetfactory_propertiesbased_2_0_0_alpha_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/pcap4j_packetfactory_static_2_0_0_alpha_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/pcap4j_sample_2_0_0_alpha_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/slf4j_api_2_0_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/jna-5.13.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/pcap4j-2.0.0-alpha.6-javadoc.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/pcap4j-core-2.0.0-alpha.6.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/pcap4j-packetfactory-propertiesbased-2.0.0-alpha.6.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/pcap4j-packetfactory-static-2.0.0-alpha.6.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/pcap4j-sample-2.0.0-alpha.6.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/slf4j-api-2.0.9.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logback.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/jpcap.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/jna_5_13_0.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/EncDec/decryptGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/EncDec/decryptGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwissJnife.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SwissJnife.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/sharedUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/sharedUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Logics/sniffer/netSniffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logics/sniffer/netSniffer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -24,7 +44,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="gal_sniffingGUI" />
+        <entry key="$PROJECT_DIR$" value="gal_finishDec" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -59,32 +79,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;gal__finishDec&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/galpe/IdeaProjects/SwissJnife/lib/jpcap.jar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.20146905&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.31578946&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "gal__sniffer",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/galpe/IdeaProjects/SwissJnife/lib/slf4j-api-2.0.9.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.20703125",
+    "project.structure.side.proportion": "0.43451652",
+    "settings.editor.selected.configurable": "editor.preferences.import",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\galpe\IdeaProjects\SwissJnife\src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\galpe\IdeaProjects\SwissJnife\src" />
     </key>
   </component>
@@ -257,87 +282,14 @@
       <workItem from="1700813324965" duration="2501000" />
       <workItem from="1700815867440" duration="10546000" />
       <workItem from="1700832941963" duration="6368000" />
-      <workItem from="1700907631167" duration="1285000" />
-    </task>
-    <task id="LOCAL‎-00001" summary="code re-organization">
-      <option name="closed" value="true" />
-      <created>1698403128855</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL‎-00001" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1698403128855</updated>
-    </task>
-    <task id="LOCAL‎-00002" summary="button generator function">
-      <option name="closed" value="true" />
-      <created>1698413635729</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL‎-00002" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1698413635729</updated>
-    </task>
-    <task id="LOCAL‎-00003" summary="encryptGUI new class for encrypting process.&#10;mainGUI: frame is a member in class, creation of buttons is with conditions for applying the correct behavior.">
-      <option name="closed" value="true" />
-      <created>1698505470487</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL‎-00003" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1698505470487</updated>
-    </task>
-    <task id="LOCAL‎-00004" summary="GUI modifications">
-      <option name="closed" value="true" />
-      <created>1698569083219</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL‎-00004" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1698569083219</updated>
-    </task>
-    <task id="LOCAL‎-00005" summary="GUI modifications and bug fix">
-      <option name="closed" value="true" />
-      <created>1698573130402</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL‎-00005" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1698573130402</updated>
-    </task>
-    <task id="LOCAL‎-00006" summary="Code organization">
-      <option name="closed" value="true" />
-      <created>1698588624659</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL‎-00006" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1698588624659</updated>
-    </task>
-    <task id="LOCAL‎-00007" summary="decrypt.java : prep for decryption process.&#10;&#10;encrypt.java : prep for encryption process.&#10;&#10;encryptGUI.java : got a file chooser.&#10;&#10;added notnull annotations">
-      <option name="closed" value="true" />
-      <created>1698589440383</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL‎-00007" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1698589440383</updated>
-    </task>
-    <task id="LOCAL‎-00008" summary="decrypt.java : prep for decryption process.&#10;&#10;encrypt.java : prep for encryption process.&#10;&#10;encryptGUI.java : got a file chooser.&#10;&#10;added notnull annotations">
-      <option name="closed" value="true" />
-      <created>1698597745540</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL‎-00008" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1698597745540</updated>
-    </task>
-    <task id="LOCAL‎-00009" summary="Started basics for reading from a given file in encrypt.java">
-      <option name="closed" value="true" />
-      <created>1698608694005</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL‎-00009" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1698608694005</updated>
-    </task>
-    <task id="LOCAL‎-00010" summary="catch exception edited">
-      <option name="closed" value="true" />
-      <created>1698646834649</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL‎-00010" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1698646834649</updated>
+      <workItem from="1700907631167" duration="6258000" />
+      <workItem from="1700988559403" duration="8023000" />
+      <workItem from="1701065497374" duration="8372000" />
+      <workItem from="1701080299270" duration="1822000" />
+      <workItem from="1701085586584" duration="1268000" />
+      <workItem from="1701089814856" duration="622000" />
+      <workItem from="1701097131732" duration="1737000" />
+      <workItem from="1701098906537" duration="6501000" />
     </task>
     <task id="LOCAL‎-00011" summary="encrypt.java : reading from src file and writing into dest file works.&#10;sharedUtils.java : contains utilities shared among files in logics package.">
       <option name="closed" value="true" />
@@ -595,7 +547,143 @@
       <option name="project" value="LOCAL‎" />
       <updated>1700839318311</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL‎-00043" summary="Dealing with incorrect/empty strings correctly.&#10;errorpopup is always on top.">
+      <option name="closed" value="true" />
+      <created>1700909001495</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL‎-00043" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700909001495</updated>
+    </task>
+    <task id="LOCAL‎-00044" summary="set an exit button in main gui.&#10;removing all the components of netSnifferGUI.java correctly.">
+      <option name="closed" value="true" />
+      <created>1700910079285</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL‎-00044" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700910079285</updated>
+    </task>
+    <task id="LOCAL‎-00045" summary="mainGUI correctly removes exit button when moving between guis.&#10;added getInterfaces and listen, that will run in thread. changed setnetworkinterface.&#10;general gui improvements, to prevent errors and improve error handling, interface# receives only a number.">
+      <option name="closed" value="true" />
+      <created>1700913720033</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL‎-00045" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700913720033</updated>
+    </task>
+    <task id="LOCAL‎-00046" summary="Code organization and cleanup.">
+      <option name="closed" value="true" />
+      <created>1700991045551</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL‎-00046" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700991045551</updated>
+    </task>
+    <task id="LOCAL‎-00047" summary="Code organization and cleanup.">
+      <option name="closed" value="true" />
+      <created>1700991214518</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL‎-00047" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700991214519</updated>
+    </task>
+    <task id="LOCAL‎-00048" summary="Code organization and cleanup.">
+      <option name="closed" value="true" />
+      <created>1700994125326</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL‎-00048" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700994125326</updated>
+    </task>
+    <task id="LOCAL‎-00049" summary="Code organization and cleanup.">
+      <option name="closed" value="true" />
+      <created>1700996771506</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL‎-00049" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700996771506</updated>
+    </task>
+    <task id="LOCAL‎-00050" summary="Code organization and cleanup.">
+      <option name="closed" value="true" />
+      <created>1700996908760</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL‎-00050" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700996908761</updated>
+    </task>
+    <task id="LOCAL‎-00051" summary="Code organization and cleanup.">
+      <option name="closed" value="true" />
+      <created>1700996930574</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL‎-00051" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1700996930574</updated>
+    </task>
+    <task id="LOCAL‎-00052" summary="GUI improvements">
+      <option name="closed" value="true" />
+      <created>1701066445367</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL‎-00052" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1701066445368</updated>
+    </task>
+    <task id="LOCAL‎-00053" summary="GUI improvements">
+      <option name="closed" value="true" />
+      <created>1701070107003</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL‎-00053" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1701070107003</updated>
+    </task>
+    <task id="LOCAL‎-00054" summary="sharedUtils.java corrected location for error popup.&#10;self scanner isn't available yet, so presenting a message indicating that.">
+      <option name="closed" value="true" />
+      <created>1701077952332</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL‎-00054" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1701077952332</updated>
+    </task>
+    <task id="LOCAL‎-00055" summary="Improved behavior of start/stop button.&#10;When setting the interface, general information will be displayed to it's right">
+      <option name="closed" value="true" />
+      <created>1701079893254</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL‎-00055" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1701079893255</updated>
+    </task>
+    <task id="LOCAL‎-00056" summary="further code arrangement">
+      <option name="closed" value="true" />
+      <created>1701081969592</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL‎-00056" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1701081969593</updated>
+    </task>
+    <task id="LOCAL‎-00057" summary="Tested listening thread">
+      <option name="closed" value="true" />
+      <created>1701085739403</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL‎-00057" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1701085739403</updated>
+    </task>
+    <task id="LOCAL‎-00058" summary="Added:&#10;If hit listen/delete for a specified port that is in the list shown above, then the button will be toggled/untoggled.">
+      <option name="closed" value="true" />
+      <created>1701086833415</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL‎-00058" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1701086833415</updated>
+    </task>
+    <task id="LOCAL‎-00059" summary="removed JPCAP. not viable library.">
+      <option name="closed" value="true" />
+      <created>1701100771670</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL‎-00059" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1701100771670</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -625,18 +713,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="removed comments and added text for file selection" />
-    <MESSAGE value="Introduced Global class, for storing data required along several files." />
-    <MESSAGE value="Tested decryption, work correctly.&#10;Changed the alteration of filenames when encrypting and decrypting." />
-    <MESSAGE value="decryptGUI.java:&#10;removed popup&#10;encryptGUI.java:&#10;presenting the key iv pair for the user to save, in case the program is being closed, for decrypting the file.&#10;encrypt: fetching the byte array" />
-    <MESSAGE value="decryptGUI.java:&#10;removed popup, added better logging in case of a failure.&#10;encryptGUI.java:&#10;presenting the key iv pair for the user to save, in case the program is being closed, for decrypting the file.&#10;encrypt: fetching the byte array" />
-    <MESSAGE value="decryptGUI.java:&#10;removed popup, added better logging in case of a failure.&#10;encryptGUI.java:&#10;presenting the key iv pair for the user to save, in case the program is being closed, for decrypting the file.&#10;encrypt: fetching the byte array,&#10;asserting the key is not null" />
-    <MESSAGE value="Added JMenu, visual changes to copy IV and key to clipboard, is done with buttons instead of showing the plain text.&#10;Some GUI changes as well." />
-    <MESSAGE value="fw -&gt; sniffer" />
-    <MESSAGE value="mainGUI.java:&#10;Added a top menu.&#10;Project on Github works and opens browser on the github project." />
-    <MESSAGE value="mainGUI.java:&#10;Added a top menu.&#10;Project on Github works and opens browser on the github project.&#10;misc visual improvements." />
-    <MESSAGE value="changed description of button" />
-    <MESSAGE value="General code cleanup and re-organization.&#10;Introduced error popups." />
     <MESSAGE value="further cleanup,&#10;added packages, added jpcap." />
     <MESSAGE value="further cleanup,&#10;added packages, added jpcap, instance holder to Global as well." />
     <MESSAGE value="Code re-organization, comments.&#10;created some of the GUI for sniffer.&#10;removed the border that appears on click," />
@@ -650,6 +726,28 @@
     <MESSAGE value="added required jars and dlls for jpcap" />
     <MESSAGE value="Removed global class.&#10;Added error message if failed destroying the key.&#10;When decrypting, program will ask user to input the key and vector each time.&#10;*need to deal with case if the key/iv are wrongly inputted" />
     <MESSAGE value="Destroying the key using arrays fill method.&#10;still need to take care if the string isnt correct." />
-    <option name="LAST_COMMIT_MESSAGE" value="Destroying the key using arrays fill method.&#10;still need to take care if the string isnt correct." />
+    <MESSAGE value="Dealing with incorrect/empty strings correctly.&#10;errorpopup is always on top." />
+    <MESSAGE value="set an exit button in main gui.&#10;removing all the components of netSnifferGUI.java correctly." />
+    <MESSAGE value="mainGUI correctly removes exit button when moving between guis.&#10;added getInterfaces and listen, that will run in thread. changed setnetworkinterface.&#10;general gui improvements, to prevent errors and improve error handling, interface# receives only a number." />
+    <MESSAGE value="Code organization and cleanup." />
+    <MESSAGE value="GUI improvements" />
+    <MESSAGE value="sharedUtils.java corrected location for error popup.&#10;self scanner isn't available yet, so presenting a message indicating that." />
+    <MESSAGE value="Improved behavior of start/stop button.&#10;When setting the interface, general information will be displayed to it's right" />
+    <MESSAGE value="further code arrangement" />
+    <MESSAGE value="Tested listening thread" />
+    <MESSAGE value="Added:&#10;If hit listen/delete for a specified port that is in the list shown above, then the button will be toggled/untoggled." />
+    <MESSAGE value="removed JPCAP. not viable library." />
+    <MESSAGE value="transition from jpcap to pcap4j." />
+    <option name="LAST_COMMIT_MESSAGE" value="transition from jpcap to pcap4j." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NoClassDefFoundError" package="java.lang" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
