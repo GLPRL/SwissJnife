@@ -1,5 +1,5 @@
 # SwissJnife - WIP
-Developed by Gal Pearl & Yonatan 
+Developed by Gal Pearl & Yonatan Volsky
 
 SwissJnife is a multi tool written in Java, currently featuring file encryption / decryption and a network sniffer (scanner is currently in progress).
 
