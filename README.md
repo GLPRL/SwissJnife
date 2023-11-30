@@ -5,6 +5,7 @@ SwissJnife is a multi tool written in Java, currently featuring file encryption 
 
 Requirements & Dependencies:
 - Installed Java (https://www.java.com)
+- Java annotations library (https://github.com/JetBrains/java-annotations)*
 - pcap4j (https://www.pcap4j.org)*
 - JNA (https://github.com/java-native-access/jna)*
 - SLF4J (https://www.slf4j.org)*
@@ -24,3 +25,12 @@ The decrypted file will be with the name suffix Dec.
 
 ## Network Sniffer Tool
 WIP
+
+## Compilation & Running instructions:
+**using Java** - 
+Windows systems:
+```javac -cp .;./lib/pcap4j-core-2.0.0-alpha.6.jar;./lib/* -d ./bin src/*.java src/GUI/*.java src/Logics/*.java src/GUI/EncDec/*.java src/GUI/sniffer/*.java src/Logics/EncDec/*.java src/Logics/sniffer/*.java```
+```java -cp .;./lib/pcap4j-core-2.0.0-alpha.6.jar;./lib/*;./bin Main```
+Linux systems:
+```javac -cp .:./lib/pcap4j-core-2.0.0-alpha.6.jar:./lib/* -d ./bin src/*.java src/GUI/*.java src/Logics/*.java src/GUI/EncDec/*.java src/GUI/sniffer/*.java src/Logics/EncDec/*.java src/Logics/sniffer/*.java```
+```java -cp .:./lib/pcap4j-core-2.0.0-alpha.6.jar:./lib/*:./bin Main```
