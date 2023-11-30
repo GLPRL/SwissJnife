@@ -1,8 +1,6 @@
 package GUI;
 import Logics.EncDec.AESData;
 
-import org.jetbrains.annotations.NotNull;
-
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -75,7 +73,7 @@ public class sharedUtils {
      * Clear the screen of a given panel
      * @param panel to clear
      */
-    public static void clearScreen(@NotNull JPanel panel) {
+    public static void clearScreen(JPanel panel) {
         panel.removeAll();
         SwingUtilities.invokeLater(() -> {
             panel.revalidate();

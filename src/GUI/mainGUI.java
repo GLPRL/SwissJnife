@@ -3,7 +3,6 @@ package GUI;
 import GUI.EncDec.decryptGUI;
 import GUI.EncDec.encryptGUI;
 import GUI.sniffer.netSnifferGUI;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -80,7 +79,6 @@ public class mainGUI {
      * @param border border of the JMenuItem
      * @return the item of the URI link
      */
-    @NotNull
     private JMenuItem createGitHubURI(Border border) {
         JMenuItem uri = new JMenuItem("Project on Github");
         uri.addActionListener(e -> {
