@@ -34,14 +34,12 @@ git clone https://github.com/GLPRL/SwissJnife/
 cd SwissJnife
 ```
 Now, you can choose how to run the project:
-Using a provided .bat file for windows, you can run the file run_SwissJnife.bat using ```run_SwissJnife```
+
 ### using Java - 
 
 Windows systems:
 
-```javac -cp .;./lib/pcap4j-core-2.0.0-alpha.6.jar;./lib/* -d ./bin src/*.java src/GUI/*.java src/Logics/*.java src/GUI/EncDec/*.java src/GUI/sniffer/*.java src/Logics/EncDec/*.java src/Logics/sniffer/*.java```
-
-```java -cp .;./lib/pcap4j-core-2.0.0-alpha.6.jar;./lib/*;./bin Main```
+Using a provided .bat file for windows, you can run the file run_SwissJnife.bat using ```run_SwissJnife```
 
 ### Built in batch :
 
