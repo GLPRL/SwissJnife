@@ -15,6 +15,7 @@ import java.util.List;
 public class netSniffer {
     List<PcapNetworkInterface> interfaces;
     PcapNetworkInterface networkInterface;
+
     public netSniffer() {
 
     }
@@ -51,7 +52,10 @@ public class netSniffer {
         return networkInterface.getName() + "\n" + networkInterface.getDescription() + "\n"
                 + ipv4 + "\n" + ipv6;
     }
-    public void listen(JTextArea log) {
-
+    public void listen(JTextArea log, List<Integer> ports) {
+        log.setText("Listening on: \n");
+        for (Integer port : ports) {
+            log.append(port + " ");
+        }
     }
 }
