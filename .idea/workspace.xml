@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="Corrected behavior of ports selection, synced between the text field and the toggle buttons.&#10;created runnable script for windows.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_swissJnife.bat" beforeDir="false" afterPath="$PROJECT_DIR$/run_swissJnife.bat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Logics/sniffer/netSniffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logics/sniffer/netSniffer.java" afterDir="false" />
     </list>
@@ -277,15 +276,7 @@
       <workItem from="1701255792124" duration="771000" />
       <workItem from="1701331989751" duration="1894000" />
       <workItem from="1701335134509" duration="309000" />
-      <workItem from="1701337619952" duration="3262000" />
-    </task>
-    <task id="LOCAL‎-00014" summary="encryptGUI.java : removed the return button. will return after encryption is done, will show also some loading bar, in the center (WIP)&#10;&#10;mainGUI.java : added buttons for firewall configuration and self host scanning for vulnerabilities.&#10;TODO.">
-      <option name="closed" value="true" />
-      <created>1698660727241</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL‎-00014" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1698660727241</updated>
+      <workItem from="1701337619952" duration="13790000" />
     </task>
     <task id="LOCAL‎-00015" summary="Encryption works.&#10;TODO some progress bar">
       <option name="closed" value="true" />
@@ -671,7 +662,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1701334481341</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL‎-00063" summary="Corrected behavior of ports selection, synced between the text field and the toggle buttons.&#10;created runnable script for windows.">
+      <option name="closed" value="true" />
+      <created>1701341066847</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL‎-00063" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1701341066847</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -735,6 +734,36 @@
           <properties class="java.lang.NoClassDefFoundError" package="java.lang" />
           <option name="timeStamp" value="3" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java</url>
+          <line>823</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java</url>
+          <line>825</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java</url>
+          <line>826</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java</url>
+          <line>827</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java</url>
+          <line>828</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java</url>
+          <line>824</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

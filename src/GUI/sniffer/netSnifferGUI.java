@@ -17,6 +17,8 @@ import java.util.List;
  * GUI for network analyzer.
  */
 public class netSnifferGUI {
+    static boolean ALL_PORTS = false;
+    static boolean FILTER_PORTS = true;
     static JFrame frame;
     static netSniffer ns;
     static JTextArea log;
@@ -83,7 +85,7 @@ public class netSnifferGUI {
     }
     public void setToggleListeners() {
         FTPrad.addActionListener(e -> {
-            if (TELNETrad.isSelected()) {
+            if (FTPrad.isSelected()) {
                 ports.add(20);
                 ports.add(21);
             } else {
@@ -93,7 +95,7 @@ public class netSnifferGUI {
         });
 
         SSHrad.addActionListener(e -> {
-            if (TELNETrad.isSelected()) {
+            if (SSHrad.isSelected()) {
                 ports.add(22);
             } else {
                 ports.remove(Integer.valueOf(22));
@@ -107,64 +109,63 @@ public class netSnifferGUI {
             }
         });
         SMTPrad.addActionListener(e -> {
-            if (TELNETrad.isSelected()) {
+            if (SMTPrad.isSelected()) {
                 ports.add(25);
             } else {
                 ports.remove(Integer.valueOf(25));
             }
         });
         DNSrad.addActionListener(e -> {
-            if (TELNETrad.isSelected()) {
+            if (DNSrad.isSelected()) {
                 ports.add(53);
             } else {
                 ports.remove(Integer.valueOf(53));
             }
         });
         HTTPrad.addActionListener(e -> {
-            if (TELNETrad.isSelected()) {
+            if (HTTPrad.isSelected()) {
                 ports.add(80);
             } else {
                 ports.remove(Integer.valueOf(80));
             }
         });
         POP3rad.addActionListener(e -> {
-            if (TELNETrad.isSelected()) {
+            if (POP3rad.isSelected()) {
                 ports.add(110);
             } else {
                 ports.remove(Integer.valueOf(110));
             }
         });
         IMAPrad.addActionListener(e -> {
-            if (TELNETrad.isSelected()) {
+            if (IMAPrad.isSelected()) {
                 ports.add(143);
             } else {
                 ports.remove(Integer.valueOf(143));
             }
         });
         SNMPrad.addActionListener(e -> {
-            if (TELNETrad.isSelected()) {
+            if (SNMPrad.isSelected()) {
                 ports.add(161);
             } else {
                 ports.remove(Integer.valueOf(161));
             }
         });
         LDAPrad.addActionListener(e -> {
-            if (TELNETrad.isSelected()) {
+            if (LDAPrad.isSelected()) {
                 ports.add(389);
             } else {
                 ports.remove(Integer.valueOf(389));
             }
         });
         HTTPSrad.addActionListener(e -> {
-            if (TELNETrad.isSelected()) {
+            if (HTTPSrad.isSelected()) {
                 ports.add(443);
             } else {
                 ports.remove(Integer.valueOf(443));
             }
         });
         RDPrad.addActionListener(e -> {
-            ports.add(3389);
-            if (TELNETrad.isSelected()) {
+            if (RDPrad.isSelected()) {
                 ports.add(3389);
             } else {
                 ports.remove(Integer.valueOf(3389));
@@ -358,7 +359,10 @@ public class netSnifferGUI {
         addPortBtn = new JButton();
         sharedUtils.setSnifferBtn(addPortBtn, "Listen", Color.GREEN);
         addPortBtn.addActionListener(e -> {
-            assignPort(Integer.parseInt(customPort.getText()), true);
+            int temp = Integer.parseInt(customPort.getText());
+            if (temp >= 0 && temp <= 65535) {
+                assignPort(Integer.parseInt(customPort.getText()), true);
+            }
             customPort.setText("");
         });
         misc.add(Box.createRigidArea(new Dimension(5, 0)));
@@ -428,7 +432,33 @@ public class netSnifferGUI {
                 interfaceList.setEnabled(false);
                 interfaceSet.setEnabled(false);
                 log.setText("");
-                snifferThread = new Thread(() -> ns.listen(log, ports));
+                snifferThread = new Thread(() -> {
+                    if (!filterPorts.isSelected() && !allPorts.isSelected()) {
+                        if (ports.isEmpty()) {
+                            allPorts.setSelected(true);
+                            filterPorts.setSelected(false);
+                            ns.listen(log, ports, ALL_PORTS);
+                            log.append("Listening on all ports\n");
+                        } else {
+                            allPorts.setSelected(false);
+                            filterPorts.setSelected(true);
+                            logPorts();
+                            ns.listen(log, ports, FILTER_PORTS);
+                        }
+                    }
+                    if (allPorts.isSelected()) {
+                        log.append("Listening on all ports\n");
+                        ns.listen(log, ports, ALL_PORTS);
+                    }
+                    if (filterPorts.isSelected()) {
+                        if (ports.isEmpty()) {
+                            log.append("No ports selected for filtering");
+                        } else {
+                            logPorts();
+                            ns.listen(log, ports, FILTER_PORTS);
+                        }
+                    }
+                });
                 snifferThread.start();
                 startBtn.setBackground(Color.YELLOW);
                 startBtn.setText("Stop");
@@ -442,6 +472,7 @@ public class netSnifferGUI {
                 customPort.setEnabled(true);
                 interfaceList.setEnabled(true);
                 interfaceSet.setEnabled(true);
+                startBtn.setEnabled(false);
                 status.setText("Status");
                 startBtn.setBackground(Color.GREEN);
                 interfaceInfo.setText("");
@@ -467,6 +498,18 @@ public class netSnifferGUI {
 
 
         return panel;
+    }
+
+    private static void logPorts() {
+        log.setText("Listening on: \n");
+        for (int i = 0; i < ports.size(); i++) {
+            if (i < ports.size() - 1) {
+                log.append(ports.get(i) + ", ");
+            } else {
+                log.append(ports.get(i) + "\n");
+            }
+        }
+
     }
 
     public static JPanel createFilterStatusPanel() {
@@ -598,7 +641,7 @@ public class netSnifferGUI {
                     //TODO: set the target interface to the ID selected
                     ns.setNetworkInterface(interfaceID);
                     interfaceInfo.setText("");
-                    interfaceInfo.setText(ns.getNetworkInterfaceInfo());
+                    interfaceInfo.setText(ns.getNetworkInterfaceInfo().replace("/", ""));
                     setBtnLock(true);
                     interfaceText.setEnabled(false);
                 }
