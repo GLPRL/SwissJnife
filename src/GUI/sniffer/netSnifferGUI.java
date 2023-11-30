@@ -3,7 +3,6 @@ package GUI.sniffer;
 import GUI.mainGUI;
 import GUI.sharedUtils;
 import Logics.sniffer.netSniffer;
-import org.jetbrains.annotations.NotNull;
 import org.pcap4j.core.PcapAddress;
 
 import javax.swing.*;
@@ -58,7 +57,7 @@ public class netSnifferGUI {
      *
      * @param frame programs' window.
      */
-    public netSnifferGUI(@NotNull JFrame frame) {
+    public netSnifferGUI(JFrame frame) {
         ns = new netSniffer();
         mainPanel = new JPanel();
         mainPanel.setLayout(new FlowLayout());
@@ -233,7 +232,6 @@ public class netSnifferGUI {
      *
      * @return new panel
      */
-    @NotNull
     private static JPanel getColPanel() {
         JPanel col = new JPanel();
         col.setLayout(new BoxLayout(col, BoxLayout.Y_AXIS));
@@ -246,7 +244,6 @@ public class netSnifferGUI {
      *
      * @return panel for filtering custom ports
      */
-    @NotNull
     private static JPanel customPortPanel() {
         JPanel misc = new JPanel();
         misc.setLayout(new BoxLayout(misc, BoxLayout.X_AXIS));
@@ -435,7 +432,6 @@ public class netSnifferGUI {
      *
      * @return panel contains all of the above
      */
-    @NotNull
     private static JPanel getInterfacesPanel() {
         JPanel interfacePanel = new JPanel();
         interfacePanel.setBorder(new EtchedBorder());

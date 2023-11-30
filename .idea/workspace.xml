@@ -4,27 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="transition from jpcap to pcap4j.">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/pcap4j_2_0_0_alpha_6_javadoc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/pcap4j_core_2_0_0_alpha_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/pcap4j_packetfactory_propertiesbased_2_0_0_alpha_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/pcap4j_packetfactory_static_2_0_0_alpha_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/pcap4j_sample_2_0_0_alpha_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/slf4j_api_2_0_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/jna-5.13.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pcap4j-2.0.0-alpha.6-javadoc.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pcap4j-core-2.0.0-alpha.6.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pcap4j-packetfactory-propertiesbased-2.0.0-alpha.6.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pcap4j-packetfactory-static-2.0.0-alpha.6.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pcap4j-sample-2.0.0-alpha.6.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/slf4j-api-2.0.9.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logback.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jpcap.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/jna_5_13_0.xml" afterDir="false" />
+    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="added annotations jar file">
+      <change afterPath="$PROJECT_DIR$/run_swissJnife.bat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwissJnife.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SwissJnife.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/mainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/mainGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/sharedUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/sharedUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logics/sniffer/netSniffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logics/sniffer/netSniffer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,32 +64,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "gal__sniffer",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/galpe/IdeaProjects/SwissJnife/lib/slf4j-api-2.0.9.jar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.20703125",
-    "project.structure.side.proportion": "0.43451652",
-    "settings.editor.selected.configurable": "editor.preferences.import",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;gal__sniffer&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/galpe/IdeaProjects/SwissJnife/lib/slf4j-api-2.0.9.jar&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.20703125&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.43451652&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.import&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\galpe\IdeaProjects\SwissJnife\src" />
@@ -289,23 +274,9 @@
       <workItem from="1701085586584" duration="1268000" />
       <workItem from="1701089814856" duration="622000" />
       <workItem from="1701097131732" duration="1737000" />
-      <workItem from="1701098906537" duration="6501000" />
-    </task>
-    <task id="LOCAL‎-00011" summary="encrypt.java : reading from src file and writing into dest file works.&#10;sharedUtils.java : contains utilities shared among files in logics package.">
-      <option name="closed" value="true" />
-      <created>1698650600199</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL‎-00011" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1698650600199</updated>
-    </task>
-    <task id="LOCAL‎-00012" summary="encrypt.java : changing the main running function. better encrypt by chunks and not whole file content.&#10;created key and IV generators.">
-      <option name="closed" value="true" />
-      <created>1698658297009</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL‎-00012" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1698658297009</updated>
+      <workItem from="1701098906537" duration="6560000" />
+      <workItem from="1701255792124" duration="771000" />
+      <workItem from="1701331989751" duration="1771000" />
     </task>
     <task id="LOCAL‎-00013" summary="encryptGUI.java : removed the return button. will return after encryption is done, will show also some loading bar, in the center (WIP)&#10;&#10;mainGUI.java : added buttons for firewall configuration and self host scanning for vulnerabilities.&#10;TODO.">
       <option name="closed" value="true" />
@@ -683,7 +654,23 @@
       <option name="project" value="LOCAL‎" />
       <updated>1701100771670</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL‎-00060" summary="transition from jpcap to pcap4j.">
+      <option name="closed" value="true" />
+      <created>1701105633210</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL‎-00060" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1701105633210</updated>
+    </task>
+    <task id="LOCAL‎-00061" summary="added annotations jar file">
+      <option name="closed" value="true" />
+      <created>1701332323676</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL‎-00061" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1701332323676</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -700,7 +687,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/yoni_newDecrypt" />
+                        <option value="gal_sniffer" />
                       </list>
                     </value>
                   </entry>
@@ -713,7 +700,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="further cleanup,&#10;added packages, added jpcap." />
     <MESSAGE value="further cleanup,&#10;added packages, added jpcap, instance holder to Global as well." />
     <MESSAGE value="Code re-organization, comments.&#10;created some of the GUI for sniffer.&#10;removed the border that appears on click," />
     <MESSAGE value="Port filtering finished, code organization." />
@@ -738,7 +724,8 @@
     <MESSAGE value="Added:&#10;If hit listen/delete for a specified port that is in the list shown above, then the button will be toggled/untoggled." />
     <MESSAGE value="removed JPCAP. not viable library." />
     <MESSAGE value="transition from jpcap to pcap4j." />
-    <option name="LAST_COMMIT_MESSAGE" value="transition from jpcap to pcap4j." />
+    <MESSAGE value="added annotations jar file" />
+    <option name="LAST_COMMIT_MESSAGE" value="added annotations jar file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
