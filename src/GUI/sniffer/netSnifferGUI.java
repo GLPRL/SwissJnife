@@ -359,9 +359,11 @@ public class netSnifferGUI {
         addPortBtn = new JButton();
         sharedUtils.setSnifferBtn(addPortBtn, "Listen", Color.GREEN);
         addPortBtn.addActionListener(e -> {
-            int temp = Integer.parseInt(customPort.getText());
-            if (temp >= 0 && temp <= 65535) {
-                assignPort(Integer.parseInt(customPort.getText()), true);
+            if (customPort.getText() != "") {
+                int temp = Integer.parseInt(customPort.getText());
+                if (temp >= 0 && temp <= 65535) {
+                    assignPort(Integer.parseInt(customPort.getText()), true);
+                }
             }
             customPort.setText("");
         });
@@ -371,7 +373,9 @@ public class netSnifferGUI {
         removePortBtn = new JButton();
         sharedUtils.setSnifferBtn(removePortBtn, "Delete", Color.RED);
         removePortBtn.addActionListener(e -> {
-            assignPort(Integer.parseInt(customPort.getText()), false);
+            if (customPort.getText() != "") {
+                assignPort(Integer.parseInt(customPort.getText()), false);
+            }
             customPort.setText("");
         });
         removePortBtn.setBackground(Color.RED);
@@ -477,7 +481,6 @@ public class netSnifferGUI {
                 interfaceInfo.setText("");
                 startBtn.setText("Start");
                 snifferThread.interrupt();
-                log.setText("Stopped Listening");
             }
 
         });
@@ -492,6 +495,7 @@ public class netSnifferGUI {
             interfaceText.setText("");
             customPort.setText("");
             gui.presentGUI();
+            snifferThread.interrupt();
         });
         panel.add(Box.createRigidArea(new Dimension(0, 5)));
         panel.add(exitBtn);
