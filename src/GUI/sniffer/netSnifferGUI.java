@@ -436,32 +436,35 @@ public class netSnifferGUI {
                 interfaceList.setEnabled(false);
                 interfaceSet.setEnabled(false);
                 log.setText("");
-                snifferThread = new Thread(() -> {
-                    if (!filterPorts.isSelected() && !allPorts.isSelected()) {
-                        if (ports.isEmpty()) {
-                            allPorts.setSelected(true);
-                            filterPorts.setSelected(false);
-                            status.setText("Disabled (All Ports)");
-                            ns.listen(log, ports, ALL_PORTS);
-                        } else {
-                            allPorts.setSelected(false);
-                            filterPorts.setSelected(true);
-                            status.setText("Enabled (Using Filter)");
-                            ns.listen(log, ports, FILTER_PORTS);
-                        }
+                if (!filterPorts.isSelected() && !allPorts.isSelected()) {
+                    if (ports.isEmpty()) {
+                        allPorts.setSelected(true);
+                        filterPorts.setSelected(false);
+                        status.setText("Disabled (All Ports)");
+                        log.append("Listening on all ports\n");
+                        snifferThread = new Thread(() -> ns.listen(log, ports, ALL_PORTS));
+
+                    } else {
+                        allPorts.setSelected(false);
+                        filterPorts.setSelected(true);
+                        status.setText("Enabled (Using Filter)");
+                        log.append("Listening on:\n");
+                        logPorts(log, ports);
+                        snifferThread = new Thread(() -> ns.listen(log, ports, FILTER_PORTS));
                     }
-                    if (allPorts.isSelected()) {
-                        ns.listen(log, ports, ALL_PORTS);
+                } else if (allPorts.isSelected()) {
+                    log.append("Listening on all ports\n");
+                    snifferThread = new Thread(() -> ns.listen(log, ports, ALL_PORTS));
+                } else if (filterPorts.isSelected()) {
+                    if (ports.isEmpty()) {
+                        log.append("No ports selected for filtering");
+                    } else {
+                        status.setText("Enabled (Using Filter)");
+                        log.append("Listening on:\n");
+                        logPorts(log, ports);
+                        snifferThread = new Thread(() -> ns.listen(log, ports, FILTER_PORTS));
                     }
-                    if (filterPorts.isSelected()) {
-                        if (ports.isEmpty()) {
-                            log.append("No ports selected for filtering");
-                        } else {
-                            status.setText("Enabled (Using Filter)");
-                            ns.listen(log, ports, FILTER_PORTS);
-                        }
-                    }
-                });
+                }
                 snifferThread.start();
                 startBtn.setBackground(Color.YELLOW);
                 startBtn.setText("Stop");
@@ -826,5 +829,15 @@ public class netSnifferGUI {
                 }
             }
         }
+    }
+    private static void logPorts(JTextArea log, List<Integer> ports) {
+        for (int i = 0; i < ports.size(); i++) {
+            if (i < ports.size() - 1) {
+                log.append(ports.get(i) + ", ");
+            } else {
+                log.append(ports.get(i) + "\n");
+            }
+        }
+        log.append("=======================================================================\n");
     }
 }

@@ -37,6 +37,7 @@ public class netSniffer {
     public PcapNetworkInterface getNetworkInterface() {
         return networkInterface;
     }
+
     public void setNetworkInterface(int index) {
         networkInterface = interfaces.get(index);
     }
@@ -58,19 +59,18 @@ public class netSniffer {
     public void listen(JTextArea log, List<Integer> ports, boolean filterPorts) {
         IpV4Packet ipV4Packet;
         if (!filterPorts) {             //No filtering, listening to all ports
-            log.append("Listening on all ports\n");
             try {
                 PcapHandle handle = networkInterface.openLive(65536,
                         PcapNetworkInterface.PromiscuousMode.PROMISCUOUS, 100000);
                 boolean contList = true;
-                while(contList) {
+                while (contList) {
                     Packet packet = handle.getNextPacketEx();
 
                     ipV4Packet = packet.get(IpV4Packet.class);
                     if (ipV4Packet != null) {
                         printData(ipV4Packet, log, packet);
                     }
-                    if(Thread.interrupted()) {
+                    if (Thread.interrupted()) {
                         contList = false;
                     }
                 }
@@ -82,39 +82,33 @@ public class netSniffer {
             }
 
         } else {                        //Filtering is active, listening to selected ports
-            log.append("Listening on ports:\n");
-            logPorts(log, ports);
+
             try {
                 PcapHandle handle = networkInterface.openLive(65536,
                         PcapNetworkInterface.PromiscuousMode.PROMISCUOUS, 100000);
                 boolean contList = true;
-                while(contList) {
+                while (contList) {
                     Packet packet = handle.getNextPacketEx();
                     ipV4Packet = packet.get(IpV4Packet.class);
                     if (ipV4Packet != null) {
                         if (ipV4Packet.getPayload() != null) {
-                            if (ipV4Packet.getPayload() instanceof TcpPacket) {
-                                if(checkPort(ports, ipV4Packet.getPayload(), true)) {
-                                    printData(ipV4Packet, log, packet);
+                            if (ipV4Packet.getPayload() instanceof TcpPacket) {             //is TCP packet
+                                if (checkPort(ports, ipV4Packet.getPayload(), true)) {
+                                    IpV4Packet finalIpV4Packet = ipV4Packet;
+                                    SwingUtilities.invokeLater(() -> printData(finalIpV4Packet, log, packet));
                                 }
-                        }
-
-                        } else {
-                            if (ipV4Packet.getPayload() != null) {
-                                if (ipV4Packet.getPayload() instanceof UdpPacket) {
-                                    if (checkPort(ports, ipV4Packet.getPayload(), true)) {
-                                        printData(ipV4Packet, log, packet);
-                                    }
+                            } else if (ipV4Packet.getPayload() instanceof UdpPacket) {      //is UDP packet
+                                if (checkPort(ports, ipV4Packet.getPayload(), false)) {
+                                    IpV4Packet finalIpV4Packet = ipV4Packet;
+                                    SwingUtilities.invokeLater(() -> printData(finalIpV4Packet, log, packet));
                                 }
                             }
                         }
                     }
-                    if(Thread.interrupted()) {
+                    if (Thread.interrupted()) {
                         contList = false;
                     }
                 }
-                log.setText("Stopped listening on: \n");
-                logPorts(log, ports);
 
             } catch (PcapNativeException | NotOpenException | TimeoutException | EOFException e) {
                 log.append(Arrays.toString(e.getStackTrace()));
@@ -122,6 +116,7 @@ public class netSniffer {
 
         }
     }
+
     private boolean checkPort(List<Integer> ports, Packet payload, boolean isTCP) {
         int srcPort;
         int dstPort;
@@ -134,6 +129,7 @@ public class netSniffer {
         }
         return ports.contains(srcPort) || ports.contains(dstPort);
     }
+
     private void printData(IpV4Packet ipV4Packet, JTextArea log, Packet packet) {
         String portString = "N/A";
         IpNumber protocol;
@@ -150,7 +146,7 @@ public class netSniffer {
                 int destPort = getDstPort(payload, true);
                 portString = "\nSrcPort: " + srcPort + ", DstPort: " + destPort;
             } else if (payload instanceof UdpPacket) {
-                int srcPort = getSrcPort(payload ,false);
+                int srcPort = getSrcPort(payload, false);
                 int destPort = getDstPort(payload, false);
                 portString = "\nSrcPort: " + srcPort + ", DstPort: " + destPort;
             }
@@ -164,22 +160,15 @@ public class netSniffer {
             log.append("_______________________________________________________________________\n");
         }
     }
-    private static void logPorts(JTextArea log, List<Integer> ports) {
-        for (int i = 0; i < ports.size(); i++) {
-            if (i < ports.size() - 1) {
-                log.append(ports.get(i) + ", ");
-            } else {
-                log.append(ports.get(i) + "\n");
-            }
-        }
 
-    }
     private String getSrcMAC(Packet packet) {
         return String.valueOf(packet.get(EthernetPacket.class).getHeader().getSrcAddr());
     }
+
     private String getDstMAC(Packet packet) {
         return String.valueOf(packet.get(EthernetPacket.class).getHeader().getDstAddr());
     }
+
     private int getSrcPort(Packet payload, boolean isTCP) {
         if (isTCP) {
             return ((TcpPacket) payload).getHeader().getSrcPort().valueAsInt();
@@ -187,6 +176,7 @@ public class netSniffer {
             return ((UdpPacket) payload).getHeader().getSrcPort().valueAsInt();
         }
     }
+
     private int getDstPort(Packet payload, boolean isTCP) {
         if (isTCP) {
             return ((TcpPacket) payload).getHeader().getDstPort().valueAsInt();
@@ -194,12 +184,15 @@ public class netSniffer {
             return ((UdpPacket) payload).getHeader().getDstPort().valueAsInt();
         }
     }
+
     private String getSrcAddr(IpV4Packet ipV4Packet) {
         return ipV4Packet.getHeader().getSrcAddr().toString().replace("/", "");
     }
+
     private String getDstAdd(IpV4Packet ipV4Packet) {
         return ipV4Packet.getHeader().getDstAddr().toString().replace("/", "");
     }
+
     private IpNumber getProtocol(IpV4Packet ipV4Packet) {
         return ipV4Packet.getHeader().getProtocol();
     }
