@@ -15,6 +15,7 @@ Requirements & Dependencies:
 Our GUI is created using SWING Java Library as front end for user-friendly use of the tools.
 
 ## File Encryption Tool
+<sub> by Gal Pearl & Yonatan Volsky </sub>
 We based our encryption and decryption on AES/CBC with PKS5 padding algorithm, all of those to enhance the security of the algorithm.
 After encrypting a selected file, you'll be required to securely save the key and the initialization vectors (IV), as they will be removed post encryption.
 During decryption, you'll be required to provide the same key and initialization vector (IV) as AES is a symmetric encryption algorithm.
@@ -24,7 +25,23 @@ For decrypting it, you will need to choose the very same encrypted file, provide
 The decrypted file will be with the name suffix Dec.
 
 ## Network Sniffer Tool
-WIP
+<sub> by Gal Pearl </sub>
+
+Using pcap4j library & Swing, I build a user friendly network analyzer, that is capable of reading from all the ports or selected ones only.
+First, list the available network interfaces and set the target using the IDs provided. Afterwards, select the ports (or leave them as is) that are your scope,
+from the buttons panel or a custom port of your choice.
+On applying of the filtering (or not) Using enable/disable filtering radio buttons, you can quick select of general sniffing or more scoped one.
+<sub> If a filtering option was selected and no ports were targeted then it wont work </sub>
+If none of the buttons was selected, then the program will consider it's current parameters and act accordingly.
+While listening to traffic, you will not be able to change the scope, unless you stop the sniffing thread and update the scope.
+
+For each TCP/UDP packet captured, the information that will be displayed is:
+- Source/Destination IPs, Ports and MAC addresses (if available).
+- TTL, Protocol.
+
+Overview:
+![image](https://github.com/GLPRL/SwissJnife/assets/116657293/297c3b43-cc04-423e-bbb2-1c9e93929835)
+
 
 ## Compilation & Running instructions:
 
