@@ -34,10 +34,6 @@ public class netSniffer {
         }
     }
 
-    public PcapNetworkInterface getNetworkInterface() {
-        return networkInterface;
-    }
-
     public void setNetworkInterface(int index) {
         networkInterface = interfaces.get(index);
     }
@@ -74,7 +70,7 @@ public class netSniffer {
                         contList = false;
                     }
                 }
-                log.append("=======================================================================");
+                log.append("=======================================================================\n");
                 log.append("Stopped listening on all ports");
 
             } catch (PcapNativeException | NotOpenException | TimeoutException | EOFException e) {
@@ -82,7 +78,6 @@ public class netSniffer {
             }
 
         } else {                        //Filtering is active, listening to selected ports
-
             try {
                 PcapHandle handle = networkInterface.openLive(65536,
                         PcapNetworkInterface.PromiscuousMode.PROMISCUOUS, 100000);
@@ -108,6 +103,8 @@ public class netSniffer {
                     if (Thread.interrupted()) {
                         contList = false;
                     }
+                    log.append("=======================================================================\n");
+                    log.append("Stopped listening on selected ports");
                 }
 
             } catch (PcapNativeException | NotOpenException | TimeoutException | EOFException e) {

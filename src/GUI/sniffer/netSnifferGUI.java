@@ -35,6 +35,7 @@ public class netSnifferGUI {
     static JButton addPortBtn;
     static JButton removePortBtn;
     static JButton startBtn;
+    static JButton clearBtn;
     static JButton exitBtn;
     static JTextArea interfaceInfo;
     static JButton interfaceList;
@@ -488,6 +489,12 @@ public class netSnifferGUI {
 
         });
 
+        clearBtn = new JButton();
+        sharedUtils.setSnifferBtn(clearBtn, "Clear", sharedUtils.normal);
+        clearBtn.addActionListener(e -> log.setText(""));
+        panel.add(Box.createRigidArea(new Dimension(0, 5)));
+        panel.add(clearBtn);
+
         exitBtn = new JButton();
         sharedUtils.setSnifferBtn(exitBtn, "Exit", Color.RED);
         exitBtn.addActionListener(e -> {
@@ -687,6 +694,15 @@ public class netSnifferGUI {
         }
     }
 
+    public static void controlPorts(boolean b, int portNum, JToggleButton btn) {
+        btn.setSelected(b);
+        if (b && !ports.contains(portNum)) {
+            ports.add(22);
+        }
+        if (!b && ports.contains(portNum)) {
+            ports.remove(Integer.valueOf(22));
+        }
+    }
     /**
      * Assigns port to listen
      * @param portNum port
@@ -694,142 +710,69 @@ public class netSnifferGUI {
     public static void assignPort(int portNum, boolean b) {
         switch (portNum) {
             case 20, 21: {
-                FTPrad.setSelected(b);
-                if (b && !ports.contains(portNum)) {
-                    ports.add(20);
-                    ports.add(21);
-                }
-                if (!b && ports.contains(portNum)) {
-                    ports.remove(Integer.valueOf(20));
-                    ports.remove(Integer.valueOf(21));
-                }
-
+                controlPorts(b, 20, FTPrad);
+                controlPorts(b, 21, FTPrad);
                 break;
             }
             case 22: {
-                SSHrad.setSelected(b);
-                if (b && !ports.contains(portNum)) {
-                    ports.add(22);
-                }
-                if (!b && ports.contains(portNum)) {
-                    ports.remove(Integer.valueOf(22));
-                }
+                controlPorts(b, 22, SSHrad);
                 break;
             }
             case 23: {
-                TELNETrad.setSelected(b);
-                if (b && !ports.contains(portNum)) {
-                    ports.add(23);
-                }
-                if (!b && ports.contains(portNum)) {
-                    ports.remove(Integer.valueOf(23));
-                }
-
+                controlPorts(b, 23, TELNETrad);
                 break;
             }
             case 25: {
-                SMTPrad.setSelected(b);
-                if (b && !ports.contains(portNum)) {
-                    ports.add(25);
-                }
-                if (!b && ports.contains(portNum)) {
-                    ports.remove(Integer.valueOf(25));
-                }
+                controlPorts(b, 25, SMTPrad);
                 break;
             }
             case 53: {
-                DNSrad.setSelected(b);
-                if (b && !ports.contains(portNum)) {
-                    ports.add(53);
-                }
-                if (!b && ports.contains(portNum)) {
-                    ports.remove(Integer.valueOf(53));
-                }
+                controlPorts(b, 53, DNSrad);
                 break;
             }
             case 80: {
-                HTTPrad.setSelected(b);
-                if (b && !ports.contains(portNum)) {
-                    ports.add(80);
-                }
-                if (!b && ports.contains(portNum)) {
-                    ports.remove(Integer.valueOf(80));
-                }
+                controlPorts(b, 80, HTTPrad);
                 break;
             }
             case 110: {
-                POP3rad.setSelected(b);
-                if (b && !ports.contains(portNum)) {
-                    ports.add(110);
-                }
-                if (!b && ports.contains(portNum)) {
-                    ports.remove(Integer.valueOf(110));
-                }
+                controlPorts(b, 110, POP3rad);
                 break;
             }
             case 143: {
-                IMAPrad.setSelected(b);
-                if (b && !ports.contains(portNum)) {
-                    ports.add(143);
-                }
-                if (!b && ports.contains(portNum)) {
-                    ports.remove(Integer.valueOf(143));
-                }
+                controlPorts(b, 143, IMAPrad);
                 break;
             }
             case 161: {
-                SNMPrad.setSelected(b);
-                if (b && !ports.contains(portNum)) {
-                    ports.add(161);
-                }
-                if (!b && ports.contains(portNum)) {
-                    ports.remove(Integer.valueOf(161));
-                }
+                controlPorts(b, 161, SNMPrad);
                 break;
             }
             case 389: {
-                LDAPrad.setSelected(b);
-                if (b && !ports.contains(portNum)) {
-                    ports.add(389);
-                }
-                if (!b && ports.contains(portNum)) {
-                    ports.remove(Integer.valueOf(389));
-                }
+                controlPorts(b, 389, LDAPrad);
                 break;
             }
             case 443: {
-                HTTPSrad.setSelected(b);
-                if (b && !ports.contains(portNum)) {
-                    ports.add(443);
-                }
-                if (!b && ports.contains(portNum)) {
-                        ports.remove(Integer.valueOf(443));
-                }
+                controlPorts(b, 443, HTTPSrad);
                 break;
             }
             case 3389: {
-                RDPrad.setSelected(b);
-                if (b && !ports.contains(portNum)) {
-                    ports.add(3389);
-                }
-                if (!b && ports.contains(portNum)) {
-                    ports.remove(Integer.valueOf(3389));
-                }
+                controlPorts(b, 3389, RDPrad);
                 break;
             }
             default: {
                 if (b && !ports.contains(portNum)) {
-                    if (!ports.contains(portNum)) {
-                        ports.add(portNum);
-                    }
-                } else {
-                    if (ports.contains(portNum)) {
-                        ports.remove(Integer.valueOf(portNum));
-                    }
+                    ports.add(portNum);
+                } else if(!b && ports.contains(portNum)) {
+                    ports.remove(Integer.valueOf(portNum));
                 }
             }
         }
     }
+
+    /**
+     * Write ports to log
+     * @param log destination
+     * @param ports list
+     */
     private static void logPorts(JTextArea log, List<Integer> ports) {
         for (int i = 0; i < ports.size(); i++) {
             if (i < ports.size() - 1) {
