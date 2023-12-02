@@ -10,12 +10,15 @@ import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import java.net.Inet4Address;
 import java.net.Inet6Address;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * GUI for network analyzer.
  */
 public class netSnifferGUI {
+    static boolean ALL_PORTS = false;
+    static boolean FILTER_PORTS = true;
     static JFrame frame;
     static netSniffer ns;
     static JTextArea log;
@@ -32,6 +35,7 @@ public class netSnifferGUI {
     static JButton addPortBtn;
     static JButton removePortBtn;
     static JButton startBtn;
+    static JButton clearBtn;
     static JButton exitBtn;
     static JTextArea interfaceInfo;
     static JButton interfaceList;
@@ -51,6 +55,7 @@ public class netSnifferGUI {
     static JToggleButton LDAPrad = new JToggleButton("LDAP (389)");
     static JToggleButton HTTPSrad = new JToggleButton("HTTPS (443)");
     static JToggleButton RDPrad = new JToggleButton("RDP (3389)");
+    static List<Integer> ports = new ArrayList<>();
 
     /**
      * Constructor
@@ -77,8 +82,97 @@ public class netSnifferGUI {
         netSnifferGUI.frame.setSize(860, 650);
         netSnifferGUI.frame.setLocation(sharedUtils.centerFrame(netSnifferGUI.frame));
         netSnifferGUI.frame.add(mainPanel);
+        setToggleListeners();
     }
+    public void setToggleListeners() {
+        FTPrad.addActionListener(e -> {
+            if (FTPrad.isSelected()) {
+                ports.add(20);
+                ports.add(21);
+            } else {
+                ports.remove(Integer.valueOf(20));
+                ports.remove(Integer.valueOf(21));
+            }
+        });
 
+        SSHrad.addActionListener(e -> {
+            if (SSHrad.isSelected()) {
+                ports.add(22);
+            } else {
+                ports.remove(Integer.valueOf(22));
+            }
+        });
+        TELNETrad.addActionListener(e -> {
+            if (TELNETrad.isSelected()) {
+                ports.add(23);
+            } else {
+                ports.remove(Integer.valueOf(23));
+            }
+        });
+        SMTPrad.addActionListener(e -> {
+            if (SMTPrad.isSelected()) {
+                ports.add(25);
+            } else {
+                ports.remove(Integer.valueOf(25));
+            }
+        });
+        DNSrad.addActionListener(e -> {
+            if (DNSrad.isSelected()) {
+                ports.add(53);
+            } else {
+                ports.remove(Integer.valueOf(53));
+            }
+        });
+        HTTPrad.addActionListener(e -> {
+            if (HTTPrad.isSelected()) {
+                ports.add(80);
+            } else {
+                ports.remove(Integer.valueOf(80));
+            }
+        });
+        POP3rad.addActionListener(e -> {
+            if (POP3rad.isSelected()) {
+                ports.add(110);
+            } else {
+                ports.remove(Integer.valueOf(110));
+            }
+        });
+        IMAPrad.addActionListener(e -> {
+            if (IMAPrad.isSelected()) {
+                ports.add(143);
+            } else {
+                ports.remove(Integer.valueOf(143));
+            }
+        });
+        SNMPrad.addActionListener(e -> {
+            if (SNMPrad.isSelected()) {
+                ports.add(161);
+            } else {
+                ports.remove(Integer.valueOf(161));
+            }
+        });
+        LDAPrad.addActionListener(e -> {
+            if (LDAPrad.isSelected()) {
+                ports.add(389);
+            } else {
+                ports.remove(Integer.valueOf(389));
+            }
+        });
+        HTTPSrad.addActionListener(e -> {
+            if (HTTPSrad.isSelected()) {
+                ports.add(443);
+            } else {
+                ports.remove(Integer.valueOf(443));
+            }
+        });
+        RDPrad.addActionListener(e -> {
+            if (RDPrad.isSelected()) {
+                ports.add(3389);
+            } else {
+                ports.remove(Integer.valueOf(3389));
+            }
+        });
+    }
     /**
      * Present the sniffers' gui
      *
@@ -134,7 +228,6 @@ public class netSnifferGUI {
 
     /**
      * Sets locking status for the buttons
-     *
      * @param b is locked
      */
     public static void setBtnLock(boolean b) {
@@ -267,7 +360,12 @@ public class netSnifferGUI {
         addPortBtn = new JButton();
         sharedUtils.setSnifferBtn(addPortBtn, "Listen", Color.GREEN);
         addPortBtn.addActionListener(e -> {
-            assignPort(Integer.parseInt(customPort.getText()), true);
+            if (customPort.getText() != "") {
+                int temp = Integer.parseInt(customPort.getText());
+                if (temp >= 0 && temp <= 65535) {
+                    assignPort(Integer.parseInt(customPort.getText()), true);
+                }
+            }
             customPort.setText("");
         });
         misc.add(Box.createRigidArea(new Dimension(5, 0)));
@@ -276,7 +374,9 @@ public class netSnifferGUI {
         removePortBtn = new JButton();
         sharedUtils.setSnifferBtn(removePortBtn, "Delete", Color.RED);
         removePortBtn.addActionListener(e -> {
-            assignPort(Integer.parseInt(customPort.getText()), false);
+            if (customPort.getText() != "") {
+                assignPort(Integer.parseInt(customPort.getText()), false);
+            }
             customPort.setText("");
         });
         removePortBtn.setBackground(Color.RED);
@@ -323,41 +423,89 @@ public class netSnifferGUI {
         panel.add(startBtn);
         startBtn.addActionListener(e -> {
             if (startBtn.getText().equals("Start")) {
-                if (!allPorts.isSelected() || !filterPorts.isSelected()) {
+                if (ports.isEmpty()) {
                     allPorts.setSelected(true);
-                    status.setText("Enabled (Using Filter)");
+                    status.setText("Disabled (All Ports)");
                 }
-
+                setPortLock(false);
+                addPortBtn.setEnabled(false);
+                removePortBtn.setEnabled(false);
+                customPort.setEnabled(false);
+                interfaceText.setEnabled(false);
+                filterPorts.setEnabled(false);
+                allPorts.setEnabled(false);
+                interfaceList.setEnabled(false);
+                interfaceSet.setEnabled(false);
                 log.setText("");
-                snifferThread = new Thread(() -> {
-                    ns.listen(log);
-                });
+                if (!filterPorts.isSelected() && !allPorts.isSelected()) {
+                    if (ports.isEmpty()) {
+                        allPorts.setSelected(true);
+                        filterPorts.setSelected(false);
+                        status.setText("Disabled (All Ports)");
+                        log.append("Listening on all ports\n");
+                        snifferThread = new Thread(() -> ns.listen(log, ports, ALL_PORTS));
+
+                    } else {
+                        allPorts.setSelected(false);
+                        filterPorts.setSelected(true);
+                        status.setText("Enabled (Using Filter)");
+                        log.append("Listening on:\n");
+                        logPorts(log, ports);
+                        snifferThread = new Thread(() -> ns.listen(log, ports, FILTER_PORTS));
+                    }
+                } else if (allPorts.isSelected()) {
+                    log.append("Listening on all ports\n");
+                    snifferThread = new Thread(() -> ns.listen(log, ports, ALL_PORTS));
+                } else if (filterPorts.isSelected()) {
+                    if (ports.isEmpty()) {
+                        log.append("No ports selected for filtering");
+                    } else {
+                        status.setText("Enabled (Using Filter)");
+                        log.append("Listening on:\n");
+                        logPorts(log, ports);
+                        snifferThread = new Thread(() -> ns.listen(log, ports, FILTER_PORTS));
+                    }
+                }
                 snifferThread.start();
                 startBtn.setBackground(Color.YELLOW);
                 startBtn.setText("Stop");
-                interfaceText.setEnabled(false);
-                filterPorts.setEnabled(true);
-                allPorts.setEnabled(true);
-                setPortLock(true);
+
             } else {
                 interfaceText.setEnabled(true);
-                setBtnLock(false);
+                setBtnLock(true);
+                setPortLock(true);
+                addPortBtn.setEnabled(true);
+                removePortBtn.setEnabled(true);
+                customPort.setEnabled(true);
+                interfaceList.setEnabled(true);
+                interfaceSet.setEnabled(true);
+                startBtn.setEnabled(false);
                 status.setText("Status");
                 startBtn.setBackground(Color.GREEN);
                 interfaceInfo.setText("");
                 startBtn.setText("Start");
                 snifferThread.interrupt();
-                log.append("Stopped Listening");
             }
 
         });
+
+        clearBtn = new JButton();
+        sharedUtils.setSnifferBtn(clearBtn, "Clear", sharedUtils.normal);
+        clearBtn.addActionListener(e -> log.setText(""));
+        panel.add(Box.createRigidArea(new Dimension(0, 5)));
+        panel.add(clearBtn);
 
         exitBtn = new JButton();
         sharedUtils.setSnifferBtn(exitBtn, "Exit", Color.RED);
         exitBtn.addActionListener(e -> {
             frame.remove(scrollPane);
+            snifferThread.interrupt();
             sharedUtils.clearScreen(mainPanel);
+            log.setText("");
+            interfaceText.setText("");
+            customPort.setText("");
             gui.presentGUI();
+            snifferThread.interrupt();
         });
         panel.add(Box.createRigidArea(new Dimension(0, 5)));
         panel.add(exitBtn);
@@ -365,6 +513,7 @@ public class netSnifferGUI {
 
         return panel;
     }
+
 
     public static JPanel createFilterStatusPanel() {
         JPanel panel = new JPanel();
@@ -402,14 +551,8 @@ public class netSnifferGUI {
         radioPanel.add(allPorts);
         radioPanel.add(filterPorts);
         radioPanel.setBorder(new EtchedBorder());
-        filterPorts.addActionListener(e -> {
-            status.setText("Enabled (Using Filter)");
-            //TODO
-        });
-        allPorts.addActionListener(e -> {
-            status.setText("Disabled (All Ports)");
-            //TODO
-        });
+        filterPorts.addActionListener(e -> status.setText("Enabled (Using Filter)"));
+        allPorts.addActionListener(e -> status.setText("Disabled (All Ports)"));
         panel.add(radioPanel);
 
         interfaceInfo = new JTextArea();
@@ -459,7 +602,6 @@ public class netSnifferGUI {
 
         interfaceList = new JButton("List");
         interfaceList.addActionListener(e -> {
-            //TODO: List all the interfaces and print to log
             printInterfaceList();
             ns.getInterfaces();
             interfaceSet.setEnabled(true);
@@ -488,14 +630,12 @@ public class netSnifferGUI {
         interfaceSet.addActionListener(e -> {
             if (!interfaceText.getText().isEmpty()) {
                 int interfaceID = Integer.parseInt(interfaceText.getText());
-                //TODO: check for list of interfaces, that if the user entered incorrect ID then give a message.
                 if (interfaceID >= ns.getInterfaces().size() || interfaceID < 0) {
                     interfaceInfo.setText("Wrong interface ID");
                 } else {
-                    //TODO: set the target interface to the ID selected
                     ns.setNetworkInterface(interfaceID);
                     interfaceInfo.setText("");
-                    interfaceInfo.setText(ns.getNetworkInterfaceInfo());
+                    interfaceInfo.setText(ns.getNetworkInterfaceInfo().replace("/", ""));
                     setBtnLock(true);
                     interfaceText.setEnabled(false);
                 }
@@ -554,64 +694,93 @@ public class netSnifferGUI {
         }
     }
 
+    public static void controlPorts(boolean b, int portNum, JToggleButton btn) {
+        btn.setSelected(b);
+        if (b && !ports.contains(portNum)) {
+            ports.add(22);
+        }
+        if (!b && ports.contains(portNum)) {
+            ports.remove(Integer.valueOf(22));
+        }
+    }
     /**
      * Assigns port to listen
-     *
      * @param portNum port
      */
     public static void assignPort(int portNum, boolean b) {
         switch (portNum) {
             case 20, 21: {
-                FTPrad.setSelected(b);
+                controlPorts(b, 20, FTPrad);
+                controlPorts(b, 21, FTPrad);
                 break;
             }
             case 22: {
-                SSHrad.setSelected(b);
+                controlPorts(b, 22, SSHrad);
                 break;
             }
             case 23: {
-                TELNETrad.setSelected(b);
+                controlPorts(b, 23, TELNETrad);
                 break;
             }
             case 25: {
-                SMTPrad.setSelected(b);
+                controlPorts(b, 25, SMTPrad);
                 break;
             }
             case 53: {
-                DNSrad.setSelected(b);
+                controlPorts(b, 53, DNSrad);
                 break;
             }
             case 80: {
-                HTTPrad.setSelected(b);
+                controlPorts(b, 80, HTTPrad);
                 break;
             }
             case 110: {
-                POP3rad.setSelected(b);
+                controlPorts(b, 110, POP3rad);
                 break;
             }
             case 143: {
-                IMAPrad.setSelected(b);
+                controlPorts(b, 143, IMAPrad);
                 break;
             }
             case 161: {
-                SNMPrad.setSelected(b);
+                controlPorts(b, 161, SNMPrad);
                 break;
             }
             case 389: {
-                LDAPrad.setSelected(b);
+                controlPorts(b, 389, LDAPrad);
                 break;
             }
             case 443: {
-                HTTPSrad.setSelected(b);
+                controlPorts(b, 443, HTTPSrad);
                 break;
             }
             case 3389: {
-                RDPrad.setSelected(b);
+                controlPorts(b, 3389, RDPrad);
                 break;
             }
             default: {
-                //do nothing
+                if (b && !ports.contains(portNum)) {
+                    ports.add(portNum);
+                } else if(!b && ports.contains(portNum)) {
+                    ports.remove(Integer.valueOf(portNum));
+                }
             }
         }
+    }
+
+    /**
+     * Write ports to log
+     * @param log destination
+     * @param ports list
+     */
+    private static void logPorts(JTextArea log, List<Integer> ports) {
+        for (int i = 0; i < ports.size(); i++) {
+            if (i < ports.size() - 1) {
+                log.append(ports.get(i) + ", ");
+            } else {
+                log.append(ports.get(i) + "\n");
+            }
+        }
+        log.append("=======================================================================\n");
     }
 }

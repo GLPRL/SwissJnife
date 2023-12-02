@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="added annotations jar file">
-      <change afterPath="$PROJECT_DIR$/run_swissJnife.bat" afterDir="false" />
+    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="Improved printing behavior.&#10;added clear button to clear the log.&#10;code cleanup and organization">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/mainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/mainGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/sharedUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/sharedUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Logics/sniffer/netSniffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logics/sniffer/netSniffer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -276,55 +274,10 @@
       <workItem from="1701097131732" duration="1737000" />
       <workItem from="1701098906537" duration="6560000" />
       <workItem from="1701255792124" duration="771000" />
-      <workItem from="1701331989751" duration="1771000" />
-    </task>
-    <task id="LOCAL‎-00013" summary="encryptGUI.java : removed the return button. will return after encryption is done, will show also some loading bar, in the center (WIP)&#10;&#10;mainGUI.java : added buttons for firewall configuration and self host scanning for vulnerabilities.&#10;TODO.">
-      <option name="closed" value="true" />
-      <created>1698659803325</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL‎-00013" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1698659803325</updated>
-    </task>
-    <task id="LOCAL‎-00014" summary="encryptGUI.java : removed the return button. will return after encryption is done, will show also some loading bar, in the center (WIP)&#10;&#10;mainGUI.java : added buttons for firewall configuration and self host scanning for vulnerabilities.&#10;TODO.">
-      <option name="closed" value="true" />
-      <created>1698660727241</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL‎-00014" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1698660727241</updated>
-    </task>
-    <task id="LOCAL‎-00015" summary="Encryption works.&#10;TODO some progress bar">
-      <option name="closed" value="true" />
-      <created>1698668987395</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL‎-00015" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1698668987395</updated>
-    </task>
-    <task id="LOCAL‎-00016" summary="GUI:&#10;key is presented in popup. clicking the text of the key copies it to clipboard.&#10;frame is in the middle of the screen.&#10;TODO add loading bar.&#10;misc gui changes.">
-      <option name="closed" value="true" />
-      <created>1698680875909</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL‎-00016" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1698680875909</updated>
-    </task>
-    <task id="LOCAL‎-00017" summary="removed comments and added text for file selection">
-      <option name="closed" value="true" />
-      <created>1699277161452</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL‎-00017" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1699277161452</updated>
-    </task>
-    <task id="LOCAL‎-00018" summary="Introduced Global class, for storing data required along several files.">
-      <option name="closed" value="true" />
-      <created>1699889711559</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL‎-00018" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1699889711559</updated>
+      <workItem from="1701331989751" duration="1894000" />
+      <workItem from="1701335134509" duration="309000" />
+      <workItem from="1701337619952" duration="14058000" />
+      <workItem from="1701512859539" duration="10206000" />
     </task>
     <task id="LOCAL‎-00019" summary="Tested decryption, work correctly.&#10;Changed the alteration of filenames when encrypting and decrypting.">
       <option name="closed" value="true" />
@@ -670,7 +623,55 @@
       <option name="project" value="LOCAL‎" />
       <updated>1701332323676</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL‎-00062" summary="removed annotations, added .bat for compiling and running the program">
+      <option name="closed" value="true" />
+      <created>1701334481341</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL‎-00062" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1701334481341</updated>
+    </task>
+    <task id="LOCAL‎-00063" summary="Corrected behavior of ports selection, synced between the text field and the toggle buttons.&#10;created runnable script for windows.">
+      <option name="closed" value="true" />
+      <created>1701341066847</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL‎-00063" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1701341066847</updated>
+    </task>
+    <task id="LOCAL‎-00064" summary="Sniffer for all ports works correctly.&#10;Just need to add a &quot;Pause&quot; and continue on filtered sniffing.">
+      <option name="closed" value="true" />
+      <created>1701359171448</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL‎-00064" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1701359171448</updated>
+    </task>
+    <task id="LOCAL‎-00065" summary="code cleanup and organization">
+      <option name="closed" value="true" />
+      <created>1701515439734</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL‎-00065" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1701515439735</updated>
+    </task>
+    <task id="LOCAL‎-00066" summary="interruption works correctly.&#10;Validating text areas if not empty">
+      <option name="closed" value="true" />
+      <created>1701520254054</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL‎-00066" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1701520254054</updated>
+    </task>
+    <task id="LOCAL‎-00067" summary="Improved condition and printin behavior.">
+      <option name="closed" value="true" />
+      <created>1701522116248</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL‎-00067" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1701522116248</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -700,15 +701,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="further cleanup,&#10;added packages, added jpcap, instance holder to Global as well." />
-    <MESSAGE value="Code re-organization, comments.&#10;created some of the GUI for sniffer.&#10;removed the border that appears on click," />
-    <MESSAGE value="Port filtering finished, code organization." />
-    <MESSAGE value="resized the mainGUI window" />
-    <MESSAGE value="Added menu items.&#10;Code arrangement.&#10;More finished ports panel, started the general controls panel." />
-    <MESSAGE value="mainGUI.java : on return from sniffer, go to original size.&#10;finished netSnifferGUI.java .&#10;sharedUtils.java : returned no focus border for radio buttons." />
-    <MESSAGE value="disabling buttons on program start to prevent errors." />
-    <MESSAGE value="scrollpane now actually works.&#10;but, it's in the southern part of the frame." />
-    <MESSAGE value="listing devices works." />
     <MESSAGE value="added required jars and dlls for jpcap" />
     <MESSAGE value="Removed global class.&#10;Added error message if failed destroying the key.&#10;When decrypting, program will ask user to input the key and vector each time.&#10;*need to deal with case if the key/iv are wrongly inputted" />
     <MESSAGE value="Destroying the key using arrays fill method.&#10;still need to take care if the string isnt correct." />
@@ -725,7 +717,16 @@
     <MESSAGE value="removed JPCAP. not viable library." />
     <MESSAGE value="transition from jpcap to pcap4j." />
     <MESSAGE value="added annotations jar file" />
-    <option name="LAST_COMMIT_MESSAGE" value="added annotations jar file" />
+    <MESSAGE value="removed annotations, added .bat for compiling and running the program" />
+    <MESSAGE value="Corrected behavior of ports selection, synced between the text field and the toggle buttons.&#10;created runnable script for windows." />
+    <MESSAGE value="Sniffer for all ports works correctly.&#10;Just need to add a &quot;Pause&quot;." />
+    <MESSAGE value="Sniffer for all ports works correctly.&#10;Just need to add a &quot;Pause&quot; and continue on filtered sniffing." />
+    <MESSAGE value="code cleanup and organization" />
+    <MESSAGE value="interruption works correctly." />
+    <MESSAGE value="interruption works correctly.&#10;Validating text areas if not empty" />
+    <MESSAGE value="Improved condition and printin behavior." />
+    <MESSAGE value="Improved printing behavior.&#10;added clear button to clear the log.&#10;code cleanup and organization" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved printing behavior.&#10;added clear button to clear the log.&#10;code cleanup and organization" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -733,6 +734,10 @@
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.NoClassDefFoundError" package="java.lang" />
           <option name="timeStamp" value="3" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.Error" package="java.lang" />
+          <option name="timeStamp" value="18" />
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
