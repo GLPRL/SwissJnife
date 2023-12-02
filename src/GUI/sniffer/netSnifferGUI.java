@@ -420,7 +420,7 @@ public class netSnifferGUI {
             if (startBtn.getText().equals("Start")) {
                 if (ports.isEmpty()) {
                     allPorts.setSelected(true);
-                    status.setText("Enabled (Using Filter)");
+                    status.setText("Disabled (All Ports)");
                 }
                 setPortLock(false);
                 addPortBtn.setEnabled(false);
@@ -437,24 +437,23 @@ public class netSnifferGUI {
                         if (ports.isEmpty()) {
                             allPorts.setSelected(true);
                             filterPorts.setSelected(false);
+                            status.setText("Disabled (All Ports)");
                             ns.listen(log, ports, ALL_PORTS);
-                            log.append("Listening on all ports\n");
                         } else {
                             allPorts.setSelected(false);
                             filterPorts.setSelected(true);
-                            logPorts();
+                            status.setText("Enabled (Using Filter)");
                             ns.listen(log, ports, FILTER_PORTS);
                         }
                     }
                     if (allPorts.isSelected()) {
-                        log.append("Listening on all ports\n");
                         ns.listen(log, ports, ALL_PORTS);
                     }
                     if (filterPorts.isSelected()) {
                         if (ports.isEmpty()) {
                             log.append("No ports selected for filtering");
                         } else {
-                            logPorts();
+                            status.setText("Enabled (Using Filter)");
                             ns.listen(log, ports, FILTER_PORTS);
                         }
                     }
@@ -487,6 +486,7 @@ public class netSnifferGUI {
         sharedUtils.setSnifferBtn(exitBtn, "Exit", Color.RED);
         exitBtn.addActionListener(e -> {
             frame.remove(scrollPane);
+            snifferThread.interrupt();
             sharedUtils.clearScreen(mainPanel);
             log.setText("");
             interfaceText.setText("");
@@ -500,17 +500,6 @@ public class netSnifferGUI {
         return panel;
     }
 
-    private static void logPorts() {
-        log.setText("Listening on: \n");
-        for (int i = 0; i < ports.size(); i++) {
-            if (i < ports.size() - 1) {
-                log.append(ports.get(i) + ", ");
-            } else {
-                log.append(ports.get(i) + "\n");
-            }
-        }
-
-    }
 
     public static JPanel createFilterStatusPanel() {
         JPanel panel = new JPanel();
@@ -548,14 +537,8 @@ public class netSnifferGUI {
         radioPanel.add(allPorts);
         radioPanel.add(filterPorts);
         radioPanel.setBorder(new EtchedBorder());
-        filterPorts.addActionListener(e -> {
-            status.setText("Enabled (Using Filter)");
-            //TODO
-        });
-        allPorts.addActionListener(e -> {
-            status.setText("Disabled (All Ports)");
-            //TODO
-        });
+        filterPorts.addActionListener(e -> status.setText("Enabled (Using Filter)"));
+        allPorts.addActionListener(e -> status.setText("Disabled (All Ports)"));
         panel.add(radioPanel);
 
         interfaceInfo = new JTextArea();
@@ -605,7 +588,6 @@ public class netSnifferGUI {
 
         interfaceList = new JButton("List");
         interfaceList.addActionListener(e -> {
-            //TODO: List all the interfaces and print to log
             printInterfaceList();
             ns.getInterfaces();
             interfaceSet.setEnabled(true);
@@ -634,11 +616,9 @@ public class netSnifferGUI {
         interfaceSet.addActionListener(e -> {
             if (!interfaceText.getText().isEmpty()) {
                 int interfaceID = Integer.parseInt(interfaceText.getText());
-                //TODO: check for list of interfaces, that if the user entered incorrect ID then give a message.
                 if (interfaceID >= ns.getInterfaces().size() || interfaceID < 0) {
                     interfaceInfo.setText("Wrong interface ID");
                 } else {
-                    //TODO: set the target interface to the ID selected
                     ns.setNetworkInterface(interfaceID);
                     interfaceInfo.setText("");
                     interfaceInfo.setText(ns.getNetworkInterfaceInfo().replace("/", ""));

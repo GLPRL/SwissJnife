@@ -59,43 +59,41 @@ public class netSniffer {
         String portString = "N/A";
         IpV4Packet ipV4Packet;
         IpNumber protocol;
-        Inet4Address srcAddr, destAddr;
+        String srcAddr, destAddr, ttl, MACsrc, MACdst;
         if (!filterPorts) {             //No filtering, listening to all ports
-            int snapLen = 65536;
-            PcapNetworkInterface.PromiscuousMode mode = PcapNetworkInterface.PromiscuousMode.PROMISCUOUS;
-            int timeout = 100000;
+            log.append("Listening on all ports\n");
             try {
 
-                PcapHandle handle = networkInterface.openLive(snapLen, mode, timeout);
+                PcapHandle handle = networkInterface.openLive(65536,
+                        PcapNetworkInterface.PromiscuousMode.PROMISCUOUS, 100000);
                 while(true) {
                     Packet packet = handle.getNextPacketEx();
                     ipV4Packet = packet.get(IpV4Packet.class);
                     if (ipV4Packet != null) {
-                        srcAddr = ipV4Packet.getHeader().getSrcAddr();
-
-                        destAddr = ipV4Packet.getHeader().getDstAddr();
-                        protocol = ipV4Packet.getHeader().getProtocol();
+                        srcAddr = getSrcAddr(ipV4Packet);
+                        destAddr = getDstAdd(ipV4Packet);
+                        protocol = getProtocol(ipV4Packet);
+                        ttl = String.valueOf(ipV4Packet.getHeader().getTtl());
                         Packet payload = ipV4Packet.getPayload();
                         if (payload != null) {
                             if (payload instanceof TcpPacket) {
-                                TcpPacket tcpPacket = (TcpPacket) payload;
-                                int srcPort = tcpPacket.getHeader().getSrcPort().valueAsInt();
-                                int destPort = tcpPacket.getHeader().getDstPort().valueAsInt();
+                                int srcPort = getSrcPort(payload, true);
+                                int destPort = getDstPort(payload, true);
                                 portString = "SrcPort: " + srcPort + ", DstPort: " + destPort;
                             } else if (payload instanceof UdpPacket) {
-                                UdpPacket udpPacket = (UdpPacket) payload;
-                                int srcPort = udpPacket.getHeader().getSrcPort().valueAsInt();
-                                int destPort = udpPacket.getHeader().getDstPort().valueAsInt();
-                                portString = "SrcPort: " + srcPort + ", DstPort: " + destPort;
+                                int srcPort = getSrcPort(payload ,false);
+                                int destPort = getDstPort(payload, false);
+                                portString = "\nSrcPort: " + srcPort + ", DstPort: " + destPort;
                             }
-                            log.append("Source: " + srcAddr.toString().replace("/", ""));
-                            log.append(" -> Destination: " + destAddr.toString().replace("/", "") + "\n");
-                            log.append("Protocol " + protocol + " | " + portString + " | ");
-                            log.append("TTL: " + ipV4Packet.getHeader().getTtl() + "\n");
+                            log.append("Source: " + srcAddr);
+                            log.append(" -> Destination: " + destAddr);
+                            log.append("\nProtocol " + protocol + portString + " | ");
+                            log.append("TTL: " + ttl + "\n");
                             if (packet.contains(EthernetPacket.class)) {
-                                EthernetPacket ethernetPacket = packet.get(EthernetPacket.class);
-                                log.append("Src MAC addr: " + ethernetPacket.getHeader().getSrcAddr() + " -> ");
-                                log.append("Dst MAC addr: " + ethernetPacket.getHeader().getDstAddr() + "\n");
+                                MACsrc = getSrcMAC(packet);
+                                MACdst = getDstMAC(packet);
+                                log.append("Src MAC addr: " + MACsrc + " -> ");
+                                log.append("Dst MAC addr: " + MACdst + "\n");
                             }
                             log.append("_______________________________________________________________________\n");
                         }
@@ -110,11 +108,47 @@ public class netSniffer {
 
 
         } else {                        //Filtering is active, listening to selected ports
-            try {
-
-            } catch () {
-
+            logPorts(log, ports);
+        }
+    }
+    private static void logPorts(JTextArea log, List<Integer> ports) {
+        log.setText("Listening on: \n");
+        for (int i = 0; i < ports.size(); i++) {
+            if (i < ports.size() - 1) {
+                log.append(ports.get(i) + ", ");
+            } else {
+                log.append(ports.get(i) + "\n");
             }
         }
+
+    }
+    private String getSrcMAC(Packet packet) {
+        return String.valueOf(packet.get(EthernetPacket.class).getHeader().getSrcAddr());
+    }
+    private String getDstMAC(Packet packet) {
+        return String.valueOf(packet.get(EthernetPacket.class).getHeader().getDstAddr());
+    }
+    private int getSrcPort(Packet payload, boolean isTCP) {
+        if (isTCP) {
+            return ((TcpPacket) payload).getHeader().getSrcPort().valueAsInt();
+        } else {
+            return ((UdpPacket) payload).getHeader().getSrcPort().valueAsInt();
+        }
+    }
+    private int getDstPort(Packet payload, boolean isTCP) {
+        if (isTCP) {
+            return ((TcpPacket) payload).getHeader().getDstPort().valueAsInt();
+        } else {
+            return ((UdpPacket) payload).getHeader().getDstPort().valueAsInt();
+        }
+    }
+    private String getSrcAddr(IpV4Packet ipV4Packet) {
+        return ipV4Packet.getHeader().getSrcAddr().toString().replace("/", "");
+    }
+    private String getDstAdd(IpV4Packet ipV4Packet) {
+        return ipV4Packet.getHeader().getDstAddr().toString().replace("/", "");
+    }
+    private IpNumber getProtocol(IpV4Packet ipV4Packet) {
+        return ipV4Packet.getHeader().getProtocol();
     }
 }
