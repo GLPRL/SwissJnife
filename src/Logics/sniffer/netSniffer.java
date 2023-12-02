@@ -64,7 +64,8 @@ public class netSniffer {
 
                     ipV4Packet = packet.get(IpV4Packet.class);
                     if (ipV4Packet != null) {
-                        printData(ipV4Packet, log, packet);
+                        IpV4Packet finalIpV4Packet = ipV4Packet;
+                        SwingUtilities.invokeLater(() -> printData(finalIpV4Packet, log, packet));
                     }
                     if (Thread.interrupted()) {
                         contList = false;

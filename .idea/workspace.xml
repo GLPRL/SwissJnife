@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="Improved printing behavior.&#10;added clear button to clear the log.&#10;code cleanup and organization">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logics/sniffer/netSniffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logics/sniffer/netSniffer.java" afterDir="false" />
-    </list>
+    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="Improved printing behavior.&#10;added clear button to clear the log.&#10;code cleanup and organization" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -277,15 +273,7 @@
       <workItem from="1701331989751" duration="1894000" />
       <workItem from="1701335134509" duration="309000" />
       <workItem from="1701337619952" duration="14058000" />
-      <workItem from="1701512859539" duration="10206000" />
-    </task>
-    <task id="LOCAL‎-00019" summary="Tested decryption, work correctly.&#10;Changed the alteration of filenames when encrypting and decrypting.">
-      <option name="closed" value="true" />
-      <created>1700041668344</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL‎-00019" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1700041668344</updated>
+      <workItem from="1701512859539" duration="10272000" />
     </task>
     <task id="LOCAL‎-00020" summary="decryptGUI.java:&#10;removed popup, added better logging in case of a failure.&#10;encryptGUI.java:&#10;presenting the key iv pair for the user to save, in case the program is being closed, for decrypting the file.&#10;encrypt: fetching the byte array,&#10;asserting the key is not null">
       <option name="closed" value="true" />
@@ -671,7 +659,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1701522116248</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL‎-00068" summary="Improved printing behavior.&#10;added clear button to clear the log.&#10;code cleanup and organization">
+      <option name="closed" value="true" />
+      <created>1701523175335</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL‎-00068" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1701523175335</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
