@@ -14,7 +14,7 @@ Requirements & Dependencies:
 
 Our GUI is created using SWING Java Library as front end for user-friendly use of the tools.
 
-<sub> by Gal Pearl & Yonatan Volsky </sub>
+
 ## File Encryption Tool
 We based our encryption and decryption on AES/CBC with PKS5 padding algorithm, all of those to enhance the security of the algorithm.
 After encrypting a selected file, you'll be required to securely save the key and the initialization vectors (IV), as they will be removed post encryption.
@@ -24,7 +24,9 @@ After encrypting a file, alongside it will appear a new file, with the original 
 For decrypting it, you will need to choose the very same encrypted file, provide the key and initialization vector.
 The decrypted file will be with the name suffix Dec.
 
-<sub> by Gal Pearl </sub>
+<sub> by Gal Pearl & Yonatan Volsky </sub>
+
+
 ## Network Sniffer Tool
 Using pcap4j library & Swing, I build a user friendly network analyzer, that is capable of reading from all the ports or selected ones only.
 First, list the available network interfaces and set the target using the IDs provided. Afterwards, select the ports (or leave them as is) that are your scope,
@@ -41,6 +43,8 @@ For each TCP/UDP packet captured, the information that will be displayed is:
 Overview:
 
 ![image](https://github.com/GLPRL/SwissJnife/assets/116657293/297c3b43-cc04-423e-bbb2-1c9e93929835)
+
+<sub> by Gal Pearl </sub>
 
 
 ## Compilation & Running instructions:
