@@ -59,7 +59,6 @@ public class netSnifferGUI {
 
     /**
      * Constructor
-     *
      * @param frame programs' window.
      */
     public netSnifferGUI(JFrame frame) {
@@ -84,94 +83,40 @@ public class netSnifferGUI {
         netSnifferGUI.frame.add(mainPanel);
         setToggleListeners();
     }
-    public void setToggleListeners() {
-        FTPrad.addActionListener(e -> {
-            if (FTPrad.isSelected()) {
-                ports.add(20);
-                ports.add(21);
-            } else {
-                ports.remove(Integer.valueOf(20));
-                ports.remove(Integer.valueOf(21));
-            }
-        });
 
-        SSHrad.addActionListener(e -> {
-            if (SSHrad.isSelected()) {
-                ports.add(22);
+    /**
+     * Activated by setToggleListeners.
+     * @param btn button to add listener
+     * @param port port
+     */
+    private void setToggleListener(JToggleButton btn, int port) {
+        btn.addActionListener(e -> {
+            if (btn.isSelected()) {
+                ports.add(port);
             } else {
-                ports.remove(Integer.valueOf(22));
+                ports.remove(Integer.valueOf(port));
             }
         });
-        TELNETrad.addActionListener(e -> {
-            if (TELNETrad.isSelected()) {
-                ports.add(23);
-            } else {
-                ports.remove(Integer.valueOf(23));
-            }
-        });
-        SMTPrad.addActionListener(e -> {
-            if (SMTPrad.isSelected()) {
-                ports.add(25);
-            } else {
-                ports.remove(Integer.valueOf(25));
-            }
-        });
-        DNSrad.addActionListener(e -> {
-            if (DNSrad.isSelected()) {
-                ports.add(53);
-            } else {
-                ports.remove(Integer.valueOf(53));
-            }
-        });
-        HTTPrad.addActionListener(e -> {
-            if (HTTPrad.isSelected()) {
-                ports.add(80);
-            } else {
-                ports.remove(Integer.valueOf(80));
-            }
-        });
-        POP3rad.addActionListener(e -> {
-            if (POP3rad.isSelected()) {
-                ports.add(110);
-            } else {
-                ports.remove(Integer.valueOf(110));
-            }
-        });
-        IMAPrad.addActionListener(e -> {
-            if (IMAPrad.isSelected()) {
-                ports.add(143);
-            } else {
-                ports.remove(Integer.valueOf(143));
-            }
-        });
-        SNMPrad.addActionListener(e -> {
-            if (SNMPrad.isSelected()) {
-                ports.add(161);
-            } else {
-                ports.remove(Integer.valueOf(161));
-            }
-        });
-        LDAPrad.addActionListener(e -> {
-            if (LDAPrad.isSelected()) {
-                ports.add(389);
-            } else {
-                ports.remove(Integer.valueOf(389));
-            }
-        });
-        HTTPSrad.addActionListener(e -> {
-            if (HTTPSrad.isSelected()) {
-                ports.add(443);
-            } else {
-                ports.remove(Integer.valueOf(443));
-            }
-        });
-        RDPrad.addActionListener(e -> {
-            if (RDPrad.isSelected()) {
-                ports.add(3389);
-            } else {
-                ports.remove(Integer.valueOf(3389));
-            }
-        });
+    }
+
+    /**
+     * If button was selected, then add it's port value to ports list.
+     * Doing it for all buttons
+     */
+    public void setToggleListeners() {
+        setToggleListener(FTPrad, 20);
+        setToggleListener(FTPrad, 21);
+        setToggleListener(SSHrad, 22);
+        setToggleListener(TELNETrad, 23);
+        setToggleListener(SMTPrad, 25);
+        setToggleListener(DNSrad, 53);
+        setToggleListener(HTTPrad, 80);
+        setToggleListener(POP3rad, 110);
+        setToggleListener(IMAPrad, 143);
+        setToggleListener(SNMPrad, 161);
+        setToggleListener(LDAPrad, 389);
+        setToggleListener(HTTPSrad, 443);
+        setToggleListener(RDPrad, 3389);
     }
     /**
      * Present the sniffers' gui
@@ -695,13 +640,19 @@ public class netSnifferGUI {
         }
     }
 
+    /**
+     * If clicked remove/listen from custom ports text field, then activate.
+     * @param b true -> add port to list. false -> remove port from list
+     * @param portNum port number
+     * @param btn button associated to port
+     */
     public static void controlPorts(boolean b, int portNum, JToggleButton btn) {
         btn.setSelected(b);
         if (b && !ports.contains(portNum)) {
-            ports.add(22);
+            ports.add(portNum);
         }
         if (!b && ports.contains(portNum)) {
-            ports.remove(Integer.valueOf(22));
+            ports.remove(Integer.valueOf(portNum));
         }
     }
     /**

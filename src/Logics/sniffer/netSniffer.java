@@ -125,9 +125,9 @@ public class netSniffer {
                     if (Thread.interrupted()) {
                         contList = false;
                     }
-                    log.append("=======================================================================\n");
-                    log.append("Stopped listening on selected ports");
                 }
+                log.append("=======================================================================\n");
+                log.append("Stopped listening on selected ports");
 
             } catch (PcapNativeException | NotOpenException | TimeoutException | EOFException e) {
                 log.append(Arrays.toString(e.getStackTrace()));
