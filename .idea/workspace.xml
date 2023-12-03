@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="Improved printing behavior.&#10;added clear button to clear the log.&#10;code cleanup and organization" />
+    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="Improved printing behavior on no filter sniffing.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/EncDec/decryptGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/EncDec/decryptGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,7 +27,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="gal_finishDec" />
+        <entry key="$PROJECT_DIR$" value="gal_sniffer" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -34,6 +38,13 @@
     &quot;assignee&quot;: &quot;GLPRL&quot;
   }
 }</component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="main" />
+      </list>
+    </option>
+  </component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -58,32 +69,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;gal__sniffer&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/galpe/IdeaProjects/SwissJnife/lib/slf4j-api-2.0.9.jar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.20703125&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.43451652&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.import&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "gal__edits",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/galpe/IdeaProjects/SwissJnife/lib/slf4j-api-2.0.9.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.20703125",
+    "project.structure.side.proportion": "0.43451652",
+    "settings.editor.selected.configurable": "editor.preferences.import",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\galpe\IdeaProjects\SwissJnife\src" />
@@ -274,14 +285,8 @@
       <workItem from="1701335134509" duration="309000" />
       <workItem from="1701337619952" duration="14058000" />
       <workItem from="1701512859539" duration="10272000" />
-    </task>
-    <task id="LOCAL‎-00020" summary="decryptGUI.java:&#10;removed popup, added better logging in case of a failure.&#10;encryptGUI.java:&#10;presenting the key iv pair for the user to save, in case the program is being closed, for decrypting the file.&#10;encrypt: fetching the byte array,&#10;asserting the key is not null">
-      <option name="closed" value="true" />
-      <created>1700044124458</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL‎-00020" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1700044124458</updated>
+      <workItem from="1701527994515" duration="708000" />
+      <workItem from="1701587566323" duration="2284000" />
     </task>
     <task id="LOCAL‎-00021" summary="Added JMenu, visual changes to copy IV and key to clipboard, is done with buttons instead of showing the plain text.&#10;Some GUI changes as well.">
       <option name="closed" value="true" />
@@ -667,7 +672,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1701523175335</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL‎-00069" summary="Improved printing behavior on no filter sniffing.">
+      <option name="closed" value="true" />
+      <created>1701528068170</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL‎-00069" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1701528068170</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -684,7 +697,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="gal_sniffer" />
+                        <option value="gal_edits" />
                       </list>
                     </value>
                   </entry>
@@ -697,7 +710,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added required jars and dlls for jpcap" />
     <MESSAGE value="Removed global class.&#10;Added error message if failed destroying the key.&#10;When decrypting, program will ask user to input the key and vector each time.&#10;*need to deal with case if the key/iv are wrongly inputted" />
     <MESSAGE value="Destroying the key using arrays fill method.&#10;still need to take care if the string isnt correct." />
     <MESSAGE value="Dealing with incorrect/empty strings correctly.&#10;errorpopup is always on top." />
@@ -722,7 +734,8 @@
     <MESSAGE value="interruption works correctly.&#10;Validating text areas if not empty" />
     <MESSAGE value="Improved condition and printin behavior." />
     <MESSAGE value="Improved printing behavior.&#10;added clear button to clear the log.&#10;code cleanup and organization" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved printing behavior.&#10;added clear button to clear the log.&#10;code cleanup and organization" />
+    <MESSAGE value="Improved printing behavior on no filter sniffing." />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved printing behavior on no filter sniffing." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

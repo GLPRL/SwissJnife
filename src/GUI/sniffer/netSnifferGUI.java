@@ -499,13 +499,14 @@ public class netSnifferGUI {
         sharedUtils.setSnifferBtn(exitBtn, "Exit", Color.RED);
         exitBtn.addActionListener(e -> {
             frame.remove(scrollPane);
-            snifferThread.interrupt();
+            if (snifferThread != null) {
+                snifferThread.interrupt();
+            }
             sharedUtils.clearScreen(mainPanel);
             log.setText("");
             interfaceText.setText("");
             customPort.setText("");
             gui.presentGUI();
-            snifferThread.interrupt();
         });
         panel.add(Box.createRigidArea(new Dimension(0, 5)));
         panel.add(exitBtn);

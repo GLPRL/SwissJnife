@@ -1,15 +1,14 @@
 package GUI.EncDec;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import javax.swing.*;
-
 import GUI.mainGUI;
 import GUI.sharedUtils;
 import Logics.EncDec.AESData;
 import Logics.EncDec.decrypt;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -59,6 +58,65 @@ public class decryptGUI {
         frame.setVisible(true);
     }
     public void requestData() {
+        Dimension d = new Dimension(0, 10);
+        Dimension fieldSize = new Dimension(150, 25);
+
+        JDialog popup = insertionPopup();
+
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+        popup.add(mainPanel);
+        mainPanel.add(Box.createRigidArea(d));
+
+        JPanel keyPanel = new JPanel();
+        keyPanel.setLayout(new BoxLayout(keyPanel, BoxLayout.X_AXIS));
+        JLabel keyLabel = new JLabel("Key: ");
+        keyLabel.setFont(sharedUtils.TAHOMA_PLAIN_12);
+        keyPanel.add(keyLabel);
+        JTextField keyField = newTextField(fieldSize);
+        keyPanel.add(keyField);
+        keyPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        mainPanel.add(keyPanel);
+        mainPanel.add(Box.createRigidArea(new Dimension(0, 15)));
+
+        JPanel ivPanel = new JPanel();
+        ivPanel.setLayout(new BoxLayout(ivPanel, BoxLayout.X_AXIS));
+        JLabel ivLabel = new JLabel("IV: ");
+        ivLabel.setFont(sharedUtils.TAHOMA_PLAIN_12);
+        ivPanel.add(ivLabel);
+        JTextField ivField = newTextField(fieldSize);
+        ivPanel.add(ivField);
+        ivPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        mainPanel.add(ivPanel);
+        mainPanel.add(Box.createRigidArea(d));
+
+        mainPanel.add(newFinishButton(popup, keyField, ivField));
+        mainPanel.add(Box.createRigidArea(d));
+
+        mainPanel.add(newCancelButton(popup));
+        mainPanel.add(Box.createRigidArea(d));
+        popup.setVisible(true);
+    }
+    private JButton newCancelButton(JDialog popup) {
+        JButton cancelBtn = new JButton("Cancel");
+        sharedUtils.noFocusBorder(cancelBtn);
+        cancelBtn.setHorizontalAlignment(SwingConstants.CENTER);
+        cancelBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+        sharedUtils.setRetButton(cancelBtn, popup);
+        cancelBtn.addActionListener(e -> FLAG = 1);
+        return cancelBtn;
+    }
+    private JButton newFinishButton(JDialog popup, JTextField keyField, JTextField ivField) {
+        JButton finishBtn = new JButton("Finish");
+        sharedUtils.noFocusBorder(finishBtn);
+        sharedUtils.setRetButton(finishBtn, popup);
+        finishBtn.setHorizontalAlignment(SwingConstants.CENTER);
+        finishBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+        finishBtn.addActionListener(e -> data = sharedUtils.getKeyIv(keyField.getText(), ivField.getText()));
+        return finishBtn;
+    }
+    private JDialog insertionPopup() {
         JDialog popup = new JDialog();
         popup.setTitle("SwissJnife - Key+IV data");
         popup.setSize(350, 250);
@@ -73,59 +131,14 @@ public class decryptGUI {
             }
         });
         popup.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-        popup.add(mainPanel);
-        mainPanel.add(sharedUtils.W0_H10);
-
-        JPanel keyPanel = new JPanel();
-        keyPanel.setLayout(new BoxLayout(keyPanel, BoxLayout.X_AXIS));
-        JLabel keyLabel = new JLabel("Key: ");
-        keyLabel.setFont(sharedUtils.TAHOMA_PLAIN_12);
-        keyPanel.add(keyLabel);
-        JTextField keyField = new JTextField();
-        keyField.setBackground(Color.WHITE);
-        keyField.setMinimumSize(new Dimension(150, 25));
-        keyField.setMaximumSize(new Dimension(150, 25));
-        keyPanel.add(keyField);
-        keyPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        mainPanel.add(keyPanel);
-        mainPanel.add(sharedUtils.W0_H15);
-
-        JPanel ivPanel = new JPanel();
-        ivPanel.setLayout(new BoxLayout(ivPanel, BoxLayout.X_AXIS));
-        JLabel ivLabel = new JLabel("IV: ");
-        ivLabel.setFont(sharedUtils.TAHOMA_PLAIN_12);
-        ivPanel.add(ivLabel);
-        JTextField ivField = new JTextField();
-        ivField.setBackground(Color.WHITE);
-        ivField.setMinimumSize(new Dimension(150, 25));
-        ivField.setMaximumSize(new Dimension(150, 25));
-        ivPanel.add(ivField);
-        ivPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        mainPanel.add(ivPanel);
-        mainPanel.add(sharedUtils.W0_H10_2);
-
-        JButton finishBtn = new JButton("Finish");
-        sharedUtils.noFocusBorder(finishBtn);
-        sharedUtils.setRetButton(finishBtn, popup);
-        finishBtn.setHorizontalAlignment(SwingConstants.CENTER);
-        finishBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
-        finishBtn.addActionListener(e -> data = sharedUtils.getKeyIv(keyField.getText(), ivField.getText()));
-        mainPanel.add(finishBtn);
-        mainPanel.add(sharedUtils.W0_H10_3);
-
-        JButton cancelBtn = new JButton("Cancel");
-        sharedUtils.noFocusBorder(cancelBtn);
-        cancelBtn.setHorizontalAlignment(SwingConstants.CENTER);
-        cancelBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
-        sharedUtils.setRetButton(cancelBtn, popup);
-        cancelBtn.addActionListener(e -> FLAG = 1);
-        mainPanel.add(cancelBtn);
-        mainPanel.add(sharedUtils.W0_H10_4);
-        popup.setVisible(true);
+        return popup;
+    }
+    private JTextField newTextField(Dimension fieldSize) {
+        JTextField field = new JTextField();
+        field.setBackground(Color.WHITE);
+        field.setMinimumSize(fieldSize);
+        field.setMaximumSize(fieldSize);
+        return field;
     }
 }
 
