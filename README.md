@@ -50,9 +50,6 @@ Clone the project using and go into the directory
 git clone https://github.com/GLPRL/SwissJnife/
 cd SwissJnife
 ```
-Now, you can choose how to run the project:
-
-### using Java - 
 
 Windows systems:
 
