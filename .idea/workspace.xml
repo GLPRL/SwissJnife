@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="Improved printing behavior on no filter sniffing.">
+    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="code cleanup &amp; improvement.&#10;Will not try to interrupt a null thread.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/EncDec/decryptGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/EncDec/decryptGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/EncDec/encryptGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/EncDec/encryptGUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -286,15 +285,7 @@
       <workItem from="1701337619952" duration="14058000" />
       <workItem from="1701512859539" duration="10272000" />
       <workItem from="1701527994515" duration="708000" />
-      <workItem from="1701587566323" duration="2284000" />
-    </task>
-    <task id="LOCAL‎-00021" summary="Added JMenu, visual changes to copy IV and key to clipboard, is done with buttons instead of showing the plain text.&#10;Some GUI changes as well.">
-      <option name="closed" value="true" />
-      <created>1700051986852</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL‎-00021" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1700051986852</updated>
+      <workItem from="1701587566323" duration="2822000" />
     </task>
     <task id="LOCAL‎-00022" summary="Added JMenu, visual changes to copy IV and key to clipboard, is done with buttons instead of showing the plain text.&#10;Some GUI changes as well.">
       <option name="closed" value="true" />
@@ -680,7 +671,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1701528068170</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL‎-00070" summary="code cleanup &amp; improvement.&#10;Will not try to interrupt a null thread.">
+      <option name="closed" value="true" />
+      <created>1701589989932</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL‎-00070" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1701589989933</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -710,7 +709,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Removed global class.&#10;Added error message if failed destroying the key.&#10;When decrypting, program will ask user to input the key and vector each time.&#10;*need to deal with case if the key/iv are wrongly inputted" />
     <MESSAGE value="Destroying the key using arrays fill method.&#10;still need to take care if the string isnt correct." />
     <MESSAGE value="Dealing with incorrect/empty strings correctly.&#10;errorpopup is always on top." />
     <MESSAGE value="set an exit button in main gui.&#10;removing all the components of netSnifferGUI.java correctly." />
@@ -735,7 +733,8 @@
     <MESSAGE value="Improved condition and printin behavior." />
     <MESSAGE value="Improved printing behavior.&#10;added clear button to clear the log.&#10;code cleanup and organization" />
     <MESSAGE value="Improved printing behavior on no filter sniffing." />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved printing behavior on no filter sniffing." />
+    <MESSAGE value="code cleanup &amp; improvement.&#10;Will not try to interrupt a null thread." />
+    <option name="LAST_COMMIT_MESSAGE" value="code cleanup &amp; improvement.&#10;Will not try to interrupt a null thread." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

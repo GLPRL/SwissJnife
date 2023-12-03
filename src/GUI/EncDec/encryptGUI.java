@@ -1,15 +1,15 @@
 package GUI.EncDec;
 
+import GUI.mainGUI;
+import GUI.sharedUtils;
+import Logics.EncDec.AESData;
+import Logics.EncDec.encrypt;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.util.Arrays;
-
-import GUI.mainGUI;
-import GUI.sharedUtils;
-import Logics.EncDec.AESData;
-import Logics.EncDec.encrypt;
 
 /**
  * GUI for encrypting files.
@@ -68,7 +68,7 @@ public class encryptGUI {
     public void dataPopup(JFrame frame, AESData data) {
         panel.setLayout(new BorderLayout());
         popup.setTitle("SwissJnife - Key+IV data");
-        popup.setSize(490, 130);
+        popup.setSize( 500, 130);
         popup.setLocationRelativeTo(frame);
         popup.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         popup.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
@@ -89,23 +89,13 @@ public class encryptGUI {
         String iv = Arrays.toString(data.getIv().getIV());
         Dimension d = new Dimension(5, 0);
 
-
         JLabel infoLabel = new JLabel("");
         infoLabel.setHorizontalAlignment(JLabel.CENTER);
         infoLabel.setFont(infoLabel.getFont().deriveFont(17.0f));
 
-        JButton ivBtn = new JButton("Copy IV to Clipboard");
-        sharedUtils.noFocusBorder(ivBtn);
-        sharedUtils.setGeneralButton(ivBtn);
-        ivBtn.setAlignmentY(Component.TOP_ALIGNMENT);
-        initClipboard(ivBtn, iv, infoLabel, descIV);
+        JButton ivBtn = createCBButton("Copy IV to Clipboard", iv, infoLabel, descIV);
 
-        JButton keyBtn = new JButton("Copy Key to Clipboard");
-        sharedUtils.noFocusBorder(keyBtn);
-        keyBtn.setAlignmentY(Component.TOP_ALIGNMENT);
-        initClipboard(keyBtn, key, infoLabel, descKey);
-        sharedUtils.setGeneralButton(keyBtn);
-
+        JButton keyBtn = createCBButton("Copy Key to Clipboard", key, infoLabel, descKey);
 
         JButton closeBtn = new JButton("Return to Menu");
         sharedUtils.noFocusBorder(closeBtn);
@@ -136,5 +126,13 @@ public class encryptGUI {
             cb.setContents(selection, null);
             infoLabel.setText(desc + " copied to clipboard");
         });
+    }
+    public JButton createCBButton(String action, String key, JLabel infoLabel, String descKey) {
+        JButton btn = new JButton(action);
+        sharedUtils.noFocusBorder(btn);
+        sharedUtils.setGeneralButton(btn);
+        btn.setAlignmentY(Component.TOP_ALIGNMENT);
+        initClipboard(btn, key, infoLabel, descKey);
+        return btn;
     }
 }
