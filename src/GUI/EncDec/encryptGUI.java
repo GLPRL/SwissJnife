@@ -95,18 +95,13 @@ public class encryptGUI {
 
         JButton keyBtn = createCBButton("Copy Key to Clipboard", key, infoLabel, "Key");
 
-        JButton closeBtn = new JButton("Return to Menu");
-        sharedUtils.noFocusBorder(closeBtn);
-        sharedUtils.setRetButton(closeBtn, popup);
-        closeBtn.setAlignmentY(Component.TOP_ALIGNMENT);
-
         buttonsPanel.add(Box.createRigidArea(d));
         buttonsPanel.add(ivBtn);
         buttonsPanel.add(Box.createRigidArea(d));
         panel.add(infoLabel, BorderLayout.CENTER);
         buttonsPanel.add(keyBtn);
         buttonsPanel.add(Box.createRigidArea(d));
-        buttonsPanel.add(closeBtn);
+        buttonsPanel.add(createCloseButton());
         buttonsPanel.add(Box.createRigidArea(d));
     }
 
@@ -132,5 +127,12 @@ public class encryptGUI {
         btn.setAlignmentY(Component.TOP_ALIGNMENT);
         initClipboard(btn, key, infoLabel, descKey);
         return btn;
+    }
+    public JButton createCloseButton() {
+        JButton closeBtn = new JButton("Return to Menu");
+        sharedUtils.noFocusBorder(closeBtn);
+        sharedUtils.setRetButton(closeBtn, popup);
+        closeBtn.setAlignmentY(Component.TOP_ALIGNMENT);
+        return closeBtn;
     }
 }

@@ -13,15 +13,21 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
 
-
+/**
+ * Sniffing class. Receives and prints packet information to log.
+ */
 public class netSniffer {
     List<PcapNetworkInterface> interfaces;
     PcapNetworkInterface networkInterface;
 
     public netSniffer() {
-
+        //
     }
 
+    /**
+     * Getting all available network devices.
+     * @return network device list.
+     */
     public List<PcapNetworkInterface> getInterfaces() {
         try {
             if (interfaces == null) {
@@ -34,10 +40,18 @@ public class netSniffer {
         }
     }
 
+    /**
+     * Setting network interface to listen on.
+     * @param index of interface device from interfaces list.
+     */
     public void setNetworkInterface(int index) {
         networkInterface = interfaces.get(index);
     }
 
+    /**
+     * Prints network interface device to information on top of the screen, when set.
+     * @return network interface information
+     */
     public String getNetworkInterfaceInfo() {
         InetAddress ipv4 = null, ipv6 = null;
         for (PcapAddress addr : networkInterface.getAddresses()) {
@@ -52,6 +66,13 @@ public class netSniffer {
                 + ipv4 + "\n" + ipv6;
     }
 
+    /**
+     * Runner in thread.
+     * Receives and prints un/filtered ports to log.
+     * @param log information display
+     * @param ports if filtered, listen to list of ports.
+     * @param filterPorts filter / all ports
+     */
     public void listen(JTextArea log, List<Integer> ports, boolean filterPorts) {
         IpV4Packet ipV4Packet;
         if (!filterPorts) {             //No filtering, listening to all ports
@@ -115,6 +136,13 @@ public class netSniffer {
         }
     }
 
+    /**
+     * If packet is UDP/TCP
+     * @param ports ports list.
+     * @param payload packet payload.
+     * @param isTCP is TCP/UDP
+     * @return if contains the src/dst port, for filtering.
+     */
     private boolean checkPort(List<Integer> ports, Packet payload, boolean isTCP) {
         int srcPort;
         int dstPort;
@@ -128,14 +156,16 @@ public class netSniffer {
         return ports.contains(srcPort) || ports.contains(dstPort);
     }
 
+    /**
+     * Prints the information about packet received.
+     * @param ipV4Packet packet received
+     * @param log print location
+     * @param packet packet derived from ipv4packet
+     */
     private void printData(IpV4Packet ipV4Packet, JTextArea log, Packet packet) {
         String portString = "N/A";
-        IpNumber protocol;
-        String srcAddr, destAddr, ttl, MACsrc, MACdst;
+        String ttl;
 
-        srcAddr = getSrcAddr(ipV4Packet);
-        destAddr = getDstAdd(ipV4Packet);
-        protocol = getProtocol(ipV4Packet);
         ttl = String.valueOf(ipV4Packet.getHeader().getTtl());
         Packet payload = ipV4Packet.getPayload();
         if (payload != null) {
@@ -148,25 +178,39 @@ public class netSniffer {
                 int destPort = getDstPort(payload, false);
                 portString = "\nSrcPort: " + srcPort + ", DstPort: " + destPort;
             }
-            log.append("Source: " + srcAddr + " -> Destination: " + destAddr);
-            log.append("\nProtocol " + protocol + portString + " | TTL: " + ttl + "\n");
+            log.append("Source: " + getSrcAddr(ipV4Packet) + " -> Destination: " + getDstAdd(ipV4Packet));
+            log.append("\nProtocol " + getProtocol(ipV4Packet) + portString + " | TTL: " + ttl + "\n");
             if (packet.contains(EthernetPacket.class)) {
-                MACsrc = getSrcMAC(packet);
-                MACdst = getDstMAC(packet);
-                log.append("Src MAC addr: " + MACsrc + " -> Dst MAC addr: " + MACdst + "\n");
+                log.append("Src MAC addr: " + getSrcMAC(packet) + " -> Dst MAC addr: " + getDstMAC(packet) + "\n");
             }
             log.append("_______________________________________________________________________\n");
         }
     }
 
+    /**
+     * Get SrcMAC and return information.
+     * @param packet packet received
+     * @return MAC addr
+     */
     private String getSrcMAC(Packet packet) {
         return String.valueOf(packet.get(EthernetPacket.class).getHeader().getSrcAddr());
     }
 
+    /**
+     * Get DstMAC and return information.
+     * @param packet packet received
+     * @return MAC addr
+     */
     private String getDstMAC(Packet packet) {
         return String.valueOf(packet.get(EthernetPacket.class).getHeader().getDstAddr());
     }
 
+    /**
+     * Get SrcPort and return information.
+     * @param payload packet payload
+     * @param isTCP is TCP/UDP packet
+     * @return Port num
+     */
     private int getSrcPort(Packet payload, boolean isTCP) {
         if (isTCP) {
             return ((TcpPacket) payload).getHeader().getSrcPort().valueAsInt();
@@ -175,6 +219,12 @@ public class netSniffer {
         }
     }
 
+    /**
+     * Get DstPort and return information.
+     * @param payload packet payload
+     * @param isTCP is TCP/UDP packet
+     * @return Port num
+     */
     private int getDstPort(Packet payload, boolean isTCP) {
         if (isTCP) {
             return ((TcpPacket) payload).getHeader().getDstPort().valueAsInt();
@@ -183,14 +233,29 @@ public class netSniffer {
         }
     }
 
+    /**
+     * Get SrcIP address
+     * @param ipV4Packet packet
+     * @return information of IP address
+     */
     private String getSrcAddr(IpV4Packet ipV4Packet) {
         return ipV4Packet.getHeader().getSrcAddr().toString().replace("/", "");
     }
 
+    /**
+     * Get DstIP address
+     * @param ipV4Packet packet
+     * @return information of IP address
+     */
     private String getDstAdd(IpV4Packet ipV4Packet) {
         return ipV4Packet.getHeader().getDstAddr().toString().replace("/", "");
     }
 
+    /**
+     * Get packet's protocol
+     * @param ipV4Packet packet
+     * @return protocol information
+     */
     private IpNumber getProtocol(IpV4Packet ipV4Packet) {
         return ipV4Packet.getHeader().getProtocol();
     }

@@ -7,6 +7,7 @@
     <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="code cleanup &amp; improvement">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/EncDec/encryptGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/EncDec/encryptGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Logics/sniffer/netSniffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logics/sniffer/netSniffer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -285,15 +286,7 @@
       <workItem from="1701337619952" duration="14058000" />
       <workItem from="1701512859539" duration="10272000" />
       <workItem from="1701527994515" duration="708000" />
-      <workItem from="1701587566323" duration="2933000" />
-    </task>
-    <task id="LOCAL‎-00023" summary="fw -&gt; sniffer">
-      <option name="closed" value="true" />
-      <created>1700052461059</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL‎-00023" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1700052461059</updated>
+      <workItem from="1701587566323" duration="4657000" />
     </task>
     <task id="LOCAL‎-00024" summary="mainGUI.java:&#10;Added a top menu.&#10;Project on Github works and opens browser on the github project.">
       <option name="closed" value="true" />
@@ -679,7 +672,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1701590458684</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL‎-00072" summary="code cleanup &amp; improvement">
+      <option name="closed" value="true" />
+      <created>1701590533692</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL‎-00072" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1701590533692</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
