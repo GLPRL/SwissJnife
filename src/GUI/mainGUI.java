@@ -128,10 +128,10 @@ public class mainGUI {
         panel2.setAlignmentY(Component.TOP_ALIGNMENT);
         panel2.removeAll();
 
-        JButton vulScan = new JButton("Self Scanner");
-        sharedUtils.noFocusBorder(vulScan);
-        sharedUtils.setGeneralButton(vulScan);
-        panel2.add(vulScan);
+        JButton ftr_3 = new JButton("ftr_3");
+        sharedUtils.noFocusBorder(ftr_3);
+        sharedUtils.setGeneralButton(ftr_3);
+        panel2.add(ftr_3);
 
         JPanel panel3 = new JPanel();
         panel3.setLayout(new BoxLayout(panel3, BoxLayout.Y_AXIS));
@@ -144,7 +144,7 @@ public class mainGUI {
         panel3.add(sniff);
 
         //Add listeners
-        setClickListeners(encBtn, decBtn, vulScan, sniff);
+        setClickListeners(encBtn, decBtn, ftr_3, sniff);
 
         this.panel.add(sharedUtils.W10_H0);
         this.panel.add(panel1);
@@ -177,10 +177,10 @@ public class mainGUI {
      * Setting click listeners to start a wanted program
      * @param encBtn to begin file encryption
      * @param decBtn to begin file decryption
-     * @param vulScan to begin system vulnerability scanning
+     * @param ftr_3 ???
      * @param sniff to begin network sniffer
      */
-    public void setClickListeners(JButton encBtn, JButton decBtn, JButton vulScan, JButton sniff) {
+    public void setClickListeners(JButton encBtn, JButton decBtn, JButton ftr_3, JButton sniff) {
         encBtn.addActionListener(e -> {
             sharedUtils.clearScreen(panel);
             frame.remove(exitBtn);
@@ -193,7 +193,7 @@ public class mainGUI {
             decryptGUI gui = new decryptGUI(frame);
             gui.presentGui(mainGUI.this);
         });
-        vulScan.addActionListener(e -> {
+        ftr_3.addActionListener(e -> {
             sharedUtils.errorPopup("Feature is not yet available", frame);
         });
         sniff.addActionListener(e -> {

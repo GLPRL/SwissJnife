@@ -364,9 +364,7 @@ public class netSnifferGUI {
         startBtn = new JButton();
         sharedUtils.setSnifferBtn(startBtn, "Start", Color.GREEN);
         panel.add(startBtn);
-        startBtn.addActionListener(e -> {
-            startButtonListener();
-        });
+        startBtn.addActionListener(e -> startButtonListener());
 
         clearBtn = new JButton();
         sharedUtils.setSnifferBtn(clearBtn, "Clear", sharedUtils.normal);
@@ -468,13 +466,15 @@ public class netSnifferGUI {
         panel.setBorder(new EtchedBorder());
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBackground(Color.WHITE);
-        panel.setMaximumSize(new Dimension(200, 110));
-        panel.setMinimumSize(new Dimension(200, 110));
+        Dimension dimPanel = new Dimension(200, 110);
+        panel.setMaximumSize(dimPanel);
+        panel.setMinimumSize(dimPanel);
 
         status = new JLabel("Status");
         status.setFont(sharedUtils.TAHOMA_PLAIN_13);
-        status.setMaximumSize(new Dimension(150, 25));
-        status.setMinimumSize(new Dimension(150, 25));
+        Dimension dimStatus = new Dimension(150, 25);
+        status.setMaximumSize(dimStatus);
+        status.setMinimumSize(dimStatus);
         status.setBorder(BorderFactory.createRaisedBevelBorder());
         status.setForeground(Color.RED);
         status.setHorizontalAlignment(SwingConstants.CENTER);
@@ -483,8 +483,9 @@ public class netSnifferGUI {
 
         JPanel radioPanel = new JPanel();
         radioPanel.setLayout(new BoxLayout(radioPanel, BoxLayout.X_AXIS));
-        radioPanel.setMaximumSize(new Dimension(150, 20));
-        radioPanel.setMinimumSize(new Dimension(150, 20));
+        Dimension dimRadio = new Dimension(150, 20);
+        radioPanel.setMaximumSize(dimRadio);
+        radioPanel.setMinimumSize(dimRadio);
         radioPanel.setBackground(Color.WHITE);
         radioPanel.setBackground(Color.WHITE);
         radioPanel.setBorder(new EtchedBorder());
@@ -531,8 +532,9 @@ public class netSnifferGUI {
         interfacePanel.setBorder(new EtchedBorder());
         interfacePanel.setLayout(new BoxLayout(interfacePanel, BoxLayout.Y_AXIS));
         interfacePanel.setBackground(Color.WHITE);
-        interfacePanel.setMinimumSize(new Dimension(95, 110));
-        interfacePanel.setMaximumSize(new Dimension(95, 110));
+        Dimension interfaceDim = new Dimension(95, 110);
+        interfacePanel.setMinimumSize(interfaceDim);
+        interfacePanel.setMaximumSize(interfaceDim);
 
         JLabel interfaceLabel = new JLabel("Interface #");
         interfaceLabel.setFont(sharedUtils.TAHOMA_PLAIN_11);
@@ -544,8 +546,9 @@ public class netSnifferGUI {
         interfaceText.setFont(sharedUtils.TAHOMA_PLAIN_11);
         interfaceText.setEnabled(false);
         interfaceText.setDocument(sharedUtils.numericOnly);
-        interfaceText.setPreferredSize(new Dimension(40, 25));
-        interfaceText.setMaximumSize(new Dimension(40, 25));
+        Dimension interfaceTestDim = new Dimension(40, 25);
+        interfaceText.setPreferredSize(interfaceTestDim);
+        interfaceText.setMaximumSize(interfaceTestDim);
         interfaceText.setHorizontalAlignment(SwingConstants.CENTER);
         interfaceText.setAlignmentX(Component.CENTER_ALIGNMENT);
         interfacePanel.add(Box.createRigidArea(new Dimension(0, 5)));
@@ -562,8 +565,9 @@ public class netSnifferGUI {
         interfaceList.setFont(sharedUtils.TAHOMA_BOLD_11);
         interfaceList.setHorizontalAlignment(SwingConstants.CENTER);
         interfaceList.setAlignmentX(Component.CENTER_ALIGNMENT);
-        interfaceList.setMaximumSize(new Dimension(70, 25));
-        interfaceList.setMinimumSize(new Dimension(70, 25));
+        Dimension interfaceElemDim = new Dimension(70, 25);
+        interfaceList.setMaximumSize(interfaceElemDim);
+        interfaceList.setMinimumSize(interfaceElemDim);
         sharedUtils.noFocusBorder(interfaceList);
         interfacePanel.add(Box.createRigidArea(new Dimension(0, 5)));
         interfacePanel.add(interfaceList);
@@ -576,8 +580,8 @@ public class netSnifferGUI {
         interfaceSet.setFont(sharedUtils.TAHOMA_BOLD_11);
         interfaceSet.setHorizontalAlignment(SwingConstants.CENTER);
         interfaceSet.setAlignmentX(Component.CENTER_ALIGNMENT);
-        interfaceSet.setMaximumSize(new Dimension(70, 25));
-        interfaceSet.setMinimumSize(new Dimension(70, 25));
+        interfaceSet.setMaximumSize(interfaceElemDim);
+        interfaceSet.setMinimumSize(interfaceElemDim);
         interfaceSet.addActionListener(e -> {
             if (!interfaceText.getText().isEmpty()) {
                 int interfaceID = Integer.parseInt(interfaceText.getText());
@@ -612,8 +616,9 @@ public class netSnifferGUI {
         btn.setBackground(Color.WHITE);
         btn.setFocusPainted(false);
         btn.setBackground(sharedUtils.c213241250);
-        btn.setMaximumSize(new Dimension(110, 25));
-        btn.setMinimumSize(new Dimension(110, 25));
+        Dimension btnDim = new Dimension(110, 25);
+        btn.setMaximumSize(btnDim);
+        btn.setMinimumSize(btnDim);
     }
 
     /**
