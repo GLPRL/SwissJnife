@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="code cleanup &amp; improvement.&#10;Will not try to interrupt a null thread.">
+    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="code cleanup &amp; improvement">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/EncDec/encryptGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/EncDec/encryptGUI.java" afterDir="false" />
     </list>
@@ -285,15 +285,7 @@
       <workItem from="1701337619952" duration="14058000" />
       <workItem from="1701512859539" duration="10272000" />
       <workItem from="1701527994515" duration="708000" />
-      <workItem from="1701587566323" duration="2822000" />
-    </task>
-    <task id="LOCAL‎-00022" summary="Added JMenu, visual changes to copy IV and key to clipboard, is done with buttons instead of showing the plain text.&#10;Some GUI changes as well.">
-      <option name="closed" value="true" />
-      <created>1700052234624</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL‎-00022" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1700052234624</updated>
+      <workItem from="1701587566323" duration="2933000" />
     </task>
     <task id="LOCAL‎-00023" summary="fw -&gt; sniffer">
       <option name="closed" value="true" />
@@ -679,7 +671,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1701589989933</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL‎-00071" summary="code cleanup &amp; improvement">
+      <option name="closed" value="true" />
+      <created>1701590458684</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL‎-00071" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1701590458684</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -709,7 +709,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Destroying the key using arrays fill method.&#10;still need to take care if the string isnt correct." />
     <MESSAGE value="Dealing with incorrect/empty strings correctly.&#10;errorpopup is always on top." />
     <MESSAGE value="set an exit button in main gui.&#10;removing all the components of netSnifferGUI.java correctly." />
     <MESSAGE value="mainGUI correctly removes exit button when moving between guis.&#10;added getInterfaces and listen, that will run in thread. changed setnetworkinterface.&#10;general gui improvements, to prevent errors and improve error handling, interface# receives only a number." />
@@ -734,7 +733,8 @@
     <MESSAGE value="Improved printing behavior.&#10;added clear button to clear the log.&#10;code cleanup and organization" />
     <MESSAGE value="Improved printing behavior on no filter sniffing." />
     <MESSAGE value="code cleanup &amp; improvement.&#10;Will not try to interrupt a null thread." />
-    <option name="LAST_COMMIT_MESSAGE" value="code cleanup &amp; improvement.&#10;Will not try to interrupt a null thread." />
+    <MESSAGE value="code cleanup &amp; improvement" />
+    <option name="LAST_COMMIT_MESSAGE" value="code cleanup &amp; improvement" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

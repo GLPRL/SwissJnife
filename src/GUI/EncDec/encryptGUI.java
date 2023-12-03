@@ -15,8 +15,6 @@ import java.util.Arrays;
  * GUI for encrypting files.
  */
 public class encryptGUI {
-    final String descIV = "IV";
-    final String descKey = "Key";
     JPanel panel;
     JPanel buttonsPanel;
     JDialog popup;
@@ -93,9 +91,9 @@ public class encryptGUI {
         infoLabel.setHorizontalAlignment(JLabel.CENTER);
         infoLabel.setFont(infoLabel.getFont().deriveFont(17.0f));
 
-        JButton ivBtn = createCBButton("Copy IV to Clipboard", iv, infoLabel, descIV);
+        JButton ivBtn = createCBButton("Copy IV to Clipboard", iv, infoLabel, "IV");
 
-        JButton keyBtn = createCBButton("Copy Key to Clipboard", key, infoLabel, descKey);
+        JButton keyBtn = createCBButton("Copy Key to Clipboard", key, infoLabel, "Key");
 
         JButton closeBtn = new JButton("Return to Menu");
         sharedUtils.noFocusBorder(closeBtn);
