@@ -120,7 +120,6 @@ public class netSnifferGUI {
     }
     /**
      * Present the sniffers' gui
-     *
      * @param gui mainGUI to return
      */
     public void presentGui(mainGUI gui) {
@@ -279,7 +278,6 @@ public class netSnifferGUI {
 
     /**
      * Sets the custom ports panel filtering
-     *
      * @return panel for filtering custom ports
      */
     private static JPanel customPortPanel() {
@@ -367,71 +365,7 @@ public class netSnifferGUI {
         sharedUtils.setSnifferBtn(startBtn, "Start", Color.GREEN);
         panel.add(startBtn);
         startBtn.addActionListener(e -> {
-            if (startBtn.getText().equals("Start")) {
-                if (ports.isEmpty()) {
-                    allPorts.setSelected(true);
-                    status.setText("Disabled (All Ports)");
-                }
-                setPortLock(false);
-                addPortBtn.setEnabled(false);
-                removePortBtn.setEnabled(false);
-                customPort.setEnabled(false);
-                interfaceText.setEnabled(false);
-                filterPorts.setEnabled(false);
-                allPorts.setEnabled(false);
-                interfaceList.setEnabled(false);
-                interfaceSet.setEnabled(false);
-                log.setText("");
-                if (!filterPorts.isSelected() && !allPorts.isSelected()) {
-                    if (ports.isEmpty()) {
-                        allPorts.setSelected(true);
-                        filterPorts.setSelected(false);
-                        status.setText("Disabled (All Ports)");
-                        log.append("Listening on all ports\n");
-                        snifferThread = new Thread(() -> ns.listen(log, ports, ALL_PORTS));
-
-                    } else {
-                        allPorts.setSelected(false);
-                        filterPorts.setSelected(true);
-                        status.setText("Enabled (Using Filter)");
-                        log.append("Listening on:\n");
-                        logPorts(log, ports);
-                        snifferThread = new Thread(() -> ns.listen(log, ports, FILTER_PORTS));
-                    }
-                } else if (allPorts.isSelected()) {
-                    log.append("Listening on all ports\n");
-                    snifferThread = new Thread(() -> ns.listen(log, ports, ALL_PORTS));
-                } else if (filterPorts.isSelected()) {
-                    if (ports.isEmpty()) {
-                        log.append("No ports selected for filtering");
-                    } else {
-                        status.setText("Enabled (Using Filter)");
-                        log.append("Listening on:\n");
-                        logPorts(log, ports);
-                        snifferThread = new Thread(() -> ns.listen(log, ports, FILTER_PORTS));
-                    }
-                }
-                snifferThread.start();
-                startBtn.setBackground(Color.YELLOW);
-                startBtn.setText("Stop");
-
-            } else {
-                interfaceText.setEnabled(true);
-                setBtnLock(true);
-                setPortLock(true);
-                addPortBtn.setEnabled(true);
-                removePortBtn.setEnabled(true);
-                customPort.setEnabled(true);
-                interfaceList.setEnabled(true);
-                interfaceSet.setEnabled(true);
-                startBtn.setEnabled(false);
-                status.setText("Status");
-                startBtn.setBackground(Color.GREEN);
-                interfaceInfo.setText("");
-                startBtn.setText("Start");
-                snifferThread.interrupt();
-            }
-
+            startButtonListener();
         });
 
         clearBtn = new JButton();
@@ -456,10 +390,78 @@ public class netSnifferGUI {
         panel.add(Box.createRigidArea(new Dimension(0, 5)));
         panel.add(exitBtn);
 
-
         return panel;
     }
 
+    /**
+     * Create the listener for start button.
+     */
+    private static void startButtonListener() {
+        if (startBtn.getText().equals("Start")) {
+            if (ports.isEmpty()) {
+                allPorts.setSelected(true);
+                status.setText("Disabled (All Ports)");
+            }
+            setPortLock(false);
+            addPortBtn.setEnabled(false);
+            removePortBtn.setEnabled(false);
+            customPort.setEnabled(false);
+            interfaceText.setEnabled(false);
+            filterPorts.setEnabled(false);
+            allPorts.setEnabled(false);
+            interfaceList.setEnabled(false);
+            interfaceSet.setEnabled(false);
+            log.setText("");
+            if (!filterPorts.isSelected() && !allPorts.isSelected()) {
+                if (ports.isEmpty()) {
+                    allPorts.setSelected(true);
+                    filterPorts.setSelected(false);
+                    status.setText("Disabled (All Ports)");
+                    log.append("Listening on all ports\n");
+                    snifferThread = new Thread(() -> ns.listen(log, ports, ALL_PORTS));
+
+                } else {
+                    allPorts.setSelected(false);
+                    filterPorts.setSelected(true);
+                    status.setText("Enabled (Using Filter)");
+                    log.append("Listening on:\n");
+                    logPorts(log, ports);
+                    snifferThread = new Thread(() -> ns.listen(log, ports, FILTER_PORTS));
+                }
+            } else if (allPorts.isSelected()) {
+                log.append("Listening on all ports\n");
+                snifferThread = new Thread(() -> ns.listen(log, ports, ALL_PORTS));
+            } else if (filterPorts.isSelected()) {
+                if (ports.isEmpty()) {
+                    log.append("No ports selected for filtering");
+                } else {
+                    status.setText("Enabled (Using Filter)");
+                    log.append("Listening on:\n");
+                    logPorts(log, ports);
+                    snifferThread = new Thread(() -> ns.listen(log, ports, FILTER_PORTS));
+                }
+            }
+            snifferThread.start();
+            startBtn.setBackground(Color.YELLOW);
+            startBtn.setText("Stop");
+
+        } else {
+            interfaceText.setEnabled(true);
+            setBtnLock(true);
+            setPortLock(true);
+            addPortBtn.setEnabled(true);
+            removePortBtn.setEnabled(true);
+            customPort.setEnabled(true);
+            interfaceList.setEnabled(true);
+            interfaceSet.setEnabled(true);
+            startBtn.setEnabled(false);
+            status.setText("Status");
+            startBtn.setBackground(Color.GREEN);
+            interfaceInfo.setText("");
+            startBtn.setText("Start");
+            snifferThread.interrupt();
+        }
+    }
 
     public static JPanel createFilterStatusPanel() {
         JPanel panel = new JPanel();
@@ -485,20 +487,17 @@ public class netSnifferGUI {
         radioPanel.setMinimumSize(new Dimension(150, 20));
         radioPanel.setBackground(Color.WHITE);
         radioPanel.setBackground(Color.WHITE);
+        radioPanel.setBorder(new EtchedBorder());
         ButtonGroup bg = new ButtonGroup();
-        allPorts = new JRadioButton("Disable");
-        allPorts.setBackground(Color.WHITE);
-        filterPorts = new JRadioButton("Enable");
-        filterPorts.setBackground(Color.WHITE);
-        sharedUtils.noFocusBorder(allPorts);
-        sharedUtils.noFocusBorder(filterPorts);
+
+        allPorts = createFilteringBtn("Disable", "Disabled (All Ports)");
+        filterPorts = createFilteringBtn("Enable", "Enabled (Using Filter)");
+
         bg.add(allPorts);
         bg.add(filterPorts);
         radioPanel.add(allPorts);
         radioPanel.add(filterPorts);
-        radioPanel.setBorder(new EtchedBorder());
-        filterPorts.addActionListener(e -> status.setText("Enabled (Using Filter)"));
-        allPorts.addActionListener(e -> status.setText("Disabled (All Ports)"));
+
         panel.add(radioPanel);
 
         interfaceInfo = new JTextArea();
@@ -515,7 +514,13 @@ public class netSnifferGUI {
         panel.add(pane);
         return panel;
     }
-
+    private static JRadioButton createFilteringBtn(String name, String desc) {
+        JRadioButton btn = new JRadioButton(name);
+        btn.setBackground(Color.WHITE);
+        sharedUtils.noFocusBorder(btn);
+        btn.addActionListener(e -> status.setText(desc));
+        return btn;
+    }
     /**
      * Interface selection, settings and listing
      *
