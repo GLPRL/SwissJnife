@@ -58,8 +58,6 @@ Windows systems:
 
 Using a provided .bat file for windows, you can run the file run_SwissJnife.bat using ```run_SwissJnife```
 
-### Built in batch :
-
 
 Linux systems:
 
