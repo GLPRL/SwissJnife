@@ -131,6 +131,9 @@ public class netSnifferGUI {
         frame.setVisible(true);
     }
 
+    /**
+     * create elements to display and add to main panel
+     */
     public void createElements() {
         createLog();
         addPanels();
@@ -139,7 +142,7 @@ public class netSnifferGUI {
     }
 
     /**
-     * Create the log for displaying the output
+     * Create the log and scrollable pane for displaying the output
      */
     private static void createLog() {
         // Create a JTextArea
@@ -184,7 +187,6 @@ public class netSnifferGUI {
 
     /**
      * Setting lock status for misc buttons
-     *
      * @param b true/false for locking status
      */
     public static void setMiscBtnLock(boolean b) {
@@ -197,8 +199,7 @@ public class netSnifferGUI {
     }
 
     /**
-     * Setting lock status for port filtering buttons
-     *
+     * Setting lock status for port filtering button.
      * @param b true/false for locking status
      */
     public static void setPortLock(boolean b) {
@@ -248,7 +249,6 @@ public class netSnifferGUI {
 
     /**
      * Setting each column of JRadioButtons
-     *
      * @param btnOne   first button
      * @param btnTwo   second button
      * @param btnThree third button
@@ -269,7 +269,6 @@ public class netSnifferGUI {
 
     /**
      * Sets up a column panel for adding radio buttons
-     *
      * @return new panel
      */
     private static JPanel getColPanel() {
@@ -356,6 +355,11 @@ public class netSnifferGUI {
 
     }
 
+    /**
+     * create the general buttons panel for starting/stopping, clearing screen
+     * and exiting.
+     * @return general panel
+     */
     public static JPanel createGeneralPanel() {
         JPanel panel = new JPanel();
         panel.setBorder(new EtchedBorder());
@@ -473,6 +477,10 @@ public class netSnifferGUI {
         });
     }
 
+    /**
+     * creating the filtering options
+     * @return filtering panel
+     */
     public static JPanel createFilterStatusPanel() {
         JPanel panel = new JPanel();
         panel.setBorder(new EtchedBorder());
@@ -527,6 +535,13 @@ public class netSnifferGUI {
         panel.add(pane);
         return panel;
     }
+
+    /**
+     * creating the filter/all ports
+     * @param name radio button name
+     * @param desc radio button desc
+     * @return radio button (filter/all ports)
+     */
     private static JRadioButton createFilteringBtn(String name, String desc) {
         JRadioButton btn = new JRadioButton(name);
         btn.setBackground(Color.WHITE);
@@ -536,7 +551,6 @@ public class netSnifferGUI {
     }
     /**
      * Interface selection, settings and listing
-     *
      * @return panel contains all of the above
      */
     private static JPanel getInterfacesPanel() {
@@ -617,7 +631,6 @@ public class netSnifferGUI {
 
     /**
      * Setting visual attributes to a toggle button
-     *
      * @param btn toggle button to set
      */
     public void portSetup(JToggleButton btn) {

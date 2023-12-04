@@ -57,6 +57,10 @@ public class decryptGUI {
         }
         frame.setVisible(true);
     }
+
+    /**
+     * Popup to request key + IV from user
+     */
     public void requestData() {
         Dimension d = new Dimension(0, 10);
         Dimension fieldSize = new Dimension(150, 25);
@@ -98,6 +102,12 @@ public class decryptGUI {
         mainPanel.add(Box.createRigidArea(d));
         popup.setVisible(true);
     }
+
+    /**
+     * create a new cancel button for the popup.
+     * @param popup
+     * @return cancel button
+     */
     private JButton newCancelButton(JDialog popup) {
         JButton cancelBtn = new JButton("Cancel");
         Utils.noFocusBorder(cancelBtn);
@@ -107,6 +117,14 @@ public class decryptGUI {
         cancelBtn.addActionListener(e -> FLAG = 1);
         return cancelBtn;
     }
+
+    /**
+     * create the finish button to start decrypting
+     * @param popup
+     * @param keyField key
+     * @param ivField iv
+     * @return finish button
+     */
     private JButton newFinishButton(JDialog popup, JTextField keyField, JTextField ivField) {
         JButton finishBtn = new JButton("Finish");
         Utils.noFocusBorder(finishBtn);
@@ -116,6 +134,11 @@ public class decryptGUI {
         finishBtn.addActionListener(e -> data = Utils.getKeyIv(keyField.getText(), ivField.getText()));
         return finishBtn;
     }
+
+    /**
+     * create the popup for requesting key + IV
+     * @return popup
+     */
     private JDialog insertionPopup() {
         JDialog popup = new JDialog();
         popup.setTitle("SwissJnife - Key+IV data");
@@ -133,6 +156,12 @@ public class decryptGUI {
         popup.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         return popup;
     }
+
+    /**
+     * create JTextField for key / IV
+     * @param fieldSize size of the text field
+     * @return text field
+     */
     private JTextField newTextField(Dimension fieldSize) {
         JTextField field = new JTextField();
         field.setBackground(Color.WHITE);

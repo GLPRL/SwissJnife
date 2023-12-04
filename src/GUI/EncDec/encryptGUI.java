@@ -112,6 +112,13 @@ public class encryptGUI {
      * @param infoLabel announcing that the data was copied
      * @param desc desc of the data that was copied
      */
+    /**
+     * init clipboard for data on clicking button with action description
+     * @param btn
+     * @param data
+     * @param infoLabel
+     * @param desc
+     */
     public void initClipboard(JButton btn, String data, JLabel infoLabel, String desc) {
         btn.addActionListener(e -> {
             Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
@@ -120,6 +127,15 @@ public class encryptGUI {
             infoLabel.setText(desc + " copied to clipboard");
         });
     }
+
+    /**
+     * create the button for copying to clipboard
+     * @param action
+     * @param key
+     * @param infoLabel
+     * @param descKey
+     * @return
+     */
     public JButton createCBButton(String action, String key, JLabel infoLabel, String descKey) {
         JButton btn = new JButton(action);
         Utils.noFocusBorder(btn);
@@ -128,6 +144,11 @@ public class encryptGUI {
         initClipboard(btn, key, infoLabel, descKey);
         return btn;
     }
+
+    /**
+     * the closing button for the popup.
+     * @return button
+     */
     public JButton createCloseButton() {
         JButton closeBtn = new JButton("Return to Menu");
         Utils.noFocusBorder(closeBtn);
