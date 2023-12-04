@@ -4,10 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="code cleanup &amp; improvement &amp; comments.">
+    <list default="true" id="576e2840-5428-4c66-80e5-d92e5e313b6d" name="Changes" comment="netSniffer: handling InterruptedException, prints full information correctly on interrupt.&#10;mainGUI: worked the menu.&#10;netSnifferGUI: handle window closing with frame X button, if the thread is active, some minimal gui changes.&#10;new method in Utils.java - center popup, for popup centering in the screen.&#10;new popups from menu.&#10;more code improvements and removal of not needed items.">
+      <change afterPath="$PROJECT_DIR$/src/GUI/img/ns_help.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/EncDec/decryptGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/EncDec/decryptGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/EncDec/encryptGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/EncDec/encryptGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/mainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/mainGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/sharedUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/sniffer/netSnifferGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Logics/EncDec/encrypt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logics/EncDec/encrypt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Logics/sharedUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Logics/sniffer/netSniffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logics/sniffer/netSniffer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +34,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="gal_sniffer" />
+        <entry key="$PROJECT_DIR$" value="gal_edits" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -80,7 +87,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "gal__edits",
+    "git-widget-placeholder": "gal__menu",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/galpe/IdeaProjects/SwissJnife/lib/slf4j-api-2.0.9.jar",
     "node.js.detected.package.eslint": "true",
@@ -88,7 +95,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.20703125",
     "project.structure.side.proportion": "0.43451652",
     "settings.editor.selected.configurable": "editor.preferences.import",
@@ -286,15 +293,8 @@
       <workItem from="1701337619952" duration="14058000" />
       <workItem from="1701512859539" duration="10272000" />
       <workItem from="1701527994515" duration="708000" />
-      <workItem from="1701587566323" duration="7610000" />
-    </task>
-    <task id="LOCAL‎-00027" summary="changed description of button">
-      <option name="closed" value="true" />
-      <created>1700070854452</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL‎-00027" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1700070854452</updated>
+      <workItem from="1701587566323" duration="7875000" />
+      <workItem from="1701681017377" duration="8271000" />
     </task>
     <task id="LOCAL‎-00028" summary="changed description of button">
       <option name="closed" value="true" />
@@ -680,7 +680,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1701597907261</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL‎-00076" summary="code cleanup &amp; improvement &amp; comments.">
+      <option name="closed" value="true" />
+      <created>1701603190969</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL‎-00076" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1701603190969</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -710,8 +718,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Code organization and cleanup." />
-    <MESSAGE value="GUI improvements" />
     <MESSAGE value="sharedUtils.java corrected location for error popup.&#10;self scanner isn't available yet, so presenting a message indicating that." />
     <MESSAGE value="Improved behavior of start/stop button.&#10;When setting the interface, general information will be displayed to it's right" />
     <MESSAGE value="further code arrangement" />
@@ -735,7 +741,9 @@
     <MESSAGE value="code cleanup &amp; improvement &amp; comments" />
     <MESSAGE value="code cleanup &amp; improvement &amp; comments.&#10;false printing correction on applied filter.&#10;buttons behavior correction on controlPorts function." />
     <MESSAGE value="code cleanup &amp; improvement &amp; comments." />
-    <option name="LAST_COMMIT_MESSAGE" value="code cleanup &amp; improvement &amp; comments." />
+    <MESSAGE value="netSniffer: handling InterruptedException, prints full information correctly on interrupt.&#10;mainGUI: worked the menu.&#10;netSnifferGUI: handle window closing with frame X button, if the thread is active, some minimal gui changes.&#10;new method in Utils.java - center popup, for popup centering in the screen.&#10;new popups from menu." />
+    <MESSAGE value="netSniffer: handling InterruptedException, prints full information correctly on interrupt.&#10;mainGUI: worked the menu.&#10;netSnifferGUI: handle window closing with frame X button, if the thread is active, some minimal gui changes.&#10;new method in Utils.java - center popup, for popup centering in the screen.&#10;new popups from menu.&#10;more code improvements and removal of not needed items." />
+    <option name="LAST_COMMIT_MESSAGE" value="netSniffer: handling InterruptedException, prints full information correctly on interrupt.&#10;mainGUI: worked the menu.&#10;netSnifferGUI: handle window closing with frame X button, if the thread is active, some minimal gui changes.&#10;new method in Utils.java - center popup, for popup centering in the screen.&#10;new popups from menu.&#10;more code improvements and removal of not needed items." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

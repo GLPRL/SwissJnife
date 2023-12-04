@@ -79,21 +79,24 @@ public class netSniffer {
             try {
                 PcapHandle handle = networkInterface.openLive(65536,
                         PcapNetworkInterface.PromiscuousMode.PROMISCUOUS, 100000);
-                boolean contList = true;
-                while (contList) {
+                while(true) {
                     Packet packet = handle.getNextPacketEx();
 
                     ipV4Packet = packet.get(IpV4Packet.class);
                     if (ipV4Packet != null) {
                         IpV4Packet finalIpV4Packet = ipV4Packet;
-                        SwingUtilities.invokeLater(() -> printData(finalIpV4Packet, log, packet));
+                        SwingUtilities.invokeLater(() -> {
+                            try {
+                                printData(finalIpV4Packet, log, packet);
+                            } catch (InterruptedException e) {
+                                throw new RuntimeException(e);
+                            }
+                        });
                     }
                     if (Thread.interrupted()) {
-                        contList = false;
+                        break;
                     }
                 }
-                log.append("=======================================================================\n");
-                log.append("Stopped listening on all ports");
 
             } catch (PcapNativeException | NotOpenException | TimeoutException | EOFException e) {
                 log.append(Arrays.toString(e.getStackTrace()));
@@ -103,8 +106,7 @@ public class netSniffer {
             try {
                 PcapHandle handle = networkInterface.openLive(65536,
                         PcapNetworkInterface.PromiscuousMode.PROMISCUOUS, 100000);
-                boolean contList = true;
-                while (contList) {
+                while (true) {
                     Packet packet = handle.getNextPacketEx();
                     ipV4Packet = packet.get(IpV4Packet.class);
                     if (ipV4Packet != null) {
@@ -112,22 +114,33 @@ public class netSniffer {
                             if (ipV4Packet.getPayload() instanceof TcpPacket) {             //is TCP packet
                                 if (checkPort(ports, ipV4Packet.getPayload(), true)) {
                                     IpV4Packet finalIpV4Packet = ipV4Packet;
-                                    SwingUtilities.invokeLater(() -> printData(finalIpV4Packet, log, packet));
+                                    SwingUtilities.invokeLater(() -> {
+                                        try {
+                                            printData(finalIpV4Packet, log, packet);
+                                        } catch (InterruptedException e) {
+                                            throw new RuntimeException(e);
+                                        }
+                                    });
                                 }
                             } else if (ipV4Packet.getPayload() instanceof UdpPacket) {      //is UDP packet
                                 if (checkPort(ports, ipV4Packet.getPayload(), false)) {
                                     IpV4Packet finalIpV4Packet = ipV4Packet;
-                                    SwingUtilities.invokeLater(() -> printData(finalIpV4Packet, log, packet));
+                                    SwingUtilities.invokeLater(() -> {
+                                        try {
+                                            printData(finalIpV4Packet, log, packet);
+                                        } catch (InterruptedException e) {
+                                            throw new RuntimeException(e);
+                                        }
+                                    });
+
                                 }
                             }
                         }
                     }
                     if (Thread.interrupted()) {
-                        contList = false;
+                        break;
                     }
                 }
-                log.append("=======================================================================\n");
-                log.append("Stopped listening on selected ports");
 
             } catch (PcapNativeException | NotOpenException | TimeoutException | EOFException e) {
                 log.append(Arrays.toString(e.getStackTrace()));
@@ -162,7 +175,7 @@ public class netSniffer {
      * @param log print location
      * @param packet packet derived from ipv4packet
      */
-    private void printData(IpV4Packet ipV4Packet, JTextArea log, Packet packet) {
+    private void printData(IpV4Packet ipV4Packet, JTextArea log, Packet packet) throws InterruptedException {
         String portString = "N/A";
         String ttl;
 

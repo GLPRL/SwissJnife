@@ -1,4 +1,5 @@
 package GUI;
+
 import Logics.EncDec.AESData;
 
 import javax.crypto.SecretKey;
@@ -15,13 +16,15 @@ import javax.swing.text.PlainDocument;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 
 
-public class sharedUtils {
+public class Utils {
     public static Color normal = new Color(150, 245, 222);
     public static Color onHover = new Color(118, 192, 173);
     public static Color ret = new Color(255, 48, 62, 255);
     public static Font TAHOMA_PLAIN_13= new Font("Tahoma", Font.PLAIN, 13);
+    public static Font TAHOMA_BOLD_13= new Font("Tahoma", Font.BOLD, 13);
     public static Font TAHOMA_BOLD_12 = new Font("Tahoma", Font.BOLD, 12);
     public static Font TAHOMA_PLAIN_12 = new Font("Tahoma", Font.PLAIN, 12);
     public static Font MONO_PLAIN_12 = new Font("Monospaced", Font.PLAIN, 12);
@@ -37,10 +40,6 @@ public class sharedUtils {
     public static Cursor TEXT_CURSOR = new Cursor(Cursor.TEXT_CURSOR);
     public static Cursor DEFAULT_CURSOR = new Cursor(Cursor.DEFAULT_CURSOR);
     public static Component W0_H10 = Box.createRigidArea(new Dimension(0, 10));
-    public static Component W0_H10_2 = Box.createRigidArea(new Dimension(0, 10));
-    public static Component W0_H10_3 = Box.createRigidArea(new Dimension(0, 10));
-    public static Component W0_H10_4 = Box.createRigidArea(new Dimension(0, 10));
-    public static Component W0_H15 = Box.createRigidArea(new Dimension(0, 15));
     public static Component W5_H0 = Box.createRigidArea(new Dimension(5,0));
     public static Component W10_H0 = Box.createRigidArea(new Dimension(10, 0));
     public static Component W10_H0_2 = Box.createRigidArea(new Dimension(10, 0));
@@ -112,16 +111,12 @@ public class sharedUtils {
     /**
      * Display an error message
      * @param message message to display
-     * @param frame for location options
      */
-    public static void errorPopup(String message, JFrame frame) {
+    public static void errorPopup(String message) {
         JDialog popup = new JDialog();
         popup.setAlwaysOnTop(true);
         popup.setSize(280, 110);
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = (screenSize.width - frame.getWidth()) / 2 + 140;
-        int y = (screenSize.height - frame.getHeight()) / 2 + 55;
-        popup.setLocation(x, y);
+        popup.setLocation(centerPopup(popup));
         popup.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         popup.setTitle("Error");
 
@@ -152,6 +147,17 @@ public class sharedUtils {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (screenSize.width - frame.getWidth()) / 2;
         int y = (screenSize.height - frame.getHeight()) / 2;
+        return new Point(x, y);
+    }
+    /**
+     * Move the frame to the center of the screen
+     * @param dialog frame to move
+     * @return center point of the screen
+     */
+    public static Point centerPopup(JDialog dialog) {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (screenSize.width - dialog.getWidth()) / 2;
+        int y = (screenSize.height - dialog.getHeight()) / 2;
         return new Point(x, y);
     }
     public static void noFocusBorder(JButton btn) {
@@ -228,5 +234,63 @@ public class sharedUtils {
         tb.setTitleColor(Color.BLACK);
         tb.setTitleJustification(TitledBorder.CENTER);
         return tb;
+    }
+    public static void helpPopup(String title) {
+        JDialog popup = new JDialog();
+        popup.setAlwaysOnTop(true);
+        popup.setTitle(title);
+        popup.setBackground(Color.WHITE);
+        popup.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+
+        JLabel helpTitle = new JLabel();
+        helpTitle.setFont(TAHOMA_BOLD_13);
+        helpTitle.setFocusable(false);
+        helpTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
+        helpTitle.setCursor(DEFAULT_CURSOR);
+
+        JTextArea help = new JTextArea();
+        help.setFocusable(false);
+        help.setCursor(DEFAULT_CURSOR);
+        help.setBackground(Color.WHITE);
+        help.setFont(TAHOMA_PLAIN_12);
+
+        if (title.equals("Encryption/Decryption Help")) {
+            JPanel panel = new JPanel();
+            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+            panel.setBackground(Color.WHITE);
+            popup.setSize(500, 500);
+            popup.setLocation(centerPopup(popup));
+            helpTitle.setText("A encryption / decryption tool, using AES/CBC");
+            help.setText(" Instructions:\n" +
+                    " Encryption:\n (1) Select target file for encryption.\n" +
+                    " (2) A popup will be displayed. Click the buttons to copy the data to clipboard\n" +
+                    " and secure in a safe location. You are required to save both the key and the IV\n" +
+                    " for future decryption.\n" +
+                    " (3) The encrypted file will be in the same location of your target file\n" +
+                    " with the original filetype + the text \"Enc\"\n\n\n" +
+                    " Decryption:\n" +
+                    " (1) Select the encrypted file with the suffix described in (3) in Encryption section.\n" +
+                    " (2) In the popup, insert the exact same key and IV that were given in the encryption\n process." +
+                    " The key and the IV will be checked for validity.\n" +
+                    " (3) Your new decrypted file will be located in the same location as the encrypted file,\n" +
+                    " with the name suffix \"Dec\"");
+            panel.add(helpTitle);
+            panel.add(Box.createRigidArea(new Dimension(10, 20)));
+            panel.add(help);
+            popup.add(panel);
+        } else {
+            popup.setSize(1020, 740);
+            popup.setLocation(centerPopup(popup));
+            helpTitle.setText("A network sniffing tool");
+            URL imageRes = Utils.class.getResource("/GUI/img/ns_help.jpg");
+            if (imageRes != null) {
+                ImageIcon image = new ImageIcon(imageRes);
+                JLabel imageLabel = new JLabel(image);
+                popup.add(imageLabel);
+            } else {
+                errorPopup("Image not found");
+            }
+        }
+        popup.setVisible(true);
     }
 }

@@ -1,7 +1,7 @@
 package GUI.EncDec;
 
 import GUI.mainGUI;
-import GUI.sharedUtils;
+import GUI.Utils;
 import Logics.EncDec.AESData;
 import Logics.EncDec.decrypt;
 
@@ -42,14 +42,14 @@ public class decryptGUI {
 
                 } else {
                     if (FLAG == 0) {
-                        sharedUtils.errorPopup("Invalid parameters", frame);
+                        Utils.errorPopup("Invalid parameters");
                     } else {
                         FLAG = 0;
                     }
                 }
             } catch (InvalidAlgorithmParameterException | NoSuchPaddingException | IllegalBlockSizeException |
                      NoSuchAlgorithmException | IOException | BadPaddingException | InvalidKeyException e) {
-                sharedUtils.errorPopup("Error decrypting the file", frame);
+                Utils.errorPopup("Error decrypting the file");
                 throw new RuntimeException(e);
             }
         } else if (res == JFileChooser.CANCEL_OPTION) {
@@ -71,7 +71,7 @@ public class decryptGUI {
         JPanel keyPanel = new JPanel();
         keyPanel.setLayout(new BoxLayout(keyPanel, BoxLayout.X_AXIS));
         JLabel keyLabel = new JLabel("Key: ");
-        keyLabel.setFont(sharedUtils.TAHOMA_PLAIN_12);
+        keyLabel.setFont(Utils.TAHOMA_PLAIN_12);
         keyPanel.add(keyLabel);
         JTextField keyField = newTextField(fieldSize);
         keyPanel.add(keyField);
@@ -82,7 +82,7 @@ public class decryptGUI {
         JPanel ivPanel = new JPanel();
         ivPanel.setLayout(new BoxLayout(ivPanel, BoxLayout.X_AXIS));
         JLabel ivLabel = new JLabel("IV: ");
-        ivLabel.setFont(sharedUtils.TAHOMA_PLAIN_12);
+        ivLabel.setFont(Utils.TAHOMA_PLAIN_12);
         ivPanel.add(ivLabel);
         JTextField ivField = newTextField(fieldSize);
         ivPanel.add(ivField);
@@ -100,27 +100,27 @@ public class decryptGUI {
     }
     private JButton newCancelButton(JDialog popup) {
         JButton cancelBtn = new JButton("Cancel");
-        sharedUtils.noFocusBorder(cancelBtn);
+        Utils.noFocusBorder(cancelBtn);
         cancelBtn.setHorizontalAlignment(SwingConstants.CENTER);
         cancelBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
-        sharedUtils.setRetButton(cancelBtn, popup);
+        Utils.setRetButton(cancelBtn, popup);
         cancelBtn.addActionListener(e -> FLAG = 1);
         return cancelBtn;
     }
     private JButton newFinishButton(JDialog popup, JTextField keyField, JTextField ivField) {
         JButton finishBtn = new JButton("Finish");
-        sharedUtils.noFocusBorder(finishBtn);
-        sharedUtils.setRetButton(finishBtn, popup);
+        Utils.noFocusBorder(finishBtn);
+        Utils.setRetButton(finishBtn, popup);
         finishBtn.setHorizontalAlignment(SwingConstants.CENTER);
         finishBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
-        finishBtn.addActionListener(e -> data = sharedUtils.getKeyIv(keyField.getText(), ivField.getText()));
+        finishBtn.addActionListener(e -> data = Utils.getKeyIv(keyField.getText(), ivField.getText()));
         return finishBtn;
     }
     private JDialog insertionPopup() {
         JDialog popup = new JDialog();
         popup.setTitle("SwissJnife - Key+IV data");
         popup.setSize(350, 250);
-        popup.setLocation(sharedUtils.centerFrame(frame));
+        popup.setLocation(Utils.centerPopup(popup));
         popup.setLocationRelativeTo(frame);
         popup.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         popup.addWindowListener(new WindowAdapter() {
