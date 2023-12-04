@@ -174,7 +174,7 @@ public class mainGUI {
      * Setting click listeners to start a wanted program
      * @param encBtn to begin file encryption
      * @param decBtn to begin file decryption
-     * @param ftr_3 ???
+     * @param ftr_3 next feature
      * @param sniff to begin network sniffer
      */
     public void setClickListeners(JButton encBtn, JButton decBtn, JButton ftr_3, JButton sniff) {

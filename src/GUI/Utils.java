@@ -45,6 +45,9 @@ public class Utils {
     public static Component W10_H0_2 = Box.createRigidArea(new Dimension(10, 0));
     public static Component W10_H70 = Box.createRigidArea(new Dimension(10, 70));
     public static Component W10_H5 = Box.createRigidArea(new Dimension(10, 5));
+    /**
+     * Prevent non-numeric characters & empty strings
+     */
     public static PlainDocument numericOnly = new PlainDocument() {
         @Override
         public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException {
@@ -102,6 +105,12 @@ public class Utils {
             }
         });
     }
+
+    /**
+     * setting return button for popup
+     * @param btn
+     * @param popup
+     */
     public static void setRetButton(JButton btn, JDialog popup) {
         btn.setCursor(HAND_CURSOR);
         btn.setBackground(ret);
@@ -160,6 +169,11 @@ public class Utils {
         int y = (screenSize.height - dialog.getHeight()) / 2;
         return new Point(x, y);
     }
+
+    /**
+     * disable border on focus for button
+     * @param btn
+     */
     public static void noFocusBorder(JButton btn) {
         btn.setUI(new BasicButtonUI() {
             @Override
@@ -169,6 +183,11 @@ public class Utils {
             }
         });
     }
+
+    /**
+     * disable border on focus for radio buttons
+     * @param btn
+     */
     public static void noFocusBorder(JRadioButton btn) {
         btn.setUI(new BasicRadioButtonUI() {
             @Override
@@ -177,6 +196,13 @@ public class Utils {
             }
         });
     }
+
+    /**
+     * get key, iv for decryption process
+     * @param key of encryption
+     * @param iv of encryption
+     * @return
+     */
     public static AESData getKeyIv(String key, String iv) {
         if (key.isEmpty() || iv.isEmpty()) {
             return null;
@@ -217,6 +243,13 @@ public class Utils {
         aesData.setIv(ivParameterSpec);
         return aesData;
     }
+
+    /**
+     * setting a general button for sniffer GUI
+     * @param btn button to set
+     * @param name of button
+     * @param c color of button
+     */
     public static void setSnifferBtn(JButton btn, String name, Color c) {
         btn.setText(name);
         btn.setBackground(c);
@@ -229,12 +262,23 @@ public class Utils {
         btn.setMinimumSize(new Dimension(75, 20));
         btn.setMaximumSize(new Dimension(75, 20));
     }
+
+    /**
+     * create a general title border
+     * @param title for the border
+     * @return titled border
+     */
     public static TitledBorder getTitledBorder(String title) {
         TitledBorder tb = new TitledBorder(new LineBorder(Color.BLACK), title);
         tb.setTitleColor(Color.BLACK);
         tb.setTitleJustification(TitledBorder.CENTER);
         return tb;
     }
+
+    /**
+     * create a general help popup for the menu
+     * @param title of popup
+     */
     public static void helpPopup(String title) {
         JDialog popup = new JDialog();
         popup.setAlwaysOnTop(true);
