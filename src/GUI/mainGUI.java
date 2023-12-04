@@ -27,7 +27,7 @@ public class mainGUI {
         frame = new JFrame("SwissJnife");              //Window settings
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(650, 150);
-        frame.setLocation(sharedUtils.centerFrame(this.frame));
+        frame.setLocation(Utils.centerFrame(this.frame));
 
         Container contentPane = frame.getContentPane();
         contentPane.setBackground(Color.WHITE);
@@ -46,29 +46,26 @@ public class mainGUI {
     public void createMenuBar() {
         JMenuBar menu = new JMenuBar();
         menu.setBackground(new Color(246, 246, 246, 255));
+
         JMenu file = new JMenu(("File"));
         Border border = BorderFactory.createLineBorder(Color.GRAY, 1, false);
         menu.setBorder(border);
         file.setBorder(border);
-        JMenuItem credits = new JMenuItem("Credits");
-        credits.setBorder(border);
-        file.add(credits);
         JMenuItem uri = createGitHubURI(border);
         file.add(uri);
-        JMenuItem exit = new JMenuItem("Exit");
-        exit.setCursor(sharedUtils.HAND_CURSOR);
-        exit.setBorder(border);
-        file.add(exit);
         menu.add(file);
+
         JMenu encDec = new JMenu("Encryptor");
         encDec.setBorder(border);
         JMenuItem encDecHelp = new JMenuItem("Help");
+        encDecHelp.addActionListener(e -> Utils.helpPopup("Encryption/Decryption Help"));
         encDec.add(encDecHelp);
         menu.add(encDec);
 
         JMenu sniffer = new JMenu("Sniffer");
         sniffer.setBorder(border);
         JMenuItem snifferHelp = new JMenuItem("Help");
+        snifferHelp.addActionListener(e -> Utils.helpPopup("Network Sniffer Help"));
         sniffer.add(snifferHelp);
         menu.add(sniffer);
         frame.setJMenuBar(menu);
@@ -87,7 +84,7 @@ public class mainGUI {
                     Desktop.getDesktop().browse(new URI("https://www.github.com/GLPRL/SwissJnife"));
                 } catch (IOException | URISyntaxException ex) {
                     //create error popup that we failed opening a browser
-                    sharedUtils.errorPopup("Could not open the project on browser", frame);
+                    Utils.errorPopup("Could not open the project on browser");
                     throw new RuntimeException(ex);
                 }
             }
@@ -105,20 +102,20 @@ public class mainGUI {
         panel1.setAlignmentY(Component.TOP_ALIGNMENT);
         panel1.removeAll();
 
-        sharedUtils.W10_H5.setBackground(Color.WHITE);
-        this.panel.add(sharedUtils.W10_H5);
+        Utils.W10_H5.setBackground(Color.WHITE);
+        this.panel.add(Utils.W10_H5);
 
         //Create encrypt file button
         JButton encBtn = new JButton("Encrypt File");
-        sharedUtils.noFocusBorder(encBtn);
-        sharedUtils.setGeneralButton(encBtn);
+        Utils.noFocusBorder(encBtn);
+        Utils.setGeneralButton(encBtn);
         panel1.add(encBtn);
-        panel1.add(sharedUtils.W10_H5);
+        panel1.add(Utils.W10_H5);
 
         //Create decrypt file button
         JButton decBtn = new JButton("Decrypt File");
-        sharedUtils.noFocusBorder(decBtn);
-        sharedUtils.setGeneralButton(decBtn);
+        Utils.noFocusBorder(decBtn);
+        Utils.setGeneralButton(decBtn);
         panel1.add(decBtn);
         panel1.setBackground(Color.WHITE);
 
@@ -129,8 +126,8 @@ public class mainGUI {
         panel2.removeAll();
 
         JButton ftr_3 = new JButton("ftr_3");
-        sharedUtils.noFocusBorder(ftr_3);
-        sharedUtils.setGeneralButton(ftr_3);
+        Utils.noFocusBorder(ftr_3);
+        Utils.setGeneralButton(ftr_3);
         panel2.add(ftr_3);
 
         JPanel panel3 = new JPanel();
@@ -139,27 +136,27 @@ public class mainGUI {
         panel3.removeAll();
 
         JButton sniff = new JButton("Network Sniffer");
-        sharedUtils.noFocusBorder(sniff);
-        sharedUtils.setGeneralButton(sniff);
+        Utils.noFocusBorder(sniff);
+        Utils.setGeneralButton(sniff);
         panel3.add(sniff);
 
         //Add listeners
         setClickListeners(encBtn, decBtn, ftr_3, sniff);
 
-        this.panel.add(sharedUtils.W10_H0);
+        this.panel.add(Utils.W10_H0);
         this.panel.add(panel1);
-        this.panel.add(sharedUtils.W10_H0);
+        this.panel.add(Utils.W10_H0);
         this.panel.add(panel2);
-        this.panel.add(sharedUtils.W10_H0_2);
+        this.panel.add(Utils.W10_H0_2);
         this.panel.add(panel3);
 
         exitBtn = new JButton("Exit");
-        exitBtn.setCursor(sharedUtils.HAND_CURSOR);
-        sharedUtils.noFocusBorder(exitBtn);
+        exitBtn.setCursor(Utils.HAND_CURSOR);
+        Utils.noFocusBorder(exitBtn);
         exitBtn.setBackground(Color.RED);
-        exitBtn.setFont(sharedUtils.TAHOMA_BOLD_12);
+        exitBtn.setFont(Utils.TAHOMA_BOLD_12);
         exitBtn.addActionListener(e -> frame.dispose());
-        frame.add(sharedUtils.W10_H70);
+        frame.add(Utils.W10_H70);
         frame.add(exitBtn);
     }
 
@@ -169,7 +166,7 @@ public class mainGUI {
     public void presentGUI() {
         createContent();
         frame.setSize(650, 150);
-        frame.setLocation(sharedUtils.centerFrame(this.frame));
+        frame.setLocation(Utils.centerFrame(this.frame));
         frame.setVisible(true);
     }
 
@@ -182,22 +179,20 @@ public class mainGUI {
      */
     public void setClickListeners(JButton encBtn, JButton decBtn, JButton ftr_3, JButton sniff) {
         encBtn.addActionListener(e -> {
-            sharedUtils.clearScreen(panel);
+            Utils.clearScreen(panel);
             frame.remove(exitBtn);
             encryptGUI gui = new encryptGUI(frame);
             gui.presentGui(mainGUI.this);
         });
         decBtn.addActionListener(e -> {
-            sharedUtils.clearScreen(panel);
+            Utils.clearScreen(panel);
             frame.remove(exitBtn);
             decryptGUI gui = new decryptGUI(frame);
             gui.presentGui(mainGUI.this);
         });
-        ftr_3.addActionListener(e -> {
-            sharedUtils.errorPopup("Feature is not yet available", frame);
-        });
+        ftr_3.addActionListener(e -> Utils.errorPopup("Feature is not yet available"));
         sniff.addActionListener(e -> {
-            sharedUtils.clearScreen(panel);
+            Utils.clearScreen(panel);
             frame.remove(exitBtn);
             netSnifferGUI gui = new netSnifferGUI(frame);
             gui.presentGui(mainGUI.this);

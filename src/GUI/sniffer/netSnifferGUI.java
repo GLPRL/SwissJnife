@@ -1,13 +1,15 @@
 package GUI.sniffer;
 
+import GUI.Utils;
 import GUI.mainGUI;
-import GUI.sharedUtils;
 import Logics.sniffer.netSniffer;
 import org.pcap4j.core.PcapAddress;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.net.Inet4Address;
 import java.net.Inet6Address;
 import java.util.ArrayList;
@@ -76,10 +78,11 @@ public class netSnifferGUI {
         this.buttonsPanel = new JPanel();
         this.normalPorts = new JPanel();
         netSnifferGUI.frame = frame;
+        netSnifferGUI.frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
         frame.setTitle("SwissJnife - Network Traffic");
         netSnifferGUI.frame.setSize(860, 650);
-        netSnifferGUI.frame.setLocation(sharedUtils.centerFrame(netSnifferGUI.frame));
+        netSnifferGUI.frame.setLocation(Utils.centerFrame(netSnifferGUI.frame));
         netSnifferGUI.frame.add(mainPanel);
         setToggleListeners();
     }
@@ -144,10 +147,10 @@ public class netSnifferGUI {
         log.setLineWrap(true);
         log.setEditable(false);
         log.setWrapStyleWord(true);
-        log.setFont(sharedUtils.MONO_PLAIN_12);
-        log.setForeground(sharedUtils.c00112);
+        log.setFont(Utils.MONO_PLAIN_12);
+        log.setForeground(Utils.c00112);
         log.setBorder(BorderFactory.createEtchedBorder());
-        log.setCursor(sharedUtils.TEXT_CURSOR);
+        log.setCursor(Utils.TEXT_CURSOR);
 
         scrollPane = new JScrollPane(log);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -165,7 +168,7 @@ public class netSnifferGUI {
         setButtonsPanel();
 
         controlPanel.add(portsPanel);
-        controlPanel.add(sharedUtils.W5_H0);
+        controlPanel.add(Utils.W5_H0);
         controlPanel.add(buttonsPanel);
         setBtnLock(false);
     }
@@ -218,8 +221,8 @@ public class netSnifferGUI {
      */
     public void setPortsPanel() {
         Component rigidArea = Box.createRigidArea(new Dimension(0, 10));
-        rigidArea.setBackground(sharedUtils.x3189);
-        portsPanel.setBorder(sharedUtils.getTitledBorder("Port Filter"));
+        rigidArea.setBackground(Utils.x3189);
+        portsPanel.setBorder(Utils.getTitledBorder("Port Filter"));
         portsPanel.setBackground(Color.WHITE);
 
 
@@ -286,22 +289,22 @@ public class netSnifferGUI {
         misc.setBackground(Color.WHITE);
 
         JLabel customPortLabel = new JLabel("Custom Port: ");
-        customPortLabel.setFont(sharedUtils.TAHOMA_BOLD_12);
+        customPortLabel.setFont(Utils.TAHOMA_BOLD_12);
         misc.add(customPortLabel);
 
         customPort = new JTextField();
-        customPort.setFont(sharedUtils.TAHOMA_PLAIN_11);
+        customPort.setFont(Utils.TAHOMA_PLAIN_11);
         customPort.setEnabled(false);
         customPort.setBackground(Color.WHITE);
         customPort.setBorder(new EtchedBorder());
         customPort.setMaximumSize(new Dimension(80, 22));
         customPort.setMinimumSize(new Dimension(80, 22));
         customPort.setHorizontalAlignment(JTextField.CENTER);
-        customPort.setDocument(sharedUtils.numericOnly2);
+        customPort.setDocument(Utils.numericOnly2);
         misc.add(customPort);
 
         addPortBtn = new JButton();
-        sharedUtils.setSnifferBtn(addPortBtn, "Listen", Color.GREEN);
+        Utils.setSnifferBtn(addPortBtn, "Add", Color.GREEN);
         addPortBtn.addActionListener(e -> {
             if (customPort.getText() != "") {
                 int temp = Integer.parseInt(customPort.getText());
@@ -315,7 +318,7 @@ public class netSnifferGUI {
         misc.add(addPortBtn);
 
         removePortBtn = new JButton();
-        sharedUtils.setSnifferBtn(removePortBtn, "Delete", Color.RED);
+        Utils.setSnifferBtn(removePortBtn, "Delete", Color.RED);
         removePortBtn.addActionListener(e -> {
             if (customPort.getText() != "") {
                 assignPort(Integer.parseInt(customPort.getText()), false);
@@ -335,7 +338,7 @@ public class netSnifferGUI {
     public void setButtonsPanel() {
         buttonsPanel.setBackground(Color.WHITE);
 
-        buttonsPanel.setBorder(sharedUtils.getTitledBorder("Controls"));
+        buttonsPanel.setBorder(Utils.getTitledBorder("Controls"));
         buttonsPanel.setMaximumSize(new Dimension(400, 220));
         buttonsPanel.setMinimumSize(new Dimension(400, 220));
         buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.X_AXIS));
@@ -362,24 +365,24 @@ public class netSnifferGUI {
         panel.setMinimumSize(new Dimension(95, 110));
 
         startBtn = new JButton();
-        sharedUtils.setSnifferBtn(startBtn, "Start", Color.GREEN);
+        Utils.setSnifferBtn(startBtn, "Start", Color.GREEN);
         panel.add(startBtn);
         startBtn.addActionListener(e -> startButtonListener());
 
         clearBtn = new JButton();
-        sharedUtils.setSnifferBtn(clearBtn, "Clear", sharedUtils.normal);
+        Utils.setSnifferBtn(clearBtn, "Clear", Utils.normal);
         clearBtn.addActionListener(e -> log.setText(""));
         panel.add(Box.createRigidArea(new Dimension(0, 5)));
         panel.add(clearBtn);
 
         exitBtn = new JButton();
-        sharedUtils.setSnifferBtn(exitBtn, "Exit", Color.RED);
+        Utils.setSnifferBtn(exitBtn, "Exit", Color.RED);
         exitBtn.addActionListener(e -> {
             frame.remove(scrollPane);
             if (snifferThread != null) {
                 snifferThread.interrupt();
             }
-            sharedUtils.clearScreen(mainPanel);
+            Utils.clearScreen(mainPanel);
             log.setText("");
             interfaceText.setText("");
             customPort.setText("");
@@ -459,6 +462,15 @@ public class netSnifferGUI {
             startBtn.setText("Start");
             snifferThread.interrupt();
         }
+        netSnifferGUI.frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                if (snifferThread.isAlive()) {
+                    snifferThread.interrupt();
+                }
+            }
+        });
     }
 
     public static JPanel createFilterStatusPanel() {
@@ -471,7 +483,7 @@ public class netSnifferGUI {
         panel.setMinimumSize(dimPanel);
 
         status = new JLabel("Status");
-        status.setFont(sharedUtils.TAHOMA_PLAIN_13);
+        status.setFont(Utils.TAHOMA_PLAIN_13);
         Dimension dimStatus = new Dimension(150, 25);
         status.setMaximumSize(dimStatus);
         status.setMinimumSize(dimStatus);
@@ -502,14 +514,14 @@ public class netSnifferGUI {
         panel.add(radioPanel);
 
         interfaceInfo = new JTextArea();
-        interfaceInfo.setFont(sharedUtils.MONO_PLAIN_11);
+        interfaceInfo.setFont(Utils.MONO_PLAIN_11);
         interfaceInfo.setLineWrap(true);
         interfaceInfo.setWrapStyleWord(true);
-        interfaceInfo.setCursor(sharedUtils.DEFAULT_CURSOR);
+        interfaceInfo.setCursor(Utils.DEFAULT_CURSOR);
         interfaceInfo.setEditable(false);
-        interfaceInfo.setForeground(sharedUtils.c0554);
-        interfaceInfo.setBackground(sharedUtils.x3231);
-        interfaceInfo.setFont(sharedUtils.MONO_PLAIN_11);
+        interfaceInfo.setForeground(Utils.c0554);
+        interfaceInfo.setBackground(Utils.x3231);
+        interfaceInfo.setFont(Utils.MONO_PLAIN_11);
         JScrollPane pane = new JScrollPane(interfaceInfo);
         pane.setPreferredSize(new Dimension(150, 80));
         panel.add(pane);
@@ -518,7 +530,7 @@ public class netSnifferGUI {
     private static JRadioButton createFilteringBtn(String name, String desc) {
         JRadioButton btn = new JRadioButton(name);
         btn.setBackground(Color.WHITE);
-        sharedUtils.noFocusBorder(btn);
+        Utils.noFocusBorder(btn);
         btn.addActionListener(e -> status.setText(desc));
         return btn;
     }
@@ -537,15 +549,15 @@ public class netSnifferGUI {
         interfacePanel.setMaximumSize(interfaceDim);
 
         JLabel interfaceLabel = new JLabel("Interface #");
-        interfaceLabel.setFont(sharedUtils.TAHOMA_PLAIN_11);
+        interfaceLabel.setFont(Utils.TAHOMA_PLAIN_11);
         interfaceLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         interfacePanel.add(Box.createRigidArea(new Dimension(0, 5)));
         interfacePanel.add(interfaceLabel);
 
         interfaceText = new JTextField();
-        interfaceText.setFont(sharedUtils.TAHOMA_PLAIN_11);
+        interfaceText.setFont(Utils.TAHOMA_PLAIN_11);
         interfaceText.setEnabled(false);
-        interfaceText.setDocument(sharedUtils.numericOnly);
+        interfaceText.setDocument(Utils.numericOnly);
         Dimension interfaceTestDim = new Dimension(40, 25);
         interfaceText.setPreferredSize(interfaceTestDim);
         interfaceText.setMaximumSize(interfaceTestDim);
@@ -561,23 +573,23 @@ public class netSnifferGUI {
             interfaceSet.setEnabled(true);
             interfaceText.setEnabled(true);
         });
-        sharedUtils.setGeneralButton(interfaceList);
-        interfaceList.setFont(sharedUtils.TAHOMA_BOLD_11);
+        Utils.setGeneralButton(interfaceList);
+        interfaceList.setFont(Utils.TAHOMA_BOLD_11);
         interfaceList.setHorizontalAlignment(SwingConstants.CENTER);
         interfaceList.setAlignmentX(Component.CENTER_ALIGNMENT);
         Dimension interfaceElemDim = new Dimension(70, 25);
         interfaceList.setMaximumSize(interfaceElemDim);
         interfaceList.setMinimumSize(interfaceElemDim);
-        sharedUtils.noFocusBorder(interfaceList);
+        Utils.noFocusBorder(interfaceList);
         interfacePanel.add(Box.createRigidArea(new Dimension(0, 5)));
         interfacePanel.add(interfaceList);
 
         interfaceSet = new JButton("Set");
         interfaceSet.setEnabled(false);
-        interfaceSet.setCursor(sharedUtils.HAND_CURSOR);
-        sharedUtils.noFocusBorder(interfaceSet);
+        interfaceSet.setCursor(Utils.HAND_CURSOR);
+        Utils.noFocusBorder(interfaceSet);
         interfaceSet.setBackground(Color.GREEN);
-        interfaceSet.setFont(sharedUtils.TAHOMA_BOLD_11);
+        interfaceSet.setFont(Utils.TAHOMA_BOLD_11);
         interfaceSet.setHorizontalAlignment(SwingConstants.CENTER);
         interfaceSet.setAlignmentX(Component.CENTER_ALIGNMENT);
         interfaceSet.setMaximumSize(interfaceElemDim);
@@ -611,11 +623,11 @@ public class netSnifferGUI {
     public void portSetup(JToggleButton btn) {
         btn.setAlignmentX(Component.CENTER_ALIGNMENT);
         btn.setHorizontalAlignment(SwingConstants.CENTER);
-        btn.setCursor(sharedUtils.HAND_CURSOR);
-        btn.setFont(sharedUtils.TAHOMA_PLAIN_11);
+        btn.setCursor(Utils.HAND_CURSOR);
+        btn.setFont(Utils.TAHOMA_PLAIN_11);
         btn.setBackground(Color.WHITE);
         btn.setFocusPainted(false);
-        btn.setBackground(sharedUtils.c213241250);
+        btn.setBackground(Utils.c213241250);
         Dimension btnDim = new Dimension(110, 25);
         btn.setMaximumSize(btnDim);
         btn.setMinimumSize(btnDim);

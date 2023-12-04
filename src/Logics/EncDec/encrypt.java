@@ -1,10 +1,9 @@
 package Logics.EncDec;
 
-import GUI.sharedUtils;
+import GUI.Utils;
 
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
-import javax.swing.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -22,12 +21,12 @@ public class encrypt {
      * @param filename absolute path of file to encrypt it's content
      * @return data required for encryption, for user to save.
      */
-    public static AESData encryptFile(String filename, JFrame frame) throws NoSuchPaddingException, NoSuchAlgorithmException,
+    public static AESData encryptFile(String filename) throws NoSuchPaddingException, NoSuchAlgorithmException,
             InvalidAlgorithmParameterException, InvalidKeyException, IOException, IllegalBlockSizeException, BadPaddingException {
         String destName = filename + "Enc";
         SecretKey key = generateKey();
         if (key == null) {
-            sharedUtils.errorPopup("failed generating the key", frame);
+            Utils.errorPopup("failed generating the key");
         }
         IvParameterSpec iv = generateIv();
         AESData temp = new AESData();

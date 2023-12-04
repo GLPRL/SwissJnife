@@ -1,7 +1,7 @@
 package GUI.EncDec;
 
 import GUI.mainGUI;
-import GUI.sharedUtils;
+import GUI.Utils;
 import Logics.EncDec.AESData;
 import Logics.EncDec.encrypt;
 
@@ -43,13 +43,13 @@ public class encryptGUI {
             // Get the selected file
             java.io.File selectedFile = fileChooser.getSelectedFile();
             try {
-                AESData data = encrypt.encryptFile(selectedFile.getAbsolutePath(), frame);
+                AESData data = encrypt.encryptFile(selectedFile.getAbsolutePath());
                 dataPopup(frame, data);
                 Arrays.fill(data.getKey().getEncoded(), (byte) 0);
                 Arrays.fill(data.getIv().getIV(), (byte) 0);
                 gui.presentGUI();
             } catch (Exception e) {
-                sharedUtils.errorPopup("Error: failed encrypting the file", frame);
+                Utils.errorPopup("Error: failed encrypting the file");
                 e.fillInStackTrace();
                 gui.presentGUI();
             }
@@ -73,7 +73,7 @@ public class encryptGUI {
         buttonsPanel = new JPanel();
         buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.X_AXIS));
         createElements(data);
-        buttonsPanel.add(sharedUtils.W0_H10);
+        buttonsPanel.add(Utils.W0_H10);
         panel.add(buttonsPanel, BorderLayout.NORTH);
         popup.add(panel);
         popup.setVisible(true);
@@ -122,16 +122,16 @@ public class encryptGUI {
     }
     public JButton createCBButton(String action, String key, JLabel infoLabel, String descKey) {
         JButton btn = new JButton(action);
-        sharedUtils.noFocusBorder(btn);
-        sharedUtils.setGeneralButton(btn);
+        Utils.noFocusBorder(btn);
+        Utils.setGeneralButton(btn);
         btn.setAlignmentY(Component.TOP_ALIGNMENT);
         initClipboard(btn, key, infoLabel, descKey);
         return btn;
     }
     public JButton createCloseButton() {
         JButton closeBtn = new JButton("Return to Menu");
-        sharedUtils.noFocusBorder(closeBtn);
-        sharedUtils.setRetButton(closeBtn, popup);
+        Utils.noFocusBorder(closeBtn);
+        Utils.setRetButton(closeBtn, popup);
         closeBtn.setAlignmentY(Component.TOP_ALIGNMENT);
         return closeBtn;
     }
